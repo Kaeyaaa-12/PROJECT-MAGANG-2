@@ -1,11 +1,17 @@
 <?php
+// routes/web.php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('kostum');
 });
+
+// // Tambahkan rute ini
+// Route::get('/kostum', function () {
+//     return view('kostum');
+// })->name('kostum');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
