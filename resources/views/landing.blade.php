@@ -15,8 +15,6 @@
         rel="stylesheet">
 
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     {{-- Custom Styles untuk Tema --}}
     <style>
@@ -25,7 +23,6 @@
             --bg-theme-color: #0C3623;
             --text-dark: #3d342a;
             --text-light: #ffffff;
-            --border-color: #e5e0d4;
         }
 
         body {
@@ -90,17 +87,6 @@
             max-width: 450px;
             width: 100%;
         }
-
-        /* Styling untuk Swiper Pagination */
-        .swiper-pagination-bullet {
-            background-color: #d1d5db;
-            /* gray-300 */
-            opacity: 1;
-        }
-
-        .swiper-pagination-bullet-active {
-            background-color: var(--bg-theme-color);
-        }
     </style>
 </head>
 
@@ -114,10 +100,11 @@
             <a href="#" class="text-2xl font-bold">COSTUMIFY</a>
             <nav class="hidden md:flex space-x-8 items-center font-medium">
                 <a href="#" class="opacity-90 hover:opacity-100 transition">Home</a>
-                <a href="#" class="opacity-90 hover:opacity-100 transition">Kostum</a>
-                <a href="#" class="opacity-90 hover:opacity-100 transition">Aksesoris</a>
                 <a href="#" class="opacity-90 hover:opacity-100 transition">Tentang</a>
-                <a href="#" class="opacity-90 hover:opacity-100 transition">Kontak</a>
+                <a href="#" class="opacity-90 hover:opacity-100 transition">Kostum Pria</a>
+                <a href="#" class="opacity-90 hover:opacity-100 transition">Kostum Wanita</a>
+                <a href="#" class="opacity-90 hover:opacity-100 transition">Kostum Anak</a>
+                <a href="#" class="opacity-90 hover:opacity-100 transition">Aksesoris</a>
             </nav>
             <div class="flex items-center space-x-5">
                 <a href="#" class="opacity-90 hover:opacity-100 transition">
@@ -141,7 +128,7 @@
     <main>
 
         {{-- ======================================================= --}}
-        {{-- HERO SECTION (Desain Baru) --}}
+        {{-- HERO SECTION --}}
         {{-- ======================================================= --}}
         <section style="background-color: var(--bg-theme-color);">
             <div class="container mx-auto grid md:grid-cols-2 items-center gap-8 py-12 px-5 md:py-24 overflow-hidden">
@@ -150,8 +137,8 @@
                     </h1>
                     <p class="text-lg mb-8 opacity-90">Sewa kostum karnaval terbaik untuk setiap acaramu. Tampil beda
                         dan tak terlupakan.</p>
-                    <a href="#" class="btn-primary font-bold py-3 px-8 rounded-full text-lg inline-block">Sewa
-                        Sekarang</a>
+                    <a href="#"
+                        class="btn-primary font-bold py-3 px-8 rounded-full text-lg inline-block">Explore</a>
                 </div>
                 <div class="hero-image-container">
                     <div class="hero-image-bg"></div>
@@ -162,72 +149,22 @@
         </section>
 
         {{-- ======================================================= --}}
-        {{-- Iklan Produk Geser (Desain Baru - 3 Iklan) --}}
+        {{-- TENTANG KAMI (Menggantikan Iklan Geser) --}}
         {{-- ======================================================= --}}
         <section class="py-20 bg-white">
-            <div class="container mx-auto px-5">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl font-bold">Penawaran Spesial</h2>
-                    <p class="text-lg text-gray-600 mt-2">Jangan lewatkan promo terbaik dari kami!</p>
+            <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center px-5">
+                <div class="order-2 md:order-1 text-center md:text-left">
+                    <h2 class="text-4xl font-bold mb-4">Tentang Kami</h2>
+                    <p class="text-lg text-gray-600 mb-4">
+                        Costumify adalah solusi terpadu untuk semua kebutuhan kostum Anda. Kami percaya bahwa setiap
+                        orang berhak untuk tampil maksimal dan mewujudkan imajinasinya dalam setiap acara spesial.
+                    </p>
+                    <a href="#"
+                        class="btn-secondary inline-block font-bold py-3 px-8 rounded-full text-lg">Tentang Kami</a>
                 </div>
-                <div class="swiper-container iklan-slider">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide !h-auto">
-                            <div
-                                class="bg-light rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row items-center h-full">
-                                <div class="w-full md:w-1/2 p-8 text-center md:text-left">
-                                    <span class="text-sm font-bold uppercase tracking-wider"
-                                        style="color: var(--bg-theme-color);">KOLEKSI BARU</span>
-                                    <h3 class="text-3xl font-bold my-2 text-dark">Fantasi & Superhero</h3>
-                                    <p class="text-gray-600 mb-4">Jadilah yang pertama untuk mengenakan kostum terbaru
-                                        kami yang menakjubkan!</p>
-                                    <a href="#" class="font-bold hover:underline"
-                                        style="color: var(--bg-theme-color);">Lihat Koleksi →</a>
-                                </div>
-                                <div class="w-full md:w-1/2 h-64 md:h-full">
-                                    <img src="{{ asset('assets/images/bgkostum.png') }}"
-                                        class="w-full h-full object-cover">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide !h-auto">
-                            <div
-                                class="bg-light rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row items-center h-full">
-                                <div class="w-full md:w-1/2 p-8 text-center md:text-left">
-                                    <span class="text-sm font-bold uppercase tracking-wider"
-                                        style="color: var(--bg-theme-color);">DISKON AKHIR PEKAN</span>
-                                    <h3 class="text-3xl font-bold my-2 text-dark">Diskon 20% Dewasa</h3>
-                                    <p class="text-gray-600 mb-4">Nikmati potongan harga spesial untuk semua kostum
-                                        kategori dewasa setiap Jumat-Minggu.</p>
-                                    <a href="#" class="font-bold hover:underline"
-                                        style="color: var(--bg-theme-color);">Klaim Diskon →</a>
-                                </div>
-                                <div class="w-full md:w-1/2 h-64 md:h-full">
-                                    <img src="{{ asset('assets/images/bgkostum.png') }}"
-                                        class="w-full h-full object-cover">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide !h-auto">
-                            <div
-                                class="bg-light rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row items-center h-full">
-                                <div class="w-full md:w-1/2 p-8 text-center md:text-left">
-                                    <span class="text-sm font-bold uppercase tracking-wider"
-                                        style="color: var(--bg-theme-color);">LENGKAPI TAMPILANMU</span>
-                                    <h3 class="text-3xl font-bold my-2 text-dark">Sewa Aksesoris</h3>
-                                    <p class="text-gray-600 mb-4">Dari topeng hingga properti unik, temukan aksesoris
-                                        pelengkap kostum Anda di sini.</p>
-                                    <a href="#" class="font-bold hover:underline"
-                                        style="color: var(--bg-theme-color);">Cari Aksesoris →</a>
-                                </div>
-                                <div class="w-full md:w-1/2 h-64 md:h-full">
-                                    <img src="{{ asset('assets/images/bgkostum.png') }}"
-                                        class="w-full h-full object-cover">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-pagination !relative !bottom-0 pt-8"></div>
+                <div class="order-1 md:order-2">
+                    <img src="{{ asset('assets/images/bgkostum.png') }}"
+                        class="rounded-lg shadow-xl w-full h-auto object-cover">
                 </div>
             </div>
         </section>
@@ -235,24 +172,23 @@
         {{-- ======================================================= --}}
         {{-- Produk Kami --}}
         {{-- ======================================================= --}}
-        <section id="produk" class="py-16" x-data="{ tab: 'baru' }">
+        <section id="produk" class="py-16" x-data="{ tab: 'terbaru' }">
             <div class="container mx-auto text-center px-5">
                 <h2 class="text-4xl font-bold mb-12">Produk Kami</h2>
                 <div class="flex justify-center border-b mb-10">
-                    <button @click="tab = 'baru'"
-                        :class="tab === 'baru' ? 'tab-active-border' : 'tab-inactive-border'"
+                    <button @click="tab = 'terbaru'"
+                        :class="tab === 'terbaru' ? 'tab-active-border' : 'tab-inactive-border'"
                         class="px-8 py-3 text-lg transition">
-                        Kostum Baru
+                        Terbaru
                     </button>
-                    <button @click="tab = 'laris'"
-                        :class="tab === 'laris' ? 'tab-active-border' : 'tab-inactive-border'"
+                    <button @click="tab = 'populer'"
+                        :class="tab === 'populer' ? 'tab-active-border' : 'tab-inactive-border'"
                         class="px-8 py-3 text-lg transition">
-                        Paling Laris
+                        Populer
                     </button>
                 </div>
-
                 <div>
-                    <div x-show="tab === 'baru'" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div x-show="tab === 'terbaru'" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         <div
                             class="bg-white rounded-lg overflow-hidden border border-transparent hover:border-gray-200 hover:shadow-lg transition">
                             <img src="{{ asset('assets/images/bgkostum.png') }}" alt="Kostum 1"
@@ -290,7 +226,7 @@
                             </div>
                         </div>
                     </div>
-                    <div x-show="tab === 'laris'" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+                    <div x-show="tab === 'populer'" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
                         style="display: none;">
                         <div
                             class="bg-white rounded-lg overflow-hidden border border-transparent hover:border-gray-200 hover:shadow-lg transition">
@@ -317,7 +253,7 @@
 
         <section class="py-16">
             <div class="container mx-auto text-center px-5">
-                <h2 class="text-4xl font-bold mb-12">Jelajahi Kategori</h2>
+                <h2 class="text-4xl font-bold mb-12">Kategori</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <a href="#" class="relative rounded-lg overflow-hidden group h-96"><img
                             src="{{ asset('assets/images/bgkostum.png') }}"
@@ -345,19 +281,6 @@
         </section>
 
         <section class="py-20 bg-white">
-            <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center px-5">
-                <div><img src="{{ asset('assets/images/bgkostum.png') }}" class="rounded-lg shadow-lg"></div>
-                <div class="text-center md:text-left">
-                    <h2 class="text-4xl font-bold mb-4">Tumbuhkan Jiwa Pestamu</h2>
-                    <p class="text-lg text-gray-600 mb-6">Setiap kostum memiliki cerita. Kami bantu Anda menciptakan
-                        momen tak terlupakan dengan koleksi pilihan yang unik dan berkualitas tinggi.</p>
-                    <a href="#"
-                        class="btn-secondary inline-block font-bold py-3 px-8 rounded-full text-lg">Tentang Kami</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-20">
             <div class="container mx-auto text-center px-5">
                 <h2 class="text-4xl font-bold mb-4">Cara Mudah Menyewa</h2>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-16">Hanya dengan 3 langkah sederhana, kostum
@@ -387,7 +310,7 @@
             </div>
         </section>
 
-        <section class="py-16 bg-white">
+        <section class="py-16">
             <div class="container mx-auto text-center px-5">
                 <h2 class="text-4xl font-bold mb-12">Galeri</h2>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -400,8 +323,6 @@
                     <img class="h-auto max-w-full rounded-lg" src="{{ asset('assets/images/bgkostum.png') }}"
                         alt="gallery image">
                 </div>
-                <a href="#"
-                    class="btn-secondary mt-8 inline-block font-bold py-3 px-8 rounded-full text-lg">@costumify.id</a>
             </div>
         </section>
     </main>
@@ -411,10 +332,6 @@
     {{-- ======================================================= --}}
     <footer style="background-color: var(--bg-theme-color);" class="text-white pt-16 pb-8">
         <div class="container mx-auto px-5">
-            <div class="text-center mb-12">
-                <h3 class="text-3xl font-bold mb-2">Tetap Terhubung</h3>
-                <p class="opacity-80">Dapatkan info promo, koleksi baru, dan tips & trik seputar kostum.</p>
-            </div>
             <div
                 class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left border-t border-b border-gray-700 py-8">
                 <div>
@@ -426,24 +343,16 @@
                     <h3 class="text-lg font-semibold mb-4">Navigasi</h3>
                     <ul class="space-y-2">
                         <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
-                        <li><a href="#produk" class="text-gray-400 hover:text-white">Produk</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Produk</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white">Tentang</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Bantuan</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Kontak Kami</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Syarat & Ketentuan</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Ikuti Kami</h3>
+                    <h3 class="text-lg font-semibold mb-4">Informasi</h3>
                     <div class="flex justify-center md:justify-start space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">Whatsapp</a>
                         <a href="#" class="text-gray-400 hover:text-white">Facebook</a>
                         <a href="#" class="text-gray-400 hover:text-white">Instagram</a>
-                        <a href="#" class="text-gray-400 hover:text-white">Twitter</a>
                     </div>
                 </div>
             </div>
@@ -453,19 +362,8 @@
         </div>
     </footer>
 
-    <script>
-        var swiper = new Swiper('.iklan-slider', {
-            loop: true,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-        });
-    </script>
+    {{-- Script untuk Swiper.js tidak lagi dibutuhkan karena slider iklan telah dihapus --}}
+
 </body>
 
 </html>
