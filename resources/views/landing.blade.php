@@ -99,12 +99,12 @@
         <div class="container mx-auto flex justify-between items-center p-5 text-white">
             <a href="#" class="text-2xl font-bold">COSTUMIFY</a>
             <nav class="hidden md:flex space-x-8 items-center font-medium">
-                <a href="#" class="opacity-90 hover:opacity-100 transition">Home</a>
-                <a href="#" class="opacity-90 hover:opacity-100 transition">Tentang</a>
-                <a href="#" class="opacity-90 hover:opacity-100 transition">Kostum Pria</a>
-                <a href="#" class="opacity-90 hover:opacity-100 transition">Kostum Wanita</a>
-                <a href="#" class="opacity-90 hover:opacity-100 transition">Kostum Anak</a>
-                <a href="#" class="opacity-90 hover:opacity-100 transition">Aksesoris</a>
+                <a href="{{ route('home.index') }}" class="opacity-90 hover:opacity-100 transition">Home</a>
+                <a href="{{ route('tentang.index') }}" class="opacity-90 hover:opacity-100 transition">Tentang</a>
+                <a href="{{ route('kostum.pria') }}" class="opacity-90 hover:opacity-100 transition">Kostum Pria</a>
+                <a href="{{ route('kostum.wanita') }}" class="opacity-90 hover:opacity-100 transition">Kostum Wanita</a>
+                <a href="{{ route('kostum.anak') }}" class="opacity-90 hover:opacity-100 transition">Kostum Anak</a>
+                <a href="{{ route('aksesoris.index') }}" class="opacity-90 hover:opacity-100 transition">Aksesoris</a>
             </nav>
             <div class="flex items-center space-x-5">
                 <a href="#" class="opacity-90 hover:opacity-100 transition">
@@ -347,7 +347,7 @@
     <footer style="background-color: var(--bg-theme-color);" class="text-white pt-16 pb-8">
         <div class="container mx-auto px-5">
             <div
-                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-8 text-center sm:text-left border-t border-b border-gray-700 py-12">
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-12 text-center sm:text-left border-t border-b border-gray-700 py-12">
                 {{-- Info Perusahaan --}}
                 <div class="space-y-4">
                     <h3 class="text-xl font-bold text-white">COSTUMIFY</h3>
@@ -362,17 +362,6 @@
                         <li><a href="#" class="text-gray-400 hover:text-white">Produk</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white">Tentang</a></li>
                     </ul>
-                </div>
-                {{-- Lokasi --}}
-                <div class="space-y-4">
-                    <h3 class="text-lg font-semibold">Lokasi Kami</h3>
-                    <div class="w-full aspect-video rounded-lg shadow-md overflow-hidden">
-                        <iframe
-                            src="https://maps.google.com/maps?q=Satpas%20Polres%20Tulungagung&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
                 </div>
                 {{-- Hubungi Kami --}}
                 <div class="space-y-4">
@@ -402,6 +391,17 @@
                                 <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
                             </svg>
                         </a>
+                    </div>
+                </div>
+                {{-- Lokasi --}}
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold">Lokasi Kami</h3>
+                    <div class="w-full aspect-video rounded-lg shadow-md overflow-hidden">
+                        <iframe
+                            src="https://maps.google.com/maps?q=Satpas%20Polres%20Tulungagung&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
                     </div>
                 </div>
             </div>
