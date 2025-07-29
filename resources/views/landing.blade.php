@@ -116,6 +116,20 @@
                 </a>
                 <a href="#" class="opacity-90 hover:opacity-100 transition">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                </a>
+                <a href="#" class="opacity-90 hover:opacity-100 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                </a>
+                <a href="#" class="opacity-90 hover:opacity-100 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -143,7 +157,7 @@
                 <div class="hero-image-container">
                     <div class="hero-image-bg"></div>
                     <img src="{{ asset('assets/images/bgkostum.png') }}" alt="Model Kostum Karnaval"
-                        class="hero-image drop-shadow-2xl">
+                        class="hero-image drop-shadow-2xl rounded-lg">
                 </div>
             </div>
         </section>
@@ -151,7 +165,7 @@
         {{-- ======================================================= --}}
         {{-- TENTANG KAMI (Menggantikan Iklan Geser) --}}
         {{-- ======================================================= --}}
-        <section class="py-20 bg-white">
+        <section class="py-12 md:py-24 bg-white">
             <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center px-5">
                 <div class="order-2 md:order-1 text-center md:text-left">
                     <h2 class="text-4xl font-bold mb-4">Tentang Kami</h2>
@@ -162,9 +176,9 @@
                     <a href="#"
                         class="btn-secondary inline-block font-bold py-3 px-8 rounded-full text-lg">Tentang Kami</a>
                 </div>
-                <div class="order-1 md:order-2">
+                <div class="order-1 md:order-2 flex justify-center">
                     <img src="{{ asset('assets/images/bgkostum.png') }}"
-                        class="rounded-lg shadow-xl w-full h-auto object-cover">
+                        class="rounded-lg shadow-xl w-2/3 h-auto object-cover">
                 </div>
             </div>
         </section>
@@ -259,21 +273,21 @@
                             src="{{ asset('assets/images/bgkostum.png') }}"
                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                         <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                            <h3 class="text-white text-3xl font-bold">Kostum Anak</h3>
+                            <h3 class="text-white text-3xl font-bold">PAKAIAN ADAT</h3>
                         </div>
                     </a>
                     <a href="#" class="relative rounded-lg overflow-hidden group h-96"><img
                             src="{{ asset('assets/images/bgkostum.png') }}"
                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                         <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                            <h3 class="text-white text-3xl font-bold">Kostum Dewasa</h3>
+                            <h3 class="text-white text-3xl font-bold">PROFESI</h3>
                         </div>
                     </a>
                     <a href="#" class="relative rounded-lg overflow-hidden group h-96"><img
                             src="{{ asset('assets/images/bgkostum.png') }}"
                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                         <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                            <h3 class="text-white text-3xl font-bold">Aksesoris</h3>
+                            <h3 class="text-white text-3xl font-bold">FANTASI</h3>
                         </div>
                     </a>
                 </div>
@@ -333,36 +347,70 @@
     <footer style="background-color: var(--bg-theme-color);" class="text-white pt-16 pb-8">
         <div class="container mx-auto px-5">
             <div
-                class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left border-t border-b border-gray-700 py-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4 text-white">COSTUMIFY</h3>
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-8 text-center sm:text-left border-t border-b border-gray-700 py-12">
+                {{-- Info Perusahaan --}}
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-white">COSTUMIFY</h3>
                     <p class="text-gray-400">Penyewaan kostum karnaval terlengkap dan terpercaya untuk segala acaramu.
                     </p>
                 </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Navigasi</h3>
+                {{-- Navigasi --}}
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold">Navigasi</h3>
                     <ul class="space-y-2">
                         <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white">Produk</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white">Tentang</a></li>
                     </ul>
                 </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Informasi</h3>
-                    <div class="flex justify-center md:justify-start space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white">Whatsapp</a>
-                        <a href="#" class="text-gray-400 hover:text-white">Facebook</a>
-                        <a href="#" class="text-gray-400 hover:text-white">Instagram</a>
+                {{-- Lokasi --}}
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold">Lokasi Kami</h3>
+                    <div class="w-full aspect-video rounded-lg shadow-md overflow-hidden">
+                        <iframe
+                            src="https://maps.google.com/maps?q=Satpas%20Polres%20Tulungagung&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+                {{-- Hubungi Kami --}}
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold">Hubungi Kami</h3>
+                    <div class="flex justify-center sm:justify-start space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5">
+                                </rect>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                            </svg>
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="text-center text-gray-500 mt-8">
-                &copy; {{ date('Y') }} Costumify. All Rights Reserved.
+                © {{ date('Y') }} Costumify. All Rights Reserved.
             </div>
         </div>
     </footer>
 
-    {{-- Script untuk Swiper.js tidak lagi dibutuhkan karena slider iklan telah dihapus --}}
 
 </body>
 
