@@ -163,7 +163,7 @@
         </section>
 
         {{-- ======================================================= --}}
-        {{-- TENTANG KAMI (Menggantikan Iklan Geser) --}}
+        {{-- TENTANG KAMI
         {{-- ======================================================= --}}
         <section class="py-12 md:py-24 bg-white">
             <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center px-5">
@@ -174,7 +174,7 @@
                         orang berhak untuk tampil maksimal dan mewujudkan imajinasinya dalam setiap acara spesial.
                     </p>
                     <a href="#"
-                        class="btn-secondary inline-block font-bold py-3 px-8 rounded-full text-lg">Tentang Kami</a>
+                        class="btn-secondary inline-block font-bold py-3 px-8 rounded-full text-lg">Selengkapnya</a>
                 </div>
                 <div class="order-1 md:order-2 flex justify-center">
                     <img src="{{ asset('assets/images/bgkostum.png') }}"
@@ -306,19 +306,24 @@
                         <div class="text-white rounded-full w-20 h-20 flex items-center justify-center text-3xl font-bold mb-6 z-10 border-4 border-light-beige"
                             style="background-color: var(--bg-theme-color);">1</div>
                         <h3 class="text-2xl font-semibold mb-2 text-dark-brown">Pilih Kostum</h3>
-                        <p class="text-gray-500">Jelajahi koleksi kami dan temukan kostum yang paling sesuai.</p>
+                        <p class="text-gray-500">Datang langsung dan memilih pada toko kami. Klik untuk lihat peta
+                            lokasi kami atau buka website www.costumfy.com untuk melihat semua koleksi kami</p>
                     </div>
                     <div class="relative flex flex-col items-center">
                         <div class="text-white rounded-full w-20 h-20 flex items-center justify-center text-3xl font-bold mb-6 z-10 border-4 border-light-beige"
                             style="background-color: var(--bg-theme-color);">2</div>
                         <h3 class="text-2xl font-semibold mb-2 text-dark-brown">Atur Jadwal & Bayar</h3>
-                        <p class="text-gray-500">Tentukan tanggal sewa, lakukan pembayaran aman.</p>
+                        <p class="text-gray-500">Tentukan tanggal sewa, lakukan pembayaran aman atau bisa order lewat
+                            whatsapp.</p>
                     </div>
                     <div class="relative flex flex-col items-center">
                         <div class="text-white rounded-full w-20 h-20 flex items-center justify-center text-3xl font-bold mb-6 z-10 border-4 border-light-beige"
                             style="background-color: var(--bg-theme-color);">3</div>
                         <h3 class="text-2xl font-semibold mb-2 text-dark-brown">Ambil & Kembalikan</h3>
-                        <p class="text-gray-500">Ambil kostum di lokasi dan kembalikan tepat waktu.</p>
+                        <p class="text-gray-500">Kostum dapat diambil di lokasi dan dikembalikan langsung di toko kami
+                            atau dapat dikirim dan dikembalikan via gojek atau JNE, Harga sewa belum termasuk ongkos
+                            kirim, Keterlambatan pengiriman oleh pihak ketiga ( Gojek , JNE , dll ) diluar tanggung
+                            jawab kami.</p>
                     </div>
                 </div>
             </div>
