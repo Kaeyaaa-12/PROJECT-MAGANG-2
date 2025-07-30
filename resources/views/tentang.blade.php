@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tentang Kami - Costumify</title>
+    <title>Tentang Kami - Amira Collection</title>
 
     @vite('resources/css/app.css')
 
@@ -65,7 +65,7 @@
     {{-- ======================================================= --}}
     <header class="shadow-md sticky top-0 z-50" style="background-color: var(--bg-main);">
         <div class="container mx-auto flex justify-between items-center p-5 text-white">
-            <a href="#" class="text-2xl font-bold" style="color: var(--text-main);">COSTUMIFY</a>
+            <a href="#" class="text-2xl font-bold" style="color: var(--text-main);">AMIRA COLLECTION</a>
             <nav class="hidden md:flex space-x-8 items-center font-medium">
                 <a href="{{ route('home.index') }}" class="opacity-90 hover:opacity-100 transition">Home</a>
                 <a href="{{ route('tentang.index') }}" class="opacity-90 hover:opacity-100 transition">Tentang</a>
@@ -110,11 +110,12 @@
 
     <main>
         {{-- Hero Section --}}
-        <section class="relative bg-cover bg-center"
-            style="background-image: url('{{ asset('assets/images/bgtentang.png') }}');">
+        <section class="relative bg-contain bg-center bg-no-repeat"
+            style="background-image: url('{{ asset('assets/images/bgtentang.png') }}'); background-color: #000;">
             <div class="absolute inset-0 bg-black opacity-50"></div>
+            {{-- PERUBAHAN DI BAWAH INI --}}
             <div
-                class="container mx-auto px-5 relative z-10 flex flex-col items-center justify-center text-center text-white min-h-[460px] md:min-h-[500px]">
+                class="container mx-auto px-5 relative z-10 flex flex-col items-center justify-center text-center text-white min-h-[90vh]">
                 <h1 class="text-5xl md:text-6xl font-bold">Amira Collection</h1>
                 <p class="text-lg md:text-xl mt-4 max-w-2xl">Pusat penyewaan baju karnaval terbaik di Tulungagung.</p>
             </div>
@@ -124,7 +125,7 @@
         <section class="py-12 md:py-24" style="background-color: #f8f7f3;">
             <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center px-5">
                 <div>
-                    <img src="{{ asset('assets/images/ceritakami.png') }}" alt="Cerita Kami"
+                    <img src="{{ asset('assets/images/bgtentang.png') }}" alt="Cerita Kami"
                         class="rounded-lg shadow-xl w-full">
                 </div>
                 <div class="text-dark-custom">
@@ -153,7 +154,7 @@
                     </p>
                 </div>
                 <div class="text-center">
-                    <img src="{{ asset('assets/images/owner.jpg') }}" alt="Owner Cafe WKS"
+                    <img src="{{ asset('assets/images/bgtentang.png') }}" alt="Owner Cafe WKS"
                         class="rounded-full w-64 h-64 mx-auto object-cover mb-4 shadow-xl">
                     <h3 class="text-xl font-semibold text-dark-custom">Owner Cafe WKS</h3>
                 </div>
@@ -164,7 +165,7 @@
         <section class="py-12 md:py-24" style="background-color: #f8f7f3;">
             <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center px-5">
                 <div>
-                    <img src="{{ asset('assets/images/lokasikami.jpg') }}" alt="Lokasi Kami"
+                    <img src="{{ asset('assets/images/bgtentang.png') }}" alt="Lokasi Kami"
                         class="rounded-lg shadow-xl w-full">
                 </div>
                 <div class="text-dark-custom">
@@ -236,7 +237,7 @@
                     <h3 class="text-lg font-semibold" style="color: var(--text-main);">Lokasi Kami</h3>
                     <div class="w-full aspect-video rounded-lg shadow-md overflow-hidden">
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.933391295874!2d111.9022573147796!3d-8.0073239942368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78e2e2c45422e3%3A0x6b2cde3dae4c2c7!2sWKS%20Serut%20-%20Wande%20Kopi%20Serut!5e0!3m2!1sid!2sid!4v1627888645028!5m2!1sid!2sid"
+                            src="https://maps.google.com/maps?q=Satpas%20Polres%20Tulungagung&t=&z=15&ie=UTF8&iwloc=&output=embed"
                             width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
@@ -248,7 +249,6 @@
             </div>
         </div>
     </footer>
-
 
 </body>
 
