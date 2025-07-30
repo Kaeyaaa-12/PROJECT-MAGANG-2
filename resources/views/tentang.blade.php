@@ -155,7 +155,7 @@
                 <div class="text-center">
                     <img src="{{ asset('assets/images/bgtentang.png') }}" alt="Owner Cafe WKS"
                         class="rounded-full w-64 h-64 mx-auto object-cover mb-4 shadow-xl">
-                    <h3 class="text-xl font-semibold text-dark-custom">Owner Cafe WKS</h3>
+                    <h3 class="text-xl font-semibold text-dark-custom">Owner Amira Collection</h3>
                 </div>
             </div>
         </section>
@@ -188,7 +188,7 @@
                 class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-12 text-center sm:text-left border-t border-b border-gray-700 py-12">
                 {{-- Info Perusahaan --}}
                 <div class="space-y-4">
-                    <h3 class="text-xl font-bold" style="color: var(--text-main);">COSTUMIFY</h3>
+                    <h3 class="text-xl font-bold" style="color: var(--text-main);">AMIRA COLLECTION</h3>
                     <p class="text-gray-400">Penyewaan kostum karnaval terlengkap dan terpercaya untuk segala acaramu.
                     </p>
                 </div>
@@ -244,7 +244,7 @@
                 </div>
             </div>
             <div class="text-center text-gray-500 mt-8">
-                © {{ date('Y') }} Costumify. All Rights Reserved.
+                © {{ date('Y') }} Amira Collection. All Rights Reserved.
             </div>
         </div>
     </footer>

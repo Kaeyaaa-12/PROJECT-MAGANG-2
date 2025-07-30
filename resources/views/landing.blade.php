@@ -98,7 +98,7 @@
     {{-- ======================================================= --}}
     <header class="shadow-md sticky top-0 z-50" style="background-color: var(--bg-main);">
         <div class="container mx-auto flex justify-between items-center p-5 text-white">
-            <a href="#" class="text-2xl font-bold" style="color: var(--text-main);">COSTUMIFY</a>
+            <a href="#" class="text-2xl font-bold" style="color: var(--text-main);">AMIRA COLLECTION</a>
             <nav class="hidden md:flex space-x-8 items-center font-medium">
                 <a href="{{ route('home.index') }}" class="opacity-90 hover:opacity-100 transition">Home</a>
                 <a href="{{ route('tentang.index') }}" class="opacity-90 hover:opacity-100 transition">Tentang</a>
@@ -172,7 +172,8 @@
                 <div class="order-2 md:order-1 text-center md:text-left">
                     <h2 class="text-4xl font-bold mb-4" style="color: var(--text-dark);">Tentang Kami</h2>
                     <p class="text-lg text-gray-600 mb-4">
-                        Costumify adalah solusi terpadu untuk semua kebutuhan kostum Anda. Kami percaya bahwa setiap
+                        Amira Collection adalah solusi terpadu untuk semua kebutuhan kostum Anda. Kami percaya bahwa
+                        setiap
                         orang berhak untuk tampil maksimal dan mewujudkan imajinasinya dalam setiap acara spesial.
                     </p>
                     <a href="#"
@@ -414,7 +415,7 @@
                 class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-12 text-center sm:text-left border-t border-b border-gray-700 py-12">
                 {{-- Info Perusahaan --}}
                 <div class="space-y-4">
-                    <h3 class="text-xl font-bold" style="color: var(--text-main);">COSTUMIFY</h3>
+                    <h3 class="text-xl font-bold" style="color: var(--text-main);">AMIRA COLLECTION</h3>
                     <p class="text-gray-400">Penyewaan kostum karnaval terlengkap dan terpercaya untuk segala acaramu.
                     </p>
                 </div>
@@ -470,7 +471,7 @@
                 </div>
             </div>
             <div class="text-center text-gray-500 mt-8">
-                © {{ date('Y') }} Costumify. All Rights Reserved.
+                © {{ date('Y') }} Amira Collection. All Rights Reserved.
             </div>
         </div>
     </footer>
