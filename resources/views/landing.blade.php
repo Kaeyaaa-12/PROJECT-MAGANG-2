@@ -329,10 +329,58 @@
             </div>
         </section>
 
+        <section class="py-20 bg-white">
+            <div class="container mx-auto text-center px-5">
+                <h2 class="text-4xl font-bold mb-4">Aturan Penyewaan Kostum</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-16">Beberapa hal yang perlu Anda perhatikan saat
+                    menyewa kostum di Costumify.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-left">
+                        <h3 class="text-2xl font-semibold mb-4 text-dark-brown">Pemesanan & Pembayaran</h3>
+                        <p class="text-gray-500">Pemesanan dapat dilakukan secara online maupun offline. Pembayaran
+                            penuh di muka diperlukan untuk mengonfirmasi pesanan Anda.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-left">
+                        <h3 class="text-2xl font-semibold mb-4 text-dark-brown">Jaminan Sewa</h3>
+                        <p class="text-gray-500">Setiap penyewaan memerlukan jaminan (deposit) yang akan dikembalikan
+                            sepenuhnya setelah kostum dikembalikan dalam kondisi baik.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-left">
+                        <h3 class="text-2xl font-semibold mb-4 text-dark-brown">Pengambilan & Pengembalian</h3>
+                        <p class="text-gray-500">Kostum dapat diambil H-1 acara dan harus dikembalikan H+1 acara.
+                            Keterlambatan akan dikenakan denda harian.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-left">
+                        <h3 class="text-2xl font-semibold mb-4 text-dark-brown">Perawatan Kostum</h3>
+                        <p class="text-gray-500">Harap menjaga kebersihan dan keutuhan kostum. Dilarang mengubah atau
+                            memodifikasi kostum tanpa izin.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-left">
+                        <h3 class="text-2xl font-semibold mb-4 text-dark-brown">Kerusakan & Kehilangan</h3>
+                        <p class="text-gray-500">Kerusakan atau kehilangan kostum akan dikenakan biaya perbaikan atau
+                            penggantian sesuai dengan nilai kostum.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-left">
+                        <h3 class="text-2xl font-semibold mb-4 text-dark-brown">Pembatalan</h3>
+                        <p class="text-gray-500">Pembatalan 3 hari sebelum tanggal pengambilan akan dikenakan potongan
+                            50% dari biaya sewa. Kurang dari 3 hari, biaya sewa tidak dapat dikembalikan.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="py-16">
             <div class="container mx-auto text-center px-5">
                 <h2 class="text-4xl font-bold mb-12">Galeri</h2>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <img class="h-auto max-w-full rounded-lg" src="{{ asset('assets/images/bgkostum.png') }}"
+                        alt="gallery image">
+                    <img class="h-auto max-w-full rounded-lg" src="{{ asset('assets/images/bgkostum.png') }}"
+                        alt="gallery image">
+                    <img class="h-auto max-w-full rounded-lg" src="{{ asset('assets/images/bgkostum.png') }}"
+                        alt="gallery image">
+                    <img class="h-auto max-w-full rounded-lg" src="{{ asset('assets/images/bgkostum.png') }}"
+                        alt="gallery image">
                     <img class="h-auto max-w-full rounded-lg" src="{{ asset('assets/images/bgkostum.png') }}"
                         alt="gallery image">
                     <img class="h-auto max-w-full rounded-lg" src="{{ asset('assets/images/bgkostum.png') }}"
