@@ -131,10 +131,9 @@
                 <div class="text-dark-custom">
                     <h2 class="text-4xl font-bold mb-4">Cerita Kami</h2>
                     <p class="mb-4 text-lg">
-                        Warung Cafe Wande Kopi Serut (WKS) berdiri mulai 27 Maret 2018 di Desa Serut, Kabupaten
-                        Tulungagung.
-                        Sebelumnya, tempat tersebut merupakan sebuah toko kecil yang kemudian berkembang menjadi warung
-                        cafe. Lokasinya berada di RT 01/RW 04 Desa Serut, Kecamatan Boyolangu.
+                        Amira Collection berdiri sejak tahun 2010 di Tulungagung, berawal dari kecintaan kami terhadap
+                        seni dan budaya. Kami berkomitmen untuk menyediakan kostum karnaval berkualitas tinggi untuk
+                        berbagai acara, mulai dari pawai budaya, festival, hingga acara sekolah dan perusahaan.
                     </p>
                 </div>
             </div>
@@ -146,15 +145,14 @@
                 <div class="text-dark-custom">
                     <h2 class="text-4xl font-bold mb-4">Kata Owner Kami</h2>
                     <p class="text-lg">
-                        Memiliki kafe adalah lebih dari sekadar bisnis; ini adalah sebuah panggilan jiwa. Setiap cangkir
-                        kopi yang kami sajikan adalah hasil dari dedikasi, semangat, dan cinta kami untuk seni menyeduh.
-                        Kami percaya bahwa setiap pelanggan yang datang adalah bagian dari komunitas kami, dan setiap
-                        senyuman yang tercipta adalah tujuan utama kami.
+                        "Setiap kostum memiliki cerita, dan kami bangga menjadi bagian dari cerita Anda. Di Amira
+                        Collection, kami tidak hanya menyewakan kostum, tetapi juga membantu mewujudkan imajinasi dan
+                        kegembiraan di setiap momen spesial Anda. Kepuasan pelanggan adalah prioritas utama kami."
                     </p>
                 </div>
                 <div class="text-center">
-                    <img src="{{ asset('assets/images/bgtentang.png') }}" alt="Owner Cafe WKS"
-                        class="rounded-full w-64 h-64 mx-auto object-cover mb-4 shadow-xl">
+                    <img src="{{ asset('assets/images/bgtentang.png') }}" alt="Owner Amira Collection"
+                        class="rounded-full w-80 h-80 mx-auto object-cover mb-4 shadow-xl">
                     <h3 class="text-xl font-semibold text-dark-custom">Owner Amira Collection</h3>
                 </div>
             </div>
@@ -164,15 +162,42 @@
         <section class="py-12 md:py-24" style="background-color: #f8f7f3;">
             <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center px-5">
                 <div>
-                    <img src="{{ asset('assets/images/bgtentang.png') }}" alt="Lokasi Kami"
-                        class="rounded-lg shadow-xl w-full">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.046803929494!2d111.8978223147798!3d-8.09781999417882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78e2de252ac2f7%3A0x8e1b7f0d381d55d!2sAmira%20Collection!5e0!3m2!1sen!2sid!4v1627545934898!5m2!1sen!2sid"
+                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        class="rounded-lg shadow-xl"></iframe>
                 </div>
                 <div class="text-dark-custom">
                     <h2 class="text-4xl font-bold mb-4">Lokasi Kami</h2>
-                    <p class="mb-2 text-lg"><strong>Alamat:</strong> Jl. KH Sulaiman Al Karim, Kates, Serut, Kec.
-                        Boyolangu, Kabupaten Tulungagung, Jawa Timur 66235</p>
-                    <p class="mb-4 text-lg"><strong>Jam Buka:</strong> 08:00 - 24:00</p>
-                    <a href="#" class="btn-primary font-bold py-3 px-8 rounded-lg text-lg">Open Map</a>
+                    <p class="mb-2 text-lg"><strong>Alamat:</strong> Jl. Raya Demuk No.10, Demuk, Pucung, Kec. Kauman,
+                        Kabupaten Tulungagung, Jawa Timur 66261</p>
+                    <p class="mb-4 text-lg"><strong>Jam Buka:</strong> Setiap Hari, 08:00 - 21:00</p>
+                    <div class="flex space-x-4">
+                        <a href="https://wa.me/6281234567890" target="_blank"
+                            class="text-green-500 hover:text-green-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.731 6.086l.001.004 1.443-4.148-4.226 1.159zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.371-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.521.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.289.173-1.414z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/your-facebook-page" target="_blank"
+                            class="text-blue-600 hover:text-blue-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/your-instagram-profile" target="_blank"
+                            class="text-pink-500 hover:text-pink-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.07-1.645-.07-4.85s.012-3.584.07-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.359 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.947s-.014-3.667-.072-4.947c-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z" />
+                            </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
