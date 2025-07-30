@@ -136,7 +136,6 @@
                         Sebelumnya, tempat tersebut merupakan sebuah toko kecil yang kemudian berkembang menjadi warung
                         cafe. Lokasinya berada di RT 01/RW 04 Desa Serut, Kecamatan Boyolangu.
                     </p>
-                    <a href="#" class="btn-primary font-bold py-3 px-8 rounded-lg text-lg">Read More</a>
                 </div>
             </div>
         </section>
@@ -145,7 +144,7 @@
         <section class="py-12 md:py-24" style="background-color: #f8f7f3;">
             <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center px-5">
                 <div class="text-dark-custom">
-                    <h2 class="text-4xl font-bold mb-4">Our Experts Says</h2>
+                    <h2 class="text-4xl font-bold mb-4">Kata Owner Kami</h2>
                     <p class="text-lg">
                         Memiliki kafe adalah lebih dari sekadar bisnis; ini adalah sebuah panggilan jiwa. Setiap cangkir
                         kopi yang kami sajikan adalah hasil dari dedikasi, semangat, dan cinta kami untuk seni menyeduh.
@@ -169,7 +168,7 @@
                         class="rounded-lg shadow-xl w-full">
                 </div>
                 <div class="text-dark-custom">
-                    <h2 class="text-4xl font-bold mb-4">Lokasi Cafe</h2>
+                    <h2 class="text-4xl font-bold mb-4">Lokasi Kami</h2>
                     <p class="mb-2 text-lg"><strong>Alamat:</strong> Jl. KH Sulaiman Al Karim, Kates, Serut, Kec.
                         Boyolangu, Kabupaten Tulungagung, Jawa Timur 66235</p>
                     <p class="mb-4 text-lg"><strong>Jam Buka:</strong> 08:00 - 24:00</p>
