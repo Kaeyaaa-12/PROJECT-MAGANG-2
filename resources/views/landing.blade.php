@@ -19,31 +19,32 @@
     {{-- Custom Styles untuk Tema --}}
     <style>
         :root {
-            --bg-light: #f8f7f3;
-            --bg-theme-color: #0C3623;
+            --bg-main: #373737;
+            --text-main: #FFFFFF;
+            --color-accent: #D4C15D;
+            --bg-additional: #F5F5F5;
             --text-dark: #3d342a;
-            --text-light: #ffffff;
         }
 
         body {
             font-family: 'Instrument Sans', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
+            background-color: var(--bg-main);
+            color: var(--text-main);
         }
 
         .btn-primary {
-            background-color: #ffffff;
-            color: var(--bg-theme-color);
+            background-color: var(--color-accent);
+            color: var(--bg-main);
             transition: background-color 0.3s ease;
         }
 
         .btn-primary:hover {
-            background-color: #f0f0f0;
+            background-color: #cba948;
         }
 
         .btn-secondary {
-            background-color: var(--bg-theme-color);
-            color: var(--text-light);
+            background-color: var(--color-accent);
+            color: var(--bg-main);
             transition: opacity 0.3s ease;
         }
 
@@ -52,8 +53,8 @@
         }
 
         .tab-active-border {
-            border-bottom: 2px solid var(--bg-theme-color);
-            color: var(--bg-theme-color);
+            border-bottom: 2px solid var(--color-accent);
+            color: var(--color-accent);
             font-weight: 600;
         }
 
@@ -95,9 +96,9 @@
     {{-- ======================================================= --}}
     {{-- HEADER --}}
     {{-- ======================================================= --}}
-    <header class="shadow-md sticky top-0 z-50" style="background-color: var(--bg-theme-color);">
+    <header class="shadow-md sticky top-0 z-50" style="background-color: var(--bg-main);">
         <div class="container mx-auto flex justify-between items-center p-5 text-white">
-            <a href="#" class="text-2xl font-bold">COSTUMIFY</a>
+            <a href="#" class="text-2xl font-bold" style="color: var(--text-main);">COSTUMIFY</a>
             <nav class="hidden md:flex space-x-8 items-center font-medium">
                 <a href="{{ route('home.index') }}" class="opacity-90 hover:opacity-100 transition">Home</a>
                 <a href="{{ route('tentang.index') }}" class="opacity-90 hover:opacity-100 transition">Tentang</a>
@@ -144,10 +145,11 @@
         {{-- ======================================================= --}}
         {{-- HERO SECTION --}}
         {{-- ======================================================= --}}
-        <section style="background-color: var(--bg-theme-color);">
+        <section style="background-color: var(--bg-main);">
             <div class="container mx-auto grid md:grid-cols-2 items-center gap-8 py-12 px-5 md:py-24 overflow-hidden">
                 <div class="text-center md:text-left text-white z-10">
-                    <h1 class="text-5xl lg:text-6xl font-bold leading-tight mb-4">Wujudkan Imajinasimu, Kenakan Kostummu
+                    <h1 class="text-5xl lg:text-6xl font-bold leading-tight mb-4" style="color: var(--text-main);">
+                        Wujudkan Imajinasimu, Kenakan Kostummu
                     </h1>
                     <p class="text-lg mb-8 opacity-90">Sewa kostum karnaval terbaik untuk setiap acaramu. Tampil beda
                         dan tak terlupakan.</p>
@@ -163,12 +165,12 @@
         </section>
 
         {{-- ======================================================= --}}
-        {{-- TENTANG KAMI
+        {{-- TENTANG KAMI --}}
         {{-- ======================================================= --}}
-        <section class="py-12 md:py-24 bg-white">
+        <section class="py-12 md:py-24" style="background-color: #f8f7f3;">
             <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center px-5">
                 <div class="order-2 md:order-1 text-center md:text-left">
-                    <h2 class="text-4xl font-bold mb-4">Tentang Kami</h2>
+                    <h2 class="text-4xl font-bold mb-4" style="color: var(--text-dark);">Tentang Kami</h2>
                     <p class="text-lg text-gray-600 mb-4">
                         Costumify adalah solusi terpadu untuk semua kebutuhan kostum Anda. Kami percaya bahwa setiap
                         orang berhak untuk tampil maksimal dan mewujudkan imajinasinya dalam setiap acara spesial.
@@ -186,9 +188,9 @@
         {{-- ======================================================= --}}
         {{-- Produk Kami --}}
         {{-- ======================================================= --}}
-        <section id="produk" class="py-16" x-data="{ tab: 'terbaru' }">
+        <section id="produk" class="py-16" x-data="{ tab: 'terbaru' }" style="background-color: #f8f7f3;">
             <div class="container mx-auto text-center px-5">
-                <h2 class="text-4xl font-bold mb-12">Produk Kami</h2>
+                <h2 class="text-4xl font-bold mb-12" style="color: var(--text-dark);">Produk Kami</h2>
                 <div class="flex justify-center border-b mb-10">
                     <button @click="tab = 'terbaru'"
                         :class="tab === 'terbaru' ? 'tab-active-border' : 'tab-inactive-border'"
@@ -203,61 +205,65 @@
                 </div>
                 <div>
                     <div x-show="tab === 'terbaru'" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        <div
-                            class="bg-white rounded-lg overflow-hidden border border-transparent hover:border-gray-200 hover:shadow-lg transition">
+                        <div class="rounded-lg overflow-hidden border border-transparent hover:border-gray-200 hover:shadow-lg transition"
+                            style="background-color: var(--bg-additional);">
                             <img src="{{ asset('assets/images/bgkostum.png') }}" alt="Kostum 1"
                                 class="w-full h-80 object-cover">
                             <div class="p-5 text-left">
-                                <h3 class="font-bold text-xl mb-1">Kostum Venetian</h3>
-                                <p style="color: var(--bg-theme-color);" class="font-semibold">Rp 180.000 / hari</p>
+                                <h3 class="font-bold text-xl mb-1" style="color: var(--text-dark);">Kostum Venetian
+                                </h3>
+                                <p style="color: var(--color-accent);" class="font-semibold">Rp 180.000 / hari</p>
                             </div>
                         </div>
-                        <div
-                            class="bg-white rounded-lg overflow-hidden border border-transparent hover:border-gray-200 hover:shadow-lg transition">
+                        <div class="rounded-lg overflow-hidden border border-transparent hover:border-gray-200 hover:shadow-lg transition"
+                            style="background-color: var(--bg-additional);">
                             <img src="{{ asset('assets/images/bgkostum.png') }}" alt="Kostum 2"
                                 class="w-full h-80 object-cover">
                             <div class="p-5 text-left">
-                                <h3 class="font-bold text-xl mb-1">Kostum Ksatria</h3>
-                                <p style="color: var(--bg-theme-color);" class="font-semibold">Rp 250.000 / hari</p>
+                                <h3 class="font-bold text-xl mb-1" style="color: var(--text-dark);">Kostum Ksatria
+                                </h3>
+                                <p style="color: var(--color-accent);" class="font-semibold">Rp 250.000 / hari</p>
                             </div>
                         </div>
-                        <div
-                            class="bg-white rounded-lg overflow-hidden border border-transparent hover:border-gray-200 hover:shadow-lg transition">
+                        <div class="rounded-lg overflow-hidden border border-transparent hover:border-gray-200 hover:shadow-lg transition"
+                            style="background-color: var(--bg-additional);">
                             <img src="{{ asset('assets/images/bgkostum.png') }}" alt="Kostum 3"
                                 class="w-full h-80 object-cover">
                             <div class="p-5 text-left">
-                                <h3 class="font-bold text-xl mb-1">Gaun Putri</h3>
-                                <p style="color: var(--bg-theme-color);" class="font-semibold">Rp 220.000 / hari</p>
+                                <h3 class="font-bold text-xl mb-1" style="color: var(--text-dark);">Gaun Putri</h3>
+                                <p style="color: var(--color-accent);" class="font-semibold">Rp 220.000 / hari</p>
                             </div>
                         </div>
-                        <div
-                            class="bg-white rounded-lg overflow-hidden border border-transparent hover:border-gray-200 hover:shadow-lg transition">
+                        <div class="rounded-lg overflow-hidden border border-transparent hover:border-gray-200 hover:shadow-lg transition"
+                            style="background-color: var(--bg-additional);">
                             <img src="{{ asset('assets/images/bgkostum.png') }}" alt="Kostum 4"
                                 class="w-full h-80 object-cover">
                             <div class="p-5 text-left">
-                                <h3 class="font-bold text-xl mb-1">Kostum Bajak Laut</h3>
-                                <p style="color: var(--bg-theme-color);" class="font-semibold">Rp 175.000 / hari</p>
+                                <h3 class="font-bold text-xl mb-1" style="color: var(--text-dark);">Kostum Bajak Laut
+                                </h3>
+                                <p style="color: var(--color-accent);" class="font-semibold">Rp 175.000 / hari</p>
                             </div>
                         </div>
                     </div>
                     <div x-show="tab === 'populer'" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
                         style="display: none;">
-                        <div
-                            class="bg-white rounded-lg overflow-hidden border border-transparent hover:border-gray-200 hover:shadow-lg transition">
+                        <div class="rounded-lg overflow-hidden border border-transparent hover:border-gray-200 hover:shadow-lg transition"
+                            style="background-color: var(--bg-additional);">
                             <img src="{{ asset('assets/images/bgkostum.png') }}" alt="Kostum Populer 1"
                                 class="w-full h-80 object-cover">
                             <div class="p-5 text-left">
-                                <h3 class="font-bold text-xl mb-1">Superhero Populer</h3>
-                                <p style="color: var(--bg-theme-color);" class="font-semibold">Rp 200.000 / hari</p>
+                                <h3 class="font-bold text-xl mb-1" style="color: var(--text-dark);">Superhero Populer
+                                </h3>
+                                <p style="color: var(--color-accent);" class="font-semibold">Rp 200.000 / hari</p>
                             </div>
                         </div>
-                        <div
-                            class="bg-white rounded-lg overflow-hidden border border-transparent hover:border-gray-200 hover:shadow-lg transition">
+                        <div class="rounded-lg overflow-hidden border border-transparent hover:border-gray-200 hover:shadow-lg transition"
+                            style="background-color: var(--bg-additional);">
                             <img src="{{ asset('assets/images/bgkostum.png') }}" alt="Kostum Populer 2"
                                 class="w-full h-80 object-cover">
                             <div class="p-5 text-left">
-                                <h3 class="font-bold text-xl mb-1">Horror Klasik</h3>
-                                <p style="color: var(--bg-theme-color);" class="font-semibold">Rp 185.000 / hari</p>
+                                <h3 class="font-bold text-xl mb-1" style="color: var(--text-dark);">Horror Klasik</h3>
+                                <p style="color: var(--color-accent);" class="font-semibold">Rp 185.000 / hari</p>
                             </div>
                         </div>
                     </div>
@@ -265,9 +271,9 @@
             </div>
         </section>
 
-        <section class="py-16">
+        <section class="py-16" style="background-color: #f8f7f3;">
             <div class="container mx-auto text-center px-5">
-                <h2 class="text-4xl font-bold mb-12">Kategori</h2>
+                <h2 class="text-4xl font-bold mb-12" style="color: var(--text-dark);">Kategori</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <a href="#" class="relative rounded-lg overflow-hidden group h-96"><img
                             src="{{ asset('assets/images/bgkostum.png') }}"
@@ -296,7 +302,7 @@
 
         <section class="py-20 bg-white">
             <div class="container mx-auto text-center px-5">
-                <h2 class="text-4xl font-bold mb-4">Cara Mudah Menyewa</h2>
+                <h2 class="text-4xl font-bold mb-4" style="color: var(--text-dark);">Cara Mudah Menyewa</h2>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-16">Hanya dengan 3 langkah sederhana, kostum
                     impian siap menjadi milikmu.</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
@@ -304,22 +310,24 @@
                         style="transform: translateY(-50px);"></div>
                     <div class="relative flex flex-col items-center">
                         <div class="text-white rounded-full w-20 h-20 flex items-center justify-center text-3xl font-bold mb-6 z-10 border-4 border-light-beige"
-                            style="background-color: var(--bg-theme-color);">1</div>
-                        <h3 class="text-2xl font-semibold mb-2 text-dark-brown">Pilih Kostum</h3>
+                            style="background-color: var(--bg-main);">1</div>
+                        <h3 class="text-2xl font-semibold mb-2" style="color: var(--text-dark);">Pilih Kostum</h3>
                         <p class="text-gray-500">Datang langsung dan memilih pada toko kami. Klik untuk lihat peta
                             lokasi kami atau buka website www.costumfy.com untuk melihat semua koleksi kami</p>
                     </div>
                     <div class="relative flex flex-col items-center">
                         <div class="text-white rounded-full w-20 h-20 flex items-center justify-center text-3xl font-bold mb-6 z-10 border-4 border-light-beige"
-                            style="background-color: var(--bg-theme-color);">2</div>
-                        <h3 class="text-2xl font-semibold mb-2 text-dark-brown">Atur Jadwal & Bayar</h3>
+                            style="background-color: var(--bg-main);">2</div>
+                        <h3 class="text-2xl font-semibold mb-2" style="color: var(--text-dark);">Atur Jadwal & Bayar
+                        </h3>
                         <p class="text-gray-500">Tentukan tanggal sewa, lakukan pembayaran aman atau bisa order lewat
                             whatsapp.</p>
                     </div>
                     <div class="relative flex flex-col items-center">
                         <div class="text-white rounded-full w-20 h-20 flex items-center justify-center text-3xl font-bold mb-6 z-10 border-4 border-light-beige"
-                            style="background-color: var(--bg-theme-color);">3</div>
-                        <h3 class="text-2xl font-semibold mb-2 text-dark-brown">Ambil & Kembalikan</h3>
+                            style="background-color: var(--bg-main);">3</div>
+                        <h3 class="text-2xl font-semibold mb-2" style="color: var(--text-dark);">Ambil & Kembalikan
+                        </h3>
                         <p class="text-gray-500">Kostum dapat diambil di lokasi dan dikembalikan langsung di toko kami
                             atau dapat dikirim dan dikembalikan via gojek atau JNE, Harga sewa belum termasuk ongkos
                             kirim, Keterlambatan pengiriman oleh pihak ketiga ( Gojek , JNE , dll ) diluar tanggung
@@ -331,37 +339,40 @@
 
         <section class="py-20 bg-white">
             <div class="container mx-auto text-center px-5">
-                <h2 class="text-4xl font-bold mb-4">Aturan Penyewaan Kostum</h2>
+                <h2 class="text-4xl font-bold mb-4" style="color: var(--text-dark);">Aturan Penyewaan Kostum</h2>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-16">Beberapa hal yang perlu Anda perhatikan saat
                     menyewa kostum di Costumify.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="bg-white p-8 rounded-lg shadow-lg text-left">
-                        <h3 class="text-2xl font-semibold mb-4 text-dark-brown">Pemesanan & Pembayaran</h3>
+                        <h3 class="text-2xl font-semibold mb-4" style="color: var(--text-dark);">Pemesanan &
+                            Pembayaran</h3>
                         <p class="text-gray-500">Pemesanan dapat dilakukan secara online maupun offline. Pembayaran
                             penuh di muka diperlukan untuk mengonfirmasi pesanan Anda.</p>
                     </div>
                     <div class="bg-white p-8 rounded-lg shadow-lg text-left">
-                        <h3 class="text-2xl font-semibold mb-4 text-dark-brown">Jaminan Sewa</h3>
+                        <h3 class="text-2xl font-semibold mb-4" style="color: var(--text-dark);">Jaminan Sewa</h3>
                         <p class="text-gray-500">Setiap penyewaan memerlukan jaminan (deposit) yang akan dikembalikan
                             sepenuhnya setelah kostum dikembalikan dalam kondisi baik.</p>
                     </div>
                     <div class="bg-white p-8 rounded-lg shadow-lg text-left">
-                        <h3 class="text-2xl font-semibold mb-4 text-dark-brown">Pengambilan & Pengembalian</h3>
+                        <h3 class="text-2xl font-semibold mb-4" style="color: var(--text-dark);">Pengambilan &
+                            Pengembalian</h3>
                         <p class="text-gray-500">Kostum dapat diambil H-1 acara dan harus dikembalikan H+1 acara.
                             Keterlambatan akan dikenakan denda harian.</p>
                     </div>
                     <div class="bg-white p-8 rounded-lg shadow-lg text-left">
-                        <h3 class="text-2xl font-semibold mb-4 text-dark-brown">Perawatan Kostum</h3>
+                        <h3 class="text-2xl font-semibold mb-4" style="color: var(--text-dark);">Perawatan Kostum</h3>
                         <p class="text-gray-500">Harap menjaga kebersihan dan keutuhan kostum. Dilarang mengubah atau
                             memodifikasi kostum tanpa izin.</p>
                     </div>
                     <div class="bg-white p-8 rounded-lg shadow-lg text-left">
-                        <h3 class="text-2xl font-semibold mb-4 text-dark-brown">Kerusakan & Kehilangan</h3>
+                        <h3 class="text-2xl font-semibold mb-4" style="color: var(--text-dark);">Kerusakan &
+                            Kehilangan</h3>
                         <p class="text-gray-500">Kerusakan atau kehilangan kostum akan dikenakan biaya perbaikan atau
                             penggantian sesuai dengan nilai kostum.</p>
                     </div>
                     <div class="bg-white p-8 rounded-lg shadow-lg text-left">
-                        <h3 class="text-2xl font-semibold mb-4 text-dark-brown">Pembatalan</h3>
+                        <h3 class="text-2xl font-semibold mb-4" style="color: var(--text-dark);">Pembatalan</h3>
                         <p class="text-gray-500">Pembatalan 3 hari sebelum tanggal pengambilan akan dikenakan potongan
                             50% dari biaya sewa. Kurang dari 3 hari, biaya sewa tidak dapat dikembalikan.</p>
                     </div>
@@ -369,9 +380,9 @@
             </div>
         </section>
 
-        <section class="py-16">
+        <section class="py-16" style="background-color: #f8f7f3;">
             <div class="container mx-auto text-center px-5">
-                <h2 class="text-4xl font-bold mb-12">Galeri</h2>
+                <h2 class="text-4xl font-bold mb-12" style="color: var(--text-dark);">Galeri</h2>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <img class="h-auto max-w-full rounded-lg" src="{{ asset('assets/images/bgkostum.png') }}"
                         alt="gallery image">
@@ -397,19 +408,19 @@
     {{-- ======================================================= --}}
     {{-- FOOTER --}}
     {{-- ======================================================= --}}
-    <footer style="background-color: var(--bg-theme-color);" class="text-white pt-16 pb-8">
+    <footer style="background-color: var(--bg-main);" class="text-white pt-16 pb-8">
         <div class="container mx-auto px-5">
             <div
                 class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-12 text-center sm:text-left border-t border-b border-gray-700 py-12">
                 {{-- Info Perusahaan --}}
                 <div class="space-y-4">
-                    <h3 class="text-xl font-bold text-white">COSTUMIFY</h3>
+                    <h3 class="text-xl font-bold" style="color: var(--text-main);">COSTUMIFY</h3>
                     <p class="text-gray-400">Penyewaan kostum karnaval terlengkap dan terpercaya untuk segala acaramu.
                     </p>
                 </div>
                 {{-- Navigasi --}}
                 <div class="space-y-4">
-                    <h3 class="text-lg font-semibold">Navigasi</h3>
+                    <h3 class="text-lg font-semibold" style="color: var(--text-main);">Navigasi</h3>
                     <ul class="space-y-2">
                         <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white">Produk</a></li>
@@ -418,7 +429,7 @@
                 </div>
                 {{-- Hubungi Kami --}}
                 <div class="space-y-4">
-                    <h3 class="text-lg font-semibold">Hubungi Kami</h3>
+                    <h3 class="text-lg font-semibold" style="color: var(--text-main);">Hubungi Kami</h3>
                     <div class="flex justify-center sm:justify-start space-x-6">
                         <a href="#" class="text-gray-400 hover:text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
@@ -448,7 +459,7 @@
                 </div>
                 {{-- Lokasi --}}
                 <div class="space-y-4">
-                    <h3 class="text-lg font-semibold">Lokasi Kami</h3>
+                    <h3 class="text-lg font-semibold" style="color: var(--text-main);">Lokasi Kami</h3>
                     <div class="w-full aspect-video rounded-lg shadow-md overflow-hidden">
                         <iframe
                             src="https://maps.google.com/maps?q=Satpas%20Polres%20Tulungagung&t=&z=15&ie=UTF8&iwloc=&output=embed"
