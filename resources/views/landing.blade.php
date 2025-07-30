@@ -146,7 +146,7 @@
         {{-- HERO SECTION --}}
         {{-- ======================================================= --}}
         <section style="background-color: var(--bg-main);">
-            <div class="container mx-auto grid md:grid-cols-2 items-center gap-8 py-12 px-5 md:py-24 overflow-hidden">
+            <div class="container mx-auto grid md:grid-cols-2 items-center gap-8 py-12 px-5 md:py-23 overflow-hidden">
                 <div class="text-center md:text-left text-white z-10">
                     <h1 class="text-5xl lg:text-6xl font-bold leading-tight mb-4" style="color: var(--text-main);">
                         Wujudkan Imajinasimu, Kenakan Kostummu
