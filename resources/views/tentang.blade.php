@@ -76,10 +76,11 @@
     {{-- ======================================================= --}}
     <header class="shadow-md sticky top-0 z-50" style="background-color: var(--bg-main);">
         <div class="container mx-auto flex justify-between items-center p-5 text-white">
-            <a href="#" class="text-2xl font-bold" style="color: var(--text-main);">AMIRA COLLECTION</a>
+            <a href="{{ route('home.index') }}" class="text-2xl font-bold tracking-wider"
+                style="color: var(--text-main);">AMIRA COLLECTION</a>
             <nav class="hidden md:flex space-x-8 items-center font-medium">
                 <a href="{{ route('home.index') }}" class="opacity-90 hover:opacity-100 transition">Home</a>
-                <a href="{{ route('tentang.index') }}" class="opacity-90 hover:opacity-100 transition">Tentang</a>
+                <a href="{{ route('tentang.index') }}" style="color: #D4C15D; font-weight: bold;">Tentang</a>
                 <a href="{{ route('produk.index') }}" class="opacity-90 hover:opacity-100 transition">Produk</a>
                 <a href="{{ route('aksesoris.index') }}" class="opacity-90 hover:opacity-100 transition">Aksesoris</a>
             </nav>
@@ -111,7 +112,7 @@
         <section class="py-12 md:py-24" style="background-color: #f8f7f3;">
             <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center px-5">
                 <div>
-                    <img src="{{ asset('assets/images/bgtentang.png') }}" alt="Cerita Kami"
+                    <img src="{{ asset('assets/images/rumah.png') }}" alt="Cerita Kami"
                         class="rounded-lg shadow-xl w-full">
                 </div>
                 <div class="text-dark-custom">

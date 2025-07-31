@@ -14,9 +14,6 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 // Rute untuk Halaman Tentang Kami
 Route::get('/tentang', [TentangController::class, 'index'])->name('tentang.index');
 
-// // Rute untuk Halaman Kostum Pria
-// Route::get('/produk', [ProdukController::class, 'index'])->name('produk.index');
-
 // Rute untuk Halaman Aksesoris
 Route::get('/aksesoris', [AksesorisController::class, 'index'])->name('aksesoris.index');
 

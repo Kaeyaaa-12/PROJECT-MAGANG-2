@@ -98,9 +98,10 @@
     {{-- ======================================================= --}}
     <header class="shadow-md sticky top-0 z-50" style="background-color: var(--bg-main);">
         <div class="container mx-auto flex justify-between items-center p-5 text-white">
-            <a href="#" class="text-2xl font-bold" style="color: var(--text-main);">AMIRA COLLECTION</a>
+            <a href="{{ route('home.index') }}" class="text-2xl font-bold tracking-wider"
+                style="color: var(--text-main);">AMIRA COLLECTION</a>
             <nav class="hidden md:flex space-x-8 items-center font-medium">
-                <a href="{{ route('home.index') }}" class="opacity-90 hover:opacity-100 transition">Home</a>
+                <a href="{{ route('home.index') }}" style="color: #D4C15D; font-weight: bold;">Home</a>
                 <a href="{{ route('tentang.index') }}" class="opacity-90 hover:opacity-100 transition">Tentang</a>
                 <a href="{{ route('produk.index') }}" class="opacity-90 hover:opacity-100 transition">Produk</a>
                 <a href="{{ route('aksesoris.index') }}" class="opacity-90 hover:opacity-100 transition">Aksesoris</a>
@@ -157,7 +158,7 @@
                         class="btn-secondary inline-block font-bold py-3 px-8 rounded-full text-lg">Selengkapnya</a>
                 </div>
                 <div class="order-1 md:order-2 flex justify-center">
-                    <img src="{{ asset('assets/images/bgkostum.png') }}"
+                    <img src="{{ asset('assets/images/rumah.png') }}"
                         class="rounded-lg shadow-xl w-2/3 h-auto object-cover">
                 </div>
             </div>

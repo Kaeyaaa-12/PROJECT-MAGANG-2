@@ -35,12 +35,12 @@
     {{-- HEADER --}}
     <header class="shadow-md sticky top-0 z-50" style="background-color: var(--bg-main);">
         <div class="container mx-auto flex justify-between items-center p-5 text-white">
-            <a href="{{ route('home.index') }}" class="text-2xl font-bold" style="color: var(--text-main);">AMIRA
-                COLLECTION</a>
+            <a href="{{ route('home.index') }}" class="text-2xl font-bold tracking-wider"
+                style="color: var(--text-main);">AMIRA COLLECTION</a>
             <nav class="hidden md:flex space-x-8 items-center font-medium">
                 <a href="{{ route('home.index') }}" class="opacity-90 hover:opacity-100 transition">Home</a>
                 <a href="{{ route('tentang.index') }}" class="opacity-90 hover:opacity-100 transition">Tentang</a>
-                <a href="{{ route('produk.index') }}" class="opacity-90 hover:opacity-100 transition">Produk</a>
+                <a href="{{ route('produk.index') }}" style="color: #D4C15D; font-weight: bold;">Produk</a>
                 <a href="{{ route('aksesoris.index') }}" class="opacity-90 hover:opacity-100 transition">Aksesoris</a>
             </nav>
             <div class="flex items-center space-x-5">
@@ -49,13 +49,6 @@
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                </a>
-                <a href="#" class="opacity-90 hover:opacity-100 transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                     </svg>
                 </a>
             </div>
