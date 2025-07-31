@@ -102,9 +102,7 @@
             <nav class="hidden md:flex space-x-8 items-center font-medium">
                 <a href="{{ route('home.index') }}" class="opacity-90 hover:opacity-100 transition">Home</a>
                 <a href="{{ route('tentang.index') }}" class="opacity-90 hover:opacity-100 transition">Tentang</a>
-                <a href="{{ route('kostum.pria') }}" class="opacity-90 hover:opacity-100 transition">Kostum Pria</a>
-                <a href="{{ route('kostum.wanita') }}" class="opacity-90 hover:opacity-100 transition">Kostum Wanita</a>
-                <a href="{{ route('kostum.anak') }}" class="opacity-90 hover:opacity-100 transition">Kostum Anak</a>
+                <a href="{{ route('produk.index') }}" class="opacity-90 hover:opacity-100 transition">Produk</a>
                 <a href="{{ route('aksesoris.index') }}" class="opacity-90 hover:opacity-100 transition">Aksesoris</a>
             </nav>
             <div class="flex items-center space-x-5">
@@ -120,20 +118,6 @@
                         stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                    </svg>
-                </a>
-                <a href="#" class="opacity-90 hover:opacity-100 transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
-                </a>
-                <a href="#" class="opacity-90 hover:opacity-100 transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
                 </a>
             </div>
@@ -213,7 +197,6 @@
                             <div class="p-5 text-left">
                                 <h3 class="font-bold text-xl mb-1" style="color: var(--text-dark);">Kostum Venetian
                                 </h3>
-                                <p style="color: var(--color-accent);" class="font-semibold">Rp 180.000 / hari</p>
                             </div>
                         </div>
                         <div class="rounded-lg overflow-hidden border border-transparent hover:border-gray-200 hover:shadow-lg transition"
@@ -223,7 +206,6 @@
                             <div class="p-5 text-left">
                                 <h3 class="font-bold text-xl mb-1" style="color: var(--text-dark);">Kostum Ksatria
                                 </h3>
-                                <p style="color: var(--color-accent);" class="font-semibold">Rp 250.000 / hari</p>
                             </div>
                         </div>
                         <div class="rounded-lg overflow-hidden border border-transparent hover:border-gray-200 hover:shadow-lg transition"
@@ -232,7 +214,6 @@
                                 class="w-full h-80 object-cover">
                             <div class="p-5 text-left">
                                 <h3 class="font-bold text-xl mb-1" style="color: var(--text-dark);">Gaun Putri</h3>
-                                <p style="color: var(--color-accent);" class="font-semibold">Rp 220.000 / hari</p>
                             </div>
                         </div>
                         <div class="rounded-lg overflow-hidden border border-transparent hover:border-gray-200 hover:shadow-lg transition"
@@ -242,7 +223,6 @@
                             <div class="p-5 text-left">
                                 <h3 class="font-bold text-xl mb-1" style="color: var(--text-dark);">Kostum Bajak Laut
                                 </h3>
-                                <p style="color: var(--color-accent);" class="font-semibold">Rp 175.000 / hari</p>
                             </div>
                         </div>
                     </div>
@@ -255,7 +235,6 @@
                             <div class="p-5 text-left">
                                 <h3 class="font-bold text-xl mb-1" style="color: var(--text-dark);">Superhero Populer
                                 </h3>
-                                <p style="color: var(--color-accent);" class="font-semibold">Rp 200.000 / hari</p>
                             </div>
                         </div>
                         <div class="rounded-lg overflow-hidden border border-transparent hover:border-gray-200 hover:shadow-lg transition"
@@ -264,7 +243,6 @@
                                 class="w-full h-80 object-cover">
                             <div class="p-5 text-left">
                                 <h3 class="font-bold text-xl mb-1" style="color: var(--text-dark);">Horror Klasik</h3>
-                                <p style="color: var(--color-accent);" class="font-semibold">Rp 185.000 / hari</p>
                             </div>
                         </div>
                     </div>
@@ -462,11 +440,11 @@
                 <div class="space-y-4">
                     <h3 class="text-lg font-semibold" style="color: var(--text-main);">Lokasi Kami</h3>
                     <div class="w-full aspect-video rounded-lg shadow-md overflow-hidden">
+                        {{-- Link diperbarui di sini --}}
                         <iframe
-                            src="https://maps.google.com/maps?q=Satpas%20Polres%20Tulungagung&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5323.074416730627!2d111.91251873603444!3d-8.058066352920283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78e3854c13f2a5%3A0x7175b2efdb3b16e2!2sAmira%20Collections!5e0!3m2!1sid!2sus!4v1753936167529!5m2!1sid!2sus"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>

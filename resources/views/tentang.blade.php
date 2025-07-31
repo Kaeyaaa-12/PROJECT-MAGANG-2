@@ -55,6 +55,17 @@
         .text-dark-custom {
             color: var(--text-dark);
         }
+
+        .social-icon {
+            color: var(--text-dark);
+            /* Warna ikon sesuai warna teks */
+            transition: color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            color: var(--color-accent);
+            /* Warna saat hover */
+        }
     </style>
 </head>
 
@@ -69,10 +80,7 @@
             <nav class="hidden md:flex space-x-8 items-center font-medium">
                 <a href="{{ route('home.index') }}" class="opacity-90 hover:opacity-100 transition">Home</a>
                 <a href="{{ route('tentang.index') }}" class="opacity-90 hover:opacity-100 transition">Tentang</a>
-                <a href="{{ route('kostum.pria') }}" class="opacity-90 hover:opacity-100 transition">Kostum Pria</a>
-                <a href="{{ route('kostum.wanita') }}" class="opacity-90 hover:opacity-100 transition">Kostum
-                    Wanita</a>
-                <a href="{{ route('kostum.anak') }}" class="opacity-90 hover:opacity-100 transition">Kostum Anak</a>
+                <a href="{{ route('produk.index') }}" class="opacity-90 hover:opacity-100 transition">Produk</a>
                 <a href="{{ route('aksesoris.index') }}" class="opacity-90 hover:opacity-100 transition">Aksesoris</a>
             </nav>
             <div class="flex items-center space-x-5">
@@ -90,20 +98,6 @@
                             d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                     </svg>
                 </a>
-                <a href="#" class="opacity-90 hover:opacity-100 transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
-                </a>
-                <a href="#" class="opacity-90 hover:opacity-100 transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                </a>
             </div>
         </div>
     </header>
@@ -113,7 +107,6 @@
         <section class="relative bg-contain bg-center bg-no-repeat"
             style="background-image: url('{{ asset('assets/images/bgtentang.png') }}'); background-color: #000;">
             <div class="absolute inset-0 bg-black opacity-50"></div>
-            {{-- PERUBAHAN DI BAWAH INI --}}
             <div
                 class="container mx-auto px-5 relative z-10 flex flex-col items-center justify-center text-center text-white min-h-[90vh]">
                 <h1 class="text-5xl md:text-6xl font-bold">Amira Collection</h1>
@@ -139,58 +132,41 @@
             </div>
         </section>
 
-        {{-- Owner Section --}}
-        <section class="py-12 md:py-24" style="background-color: #f8f7f3;">
-            <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center px-5">
-                <div class="text-dark-custom">
-                    <h2 class="text-4xl font-bold mb-4">Kata Owner Kami</h2>
-                    <p class="text-lg">
-                        "Setiap kostum memiliki cerita, dan kami bangga menjadi bagian dari cerita Anda. Di Amira
-                        Collection, kami tidak hanya menyewakan kostum, tetapi juga membantu mewujudkan imajinasi dan
-                        kegembiraan di setiap momen spesial Anda. Kepuasan pelanggan adalah prioritas utama kami."
-                    </p>
-                </div>
-                <div class="text-center">
-                    <img src="{{ asset('assets/images/bgtentang.png') }}" alt="Owner Amira Collection"
-                        class="rounded-full w-80 h-80 mx-auto object-cover mb-4 shadow-xl">
-                    <h3 class="text-xl font-semibold text-dark-custom">Owner Amira Collection</h3>
-                </div>
-            </div>
-        </section>
-
         {{-- Lokasi Kami Section --}}
         <section class="py-12 md:py-24" style="background-color: #f8f7f3;">
             <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center px-5">
-                <div>
+                <div class="relative">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.046803929494!2d111.8978223147798!3d-8.09781999417882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78e2de252ac2f7%3A0x8e1b7f0d381d55d!2sAmira%20Collection!5e0!3m2!1sen!2sid!4v1627545934898!5m2!1sen!2sid"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.8352111191375!2d111.9137513748931!3d-8.026835292023023!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78e2a0e7f75b2b%3A0x2efb3a2efd15e29d!2sAmira%20Collections!5e0!3m2!1sid!2sid!4v1717558094611!5m2!1sid!2sid"
                         width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                        class="rounded-lg shadow-xl"></iframe>
+                        referrerpolicy="no-referrer-when-downgrade" class="rounded-lg shadow-xl"></iframe>
                 </div>
                 <div class="text-dark-custom">
                     <h2 class="text-4xl font-bold mb-4">Lokasi Kami</h2>
                     <p class="mb-2 text-lg"><strong>Alamat:</strong> Jl. Raya Demuk No.10, Demuk, Pucung, Kec. Kauman,
                         Kabupaten Tulungagung, Jawa Timur 66261</p>
                     <p class="mb-4 text-lg"><strong>Jam Buka:</strong> Setiap Hari, 08:00 - 21:00</p>
+
+                    <h3 class="text-2xl font-bold mt-8 mb-4">Hubungi Kami</h3>
                     <div class="flex space-x-4">
-                        <a href="https://wa.me/6281234567890" target="_blank"
-                            class="text-green-500 hover:text-green-600">
+                        <a href="https://wa.me/6281234567890" target="_blank" class="social-icon">
+                            {{-- SVG WhatsApp --}}
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor"
                                 viewBox="0 0 24 24">
                                 <path
                                     d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.731 6.086l.001.004 1.443-4.148-4.226 1.159zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.371-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.521.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.289.173-1.414z" />
                             </svg>
                         </a>
-                        <a href="https://www.facebook.com/your-facebook-page" target="_blank"
-                            class="text-blue-600 hover:text-blue-700">
+                        <a href="https://www.facebook.com/your-facebook-page" target="_blank" class="social-icon">
+                            {{-- SVG Facebook --}}
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor"
                                 viewBox="0 0 24 24">
                                 <path
                                     d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
                             </svg>
                         </a>
-                        <a href="https://www.instagram.com/your-instagram-profile" target="_blank"
-                            class="text-pink-500 hover:text-pink-600">
+                        <a href="https://www.instagram.com/your-instagram-profile" target="_blank" class="social-icon">
+                            {{-- SVG Instagram --}}
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor"
                                 viewBox="0 0 24 24">
                                 <path
@@ -260,11 +236,11 @@
                 <div class="space-y-4">
                     <h3 class="text-lg font-semibold" style="color: var(--text-main);">Lokasi Kami</h3>
                     <div class="w-full aspect-video rounded-lg shadow-md overflow-hidden">
+                        {{-- Link diperbarui di sini --}}
                         <iframe
-                            src="https://maps.google.com/maps?q=Satpas%20Polres%20Tulungagung&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5323.074416730627!2d111.91251873603444!3d-8.058066352920283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78e3854c13f2a5%3A0x7175b2efdb3b16e2!2sAmira%20Collections!5e0!3m2!1sid!2sus!4v1753936167529!5m2!1sid!2sus"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
