@@ -4,74 +4,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aksesoris - Amira Collection</title>
+    <title>{{ $produk['nama'] }} - Amira Collection</title>
     @vite('resources/css/app.css')
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Playfair+Display:wght@700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap"
         rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    {{-- Flatpickr --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <style>
         :root {
             --bg-main: #373737;
             --text-main: #FFFFFF;
             --color-accent: #D4C15D;
             --bg-additional: #F5F5F5;
-            --text-dark: #2d2d2d;
+            --text-dark: #3d342a;
         }
 
         body {
             font-family: 'Instrument Sans', sans-serif;
-            background-color: var(--bg-additional);
-            color: var(--text-dark);
-        }
-
-        .playfair-display {
-            font-family: 'Playfair Display', serif;
-        }
-
-        .product-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .product-card .product-image-container {
-            overflow: hidden;
-        }
-
-        .product-card:hover .product-image {
-            transform: scale(1.05);
-        }
-
-        .product-image {
-            transition: transform 0.3s ease;
+            background-color: var(--bg-main);
+            color: var(--text-main);
         }
     </style>
 </head>
 
 <body>
-
-    {{-- ======================================================= --}}
-    {{-- HEADER BARU --}}
-    {{-- ======================================================= --}}
+    {{-- HEADER --}}
     <header class="shadow-md sticky top-0 z-50" style="background-color: var(--bg-main);">
         <div class="container mx-auto flex justify-between items-center p-5 text-white">
-            <a href="{{ route('home.index') }}" class="text-2xl font-bold tracking-wider"
-                style="color: var(--text-main);">AMIRA COLLECTION</a>
+            <a href="{{ route('home.index') }}" class="text-2xl font-bold" style="color: var(--text-main);">AMIRA
+                COLLECTION</a>
             <nav class="hidden md:flex space-x-8 items-center font-medium">
                 <a href="{{ route('home.index') }}" class="opacity-90 hover:opacity-100 transition">Home</a>
                 <a href="{{ route('tentang.index') }}" class="opacity-90 hover:opacity-100 transition">Tentang</a>
                 <a href="{{ route('produk.index') }}" class="opacity-90 hover:opacity-100 transition">Produk</a>
-                {{-- Tautan Aksesoris yang diperbarui --}}
-                <a href="{{ route('aksesoris.index') }}" style="color: #D4C15D; font-weight: bold;">Aksesoris</a>
+                <a href="{{ route('aksesoris.index') }}" class="opacity-90 hover:opacity-100 transition">Aksesoris</a>
             </nav>
             <div class="flex items-center space-x-5">
-                {{-- Ikon search saja --}}
                 <a href="#" class="opacity-90 hover:opacity-100 transition">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
@@ -79,47 +51,77 @@
                             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                 </a>
-                {{-- Ikon favorit dihapus --}}
+                <a href="#" class="opacity-90 hover:opacity-100 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                </a>
             </div>
         </div>
     </header>
 
-    <main class="container mx-auto py-16 px-5">
-        <div class="text-center mb-12">
-            <h1 class="text-5xl font-bold playfair-display" style="color: var(--text-dark);">Aksesoris Pelengkap</h1>
-            <p class="text-gray-500 mt-2 text-lg">Sempurnakan penampilanmu dengan detail yang menawan.</p>
-        </div>
+    <main class="bg-white">
+        <section class="container mx-auto py-12 px-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+                <div x-data="{
+                    images: {{ json_encode($produk['gambar']) }},
+                    currentIndex: 0,
+                    get currentImage() { return this.images[this.currentIndex] },
+                    next() { this.currentIndex = (this.currentIndex + 1) % this.images.length },
+                    prev() { this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length }
+                }">
+                    <div class="relative">
+                        <img :src="'{{ asset('assets/images/') }}/' + currentImage" alt="{{ $produk['nama'] }}"
+                            class="w-full h-auto max-h-[500px] object-contain rounded-lg shadow-lg">
 
-        <div x-data="{ visibleItems: 8 }">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                @foreach ($aksesoris as $index => $item)
-                    <div x-show="currentIndex < visibleItems" x-init="currentIndex = {{ $index }}">
-                        <a href="{{ route('aksesoris.show', ['id' => $item['id']]) }}"
-                            class="product-card block bg-white rounded-lg shadow-md overflow-hidden group">
-                            <div class="product-image-container h-96">
-                                <img src="{{ asset('assets/images/' . $item['thumbnail']) }}" alt="{{ $item['nama'] }}"
-                                    class="product-image w-full h-full object-cover">
-                            </div>
-                            <div class="p-5">
-                                <h3
-                                    class="font-bold text-xl text-gray-800 group-hover:text-accent transition-colors duration-300">
-                                    {{ $item['nama'] }}</h3>
-                                <p class="text-gray-500 text-sm mt-1">Stok Tersedia</p>
-                            </div>
-                        </a>
+                        <div class="absolute inset-0 flex items-center justify-between p-4">
+                            <button @click="prev()"
+                                class="bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
+                            <button @click="next()"
+                                class="bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
-                @endforeach
-            </div>
+                </div>
 
-            <div class="text-center mt-12" x-show="visibleItems < {{ count($aksesoris) }}">
-                <button @click="visibleItems += 4"
-                    class="bg-gray-800 text-white font-semibold py-3 px-8 rounded-lg hover:bg-gray-900 transition-all duration-300">
-                    Muat Lebih Banyak
-                </button>
+                <div>
+                    <h1 class="text-4xl font-bold mb-4" style="color: var(--text-dark);">{{ $produk['nama'] }}</h1>
+                    <div class="mb-4 text-gray-700 space-y-2">
+                        <p class="text-lg"><strong>Stok:</strong> {{ $produk['stok'] }}</p>
+                        <p class="text-lg"><strong>Ukuran:</strong> {{ $produk['ukuran'] }}</p>
+                        <p class="text-lg"><strong>Jenis Kelamin:</strong> {{ $produk['jenis_kelamin'] }}</p>
+                    </div>
+                    <div class="mt-8">
+                        <h3 class="text-2xl font-semibold mb-4" style="color: var(--text-dark);">Pilih Tanggal Sewa</h3>
+                        <div id="kalender"></div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
     </main>
 
+    <script>
+        flatpickr("#kalender", {
+            mode: "range",
+            dateFormat: "d-m-Y",
+            inline: true,
+        });
+    </script>
+
+    {{-- FOOTER --}}
     <footer style="background-color: var(--bg-main);" class="text-white pt-16 pb-8">
         <div class="container mx-auto px-5">
             <div
@@ -150,8 +152,8 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg></a><a href="#" class="text-gray-400 hover:text-white"><svg
-                                xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor" stroke-width="2">
+                                xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
                             </svg></a><a href="#" class="text-gray-400 hover:text-white"><svg
