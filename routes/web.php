@@ -3,6 +3,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Auth\ForgotPasswordController;
+use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TentangController;
 use App\Http\Controllers\ProdukController;
@@ -31,9 +33,16 @@ Route::prefix('admin')->group(function () {
     Route::post('/login', [AdminController::class, 'login']);
     Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
+    // ROUTE LUPA PASSWORD
+    Route::get('forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.password.request');
+    Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('admin.password.email');
+
+    // ROUTE UNTUK RESET PASSWORD (dari link di email)
+    Route::get('reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('admin.password.reset');
+    Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('admin.password.store');
+
+
     Route::middleware('admin')->group(function () {
-        // --- PERUBAHAN DI SINI ---
-        // URL diubah dari '/dashboard' menjadi '/login/dashboard'
         Route::get('/login/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     });
 });

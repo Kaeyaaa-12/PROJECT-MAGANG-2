@@ -33,7 +33,8 @@
                         class="block w-full px-3 py-2 mt-1 text-white bg-gray-800 border border-gray-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
                 </div>
                 <div class="text-right">
-                    <a href="#" class="text-sm text-yellow-500 hover:underline">Lupa Password?</a>
+                    <a href="{{ route('admin.password.request') }}" class="text-sm text-yellow-500 hover:underline">Lupa
+                        Password?</a>
                 </div>
                 @if ($errors->any())
                     <div class="text-red-500 text-sm">

@@ -102,14 +102,25 @@ return [
     |
     */
 
-    'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => 'password_reset_tokens',
-            'expire' => 60,
-            'throttle' => 60,
-        ],
+    // config/auth.php
+
+'passwords' => [
+    'users' => [
+        'provider' => 'users',
+        'table' => 'password_reset_tokens',
+        'expire' => 60,
+        'throttle' => 60,
     ],
+
+    // ---> TAMBAHKAN BLOK KODE INI <---
+    'admins' => [
+        'provider' => 'admins',
+        'table' => 'admin_password_reset_tokens', // Ini adalah tabel yang kita buat di Langkah 2.3
+        'expire' => 60,
+        'throttle' => 60,
+    ],
+    // ---> BATAS BLOK KODE <---
+],
 
     /*
     |--------------------------------------------------------------------------
