@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TentangController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\AksesorisController;
+use App\Http\Controllers\Admin\AdminContentController;
 
 // Rute untuk Halaman Utama (Landing Page)
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
@@ -44,6 +45,10 @@ Route::prefix('admin')->group(function () {
 
     Route::middleware('admin')->group(function () {
         Route::get('/login/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+        Route::get('/login/dashboard/galeri', [AdminContentController::class, 'galeri'])->name('admin.galeri');
+        Route::get('/login/dashboard/produk', [AdminContentController::class, 'produk'])->name('admin.produk');
+        Route::get('/login/dashboard/aksesoris', [AdminContentController::class, 'aksesoris'])->name('admin.aksesoris');
+        Route::get('/login/dashboard/disewa', [AdminContentController::class, 'disewa'])->name('admin.disewa');
     });
 });
 
