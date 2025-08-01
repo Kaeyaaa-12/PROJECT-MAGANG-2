@@ -356,24 +356,18 @@
         <section class="py-16" style="background-color: #f8f7f3;">
             <div class="container mx-auto text-center px-5">
                 <h2 class="text-4xl font-bold mb-12" style="color: var(--text-dark);">Galeri</h2>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <img class="h-auto max-w-full rounded-lg" src="{{ asset('assets/images/bgkostum.png') }}"
-                        alt="gallery image">
-                    <img class="h-auto max-w-full rounded-lg" src="{{ asset('assets/images/bgkostum.png') }}"
-                        alt="gallery image">
-                    <img class="h-auto max-w-full rounded-lg" src="{{ asset('assets/images/bgkostum.png') }}"
-                        alt="gallery image">
-                    <img class="h-auto max-w-full rounded-lg" src="{{ asset('assets/images/bgkostum.png') }}"
-                        alt="gallery image">
-                    <img class="h-auto max-w-full rounded-lg" src="{{ asset('assets/images/bgkostum.png') }}"
-                        alt="gallery image">
-                    <img class="h-auto max-w-full rounded-lg" src="{{ asset('assets/images/bgkostum.png') }}"
-                        alt="gallery image">
-                    <img class="h-auto max-w-full rounded-lg" src="{{ asset('assets/images/bgkostum.png') }}"
-                        alt="gallery image">
-                    <img class="h-auto max-w-full rounded-lg" src="{{ asset('assets/images/bgkostum.png') }}"
-                        alt="gallery image">
-                </div>
+                @if ($galleries->count() > 0)
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        @foreach ($galleries as $gallery)
+                            <div class="aspect-w-1 aspect-h-1">
+                                <img class="h-full w-full object-cover rounded-lg"
+                                    src="{{ Storage::url($gallery->image) }}" alt="{{ $gallery->title }}">
+                            </div>
+                        @endforeach
+                    </div>
+                @else
+                    <p class="text-gray-500">Galeri akan segera hadir.</p>
+                @endif
             </div>
         </section>
     </main>
