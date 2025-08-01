@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Costumify - Sewa Kostum Karnaval</title>
+    <title>Amira Collection - Sewa Kostum Karnaval</title>
 
     @vite('resources/css/app.css')
 
