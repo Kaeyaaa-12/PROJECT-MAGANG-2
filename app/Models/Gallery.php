@@ -1,5 +1,4 @@
 <?php
-// File: app/Models/Gallery.php
 
 namespace App\Models;
 
@@ -11,9 +10,8 @@ class Gallery extends Model
     use HasFactory;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
+     * Atribut yang boleh diisi secara massal.
+     * HARUS ADA!
      */
     protected $fillable = [
         'title',

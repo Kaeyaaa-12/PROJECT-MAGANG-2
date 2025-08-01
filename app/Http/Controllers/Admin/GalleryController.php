@@ -1,5 +1,4 @@
 <?php
-// File: app/Http/Controllers/Admin/GalleryController.php
 
 namespace App\Http\Controllers\Admin;
 
@@ -7,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log; // Tambahkan ini untuk logging
 
 class GalleryController extends Controller
 {
@@ -23,59 +23,65 @@ class GalleryController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $imagePath = $request->file('image')->store('public/gallery');
+        // Simpan file dan dapatkan path-nya.
+        $path = $request->file('image')->store('gallery', 'public');
 
+        // Buat record baru dengan path yang benar.
         Gallery::create([
-            'title' => $request->title,
-            'image' => $imagePath,
+            'title' => $validated['title'],
+            'image' => $path, // Simpan path yang didapat dari ->store()
         ]);
 
         return redirect()->route('admin.galeri.index')->with('success', 'Gambar berhasil ditambahkan.');
     }
 
-    public function edit(Gallery $gallery)
+    public function edit($id)
     {
+        $gallery = Gallery::findOrFail($id);
         return view('admin.galeri.edit', compact('gallery'));
     }
 
-    public function update(Request $request, Gallery $gallery)
+    public function update(Request $request, $id)
     {
-        $request->validate([
+        $gallery = Gallery::findOrFail($id);
+
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $imagePath = $gallery->image;
+        // Gunakan path yang sudah ada sebagai default
+        $path = $gallery->image;
+
         if ($request->hasFile('image')) {
-            // Hapus gambar lama
-            Storage::delete($gallery->image);
-            // Simpan gambar baru
-            $imagePath = $request->file('image')->store('public/gallery');
+            // Hapus file lama jika ada
+            if ($gallery->image) {
+                Storage::disk('public')->delete($gallery->image);
+            }
+            // Simpan file baru dan update path-nya
+            $path = $request->file('image')->store('gallery', 'public');
         }
 
         $gallery->update([
-            'title' => $request->title,
-            'image' => $imagePath,
+            'title' => $validated['title'],
+            'image' => $path, // Update dengan path yang baru atau yang lama
         ]);
 
         return redirect()->route('admin.galeri.index')->with('success', 'Gambar berhasil diperbarui.');
     }
 
-    public function destroy(Gallery $gallery)
+    public function destroy($id)
     {
-    // HANYA HAPUS GAMBAR JIKA PATH-NYA ADA (TIDAK NULL/KOSONG)
-        if ($gallery->image && Storage::exists($gallery->image)) {
-        Storage::delete($gallery->image);
-    }
-
-    // Hapus record dari database
+        $gallery = Gallery::findOrFail($id);
+        if ($gallery->image) {
+            Storage::disk('public')->delete($gallery->image);
+        }
         $gallery->delete();
-
         return redirect()->route('admin.galeri.index')->with('success', 'Gambar berhasil dihapus.');
-}
+    }
 }

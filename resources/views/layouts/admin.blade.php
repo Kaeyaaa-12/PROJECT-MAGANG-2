@@ -5,37 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Amira Collection</title>
-
-    {{-- Tailwind CSS & Remixicon --}}
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
-
-    {{-- Google Fonts: Inter --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    {{-- Custom Styles --}}
+    {{-- CSS Styles --}}
     <style>
         :root {
-            /* Warna utama dari website Anda */
             --sidebar-bg: #2d3748;
-            /* bg-gray-800 */
             --main-bg: #1a202c;
-            /* bg-gray-900 */
             --card-bg: #2d3748;
-            /* bg-gray-800 */
             --accent-color: #D4C15D;
             --accent-color-hover: #c5b556;
             --border-color: #4a5568;
-            /* bg-gray-700 */
         }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--main-bg);
             color: #e2e8f0;
-            /* text-gray-300 */
         }
 
         .sidebar {
@@ -57,7 +46,6 @@
         .sidebar-link.active {
             background-color: var(--accent-color);
             color: #1a202c;
-            /* Warna gelap untuk teks aktif */
             font-weight: 600;
             border-left-color: var(--accent-color);
         }
@@ -69,7 +57,6 @@
 
         .sidebar-link i {
             color: #a0aec0;
-            /* text-gray-400 */
             transition: color 0.2s ease-in-out;
         }
 
@@ -100,28 +87,29 @@
                     <p class="text-xs text-gray-400">Admin Panel</p>
                 </div>
                 <nav class="mt-6 flex-1">
+                    {{-- --- PERBAIKAN SEMUA ROUTE DI SINI --- --}}
                     <a href="{{ route('admin.dashboard') }}"
                         class="sidebar-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }} flex items-center px-6 py-3 text-sm">
                         <i class="ri-dashboard-line w-5 h-5 mr-4"></i>
                         <span>Dashboard</span>
                     </a>
                     <a href="{{ route('admin.galeri.index') }}"
-                        class="sidebar-link {{ request()->routeIs('admin.galeri.*') ? 'active' : '' }} flex items-center mt-2 px-6 py-3 text-sm text-gray-300">
+                        class="sidebar-link {{ request()->routeIs('admin.galeri.*') ? 'active' : '' }} flex items-center mt-2 px-6 py-3 text-sm">
                         <i class="ri-gallery-line w-5 h-5 mr-4"></i>
                         <span>Galeri</span>
                     </a>
                     <a href="{{ route('admin.produk') }}"
-                        class="sidebar-link {{ request()->routeIs('admin.produk') ? 'active' : '' }} flex items-center mt-2 px-6 py-3 text-sm text-gray-300">
+                        class="sidebar-link {{ request()->routeIs('admin.produk') ? 'active' : '' }} flex items-center mt-2 px-6 py-3 text-sm">
                         <i class="ri-t-shirt-2-line w-5 h-5 mr-4"></i>
                         <span>Produk</span>
                     </a>
                     <a href="{{ route('admin.aksesoris') }}"
-                        class="sidebar-link {{ request()->routeIs('admin.aksesoris') ? 'active' : '' }} flex items-center mt-2 px-6 py-3 text-sm text-gray-300">
+                        class="sidebar-link {{ request()->routeIs('admin.aksesoris') ? 'active' : '' }} flex items-center mt-2 px-6 py-3 text-sm">
                         <i class="ri-magic-line w-5 h-5 mr-4"></i>
                         <span>Aksesoris</span>
                     </a>
                     <a href="{{ route('admin.disewa') }}"
-                        class="sidebar-link {{ request()->routeIs('admin.disewa') ? 'active' : '' }} flex items-center mt-2 px-6 py-3 text-sm text-gray-300">
+                        class="sidebar-link {{ request()->routeIs('admin.disewa') ? 'active' : '' }} flex items-center mt-2 px-6 py-3 text-sm">
                         <i class="ri-calendar-check-line w-5 h-5 mr-4"></i>
                         <span>Disewa</span>
                     </a>
@@ -130,9 +118,7 @@
             <div class="px-4 py-4 border-t" style="border-color: var(--border-color);">
                 <div class="flex items-center">
                     <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-gray-800"
-                        style="background-color: var(--accent-color);">
-                        A
-                    </div>
+                        style="background-color: var(--accent-color);">A</div>
                     <div class="ml-3">
                         <p class="text-sm font-semibold text-white">Admin</p>
                         <p class="text-xs text-gray-400">Administrator</p>

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -20,9 +19,8 @@ class AdminController extends Controller
         if (Auth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
 
-            // --- PERUBAHAN DI SINI ---
-            // Arahkan redirect ke URL baru
-            return redirect()->intended('/admin/login/dashboard');
+            // --- PERBAIKAN DI SINI ---
+            return redirect()->intended(route('admin.dashboard'));
         }
 
         return back()->withErrors([
@@ -38,11 +36,10 @@ class AdminController extends Controller
     public function logout(Request $request)
     {
         Auth::guard('admin')->logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
-        return redirect('/admin/login');
+        // --- PERBAIKAN DI SINI ---
+        return redirect()->route('admin.login');
     }
 }

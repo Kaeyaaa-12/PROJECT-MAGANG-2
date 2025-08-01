@@ -1,10 +1,14 @@
-{{-- File: resources/views/admin/galeri/edit.blade.php --}}
 @extends('layouts.admin')
 
 @section('content')
     <h2 class="text-3xl font-bold text-white mb-8">Edit Gambar</h2>
 
     <div class="stat-card p-6 sm:p-8 rounded-lg">
+        {{--
+            Baris inilah yang menyebabkan error jika variabel $gallery tidak ada.
+            Kode ini 100% benar jika controller mengirimkan variabelnya.
+            Laravel akan otomatis mengambil ID dari objek $gallery.
+        --}}
         <form action="{{ route('admin.galeri.update', $gallery) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -21,10 +25,12 @@
 
                 <div>
                     <label for="image" class="block text-sm font-medium text-gray-300">File Gambar (Opsional)</label>
-                    <div class="mt-2">
-                        <img src="{{ Storage::url($gallery->image) }}" alt="{{ $gallery->title }}"
-                            class="h-32 w-32 object-cover rounded-md mb-4">
-                    </div>
+                    @if ($gallery->image)
+                        <div class="mt-2">
+                            <img src="{{ asset('storage/' . $gallery->image) }}" alt="{{ $gallery->title }}"
+                                class="h-32 w-32 object-cover rounded-md mb-4">
+                        </div>
+                    @endif
                     <input type="file" name="image" id="image"
                         class="mt-1 block w-full text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-gray-200 hover:file:bg-gray-500">
                     <p class="text-xs text-gray-500 mt-1">Kosongkan jika tidak ingin mengganti gambar.</p>
