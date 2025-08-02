@@ -9,11 +9,6 @@ class Collection extends Model
 {
     use HasFactory;
 
-    /**
-     * Atribut yang dapat diisi secara massal.
-     *
-     * @var array
-     */
     protected $fillable = [
         'nama_koleksi',
         'kategori',
@@ -23,12 +18,16 @@ class Collection extends Model
         'gambar_3',
     ];
 
-    /**
-     * Atribut yang harus di-cast ke tipe data asli.
-     *
-     * @var array
-     */
     protected $casts = [
         'stok_varian' => 'array',
     ];
+
+    /**
+     * [PERBAIKAN] Mengubah relasi dari sewa() ke rentalItems().
+     * Satu Koleksi bisa ada di banyak item sewa (rental_items).
+     */
+    public function rentalItems()
+    {
+        return $this->morphMany(RentalItem::class, 'rentable');
+    }
 }

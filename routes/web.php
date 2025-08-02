@@ -13,6 +13,14 @@ use App\Http\Controllers\Admin\AdminContentController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\AksesorisController;
 use App\Http\Controllers\Admin\KoleksiController as AdminKoleksiController;
+use App\Http\Controllers\Admin\DisewaController;
+
+
+// Rute Halaman Publik
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
+
+// TAMBAHKAN RUTE INI
+Route::get('/dashboard', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 // Rute Halaman Publik
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
@@ -21,6 +29,10 @@ Route::get('/aksesoris', [PublicAksesorisController::class, 'index'])->name('aks
 Route::get('/koleksi', [KoleksiController::class, 'index'])->name('koleksi.index');
 Route::get('/koleksi/{id}', [KoleksiController::class, 'show'])->name('koleksi.show');
 Route::get('/aksesoris/{id}', [PublicAksesorisController::class, 'show'])->name('aksesoris.show');
+
+Route::get('/koleksi/{id}/booked-dates', [KoleksiController::class, 'getBookedDates'])->name('koleksi.bookedDates');
+Route::get('/aksesoris/{id}/booked-dates', [PublicAksesorisController::class, 'getBookedDates'])->name('aksesoris.bookedDates');
+
 
 
 // =======================================================
@@ -44,7 +56,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('/galeri', GalleryController::class);
         Route::resource('/koleksi', AdminKoleksiController::class);
         Route::resource('/aksesoris', AksesorisController::class);
-        Route::get('/disewa', [AdminContentController::class, 'disewa'])->name('disewa');
+        // Route::get('/disewa', [AdminContentController::class, 'disewa'])->name('disewa');
+
+        Route::resource('/disewa', DisewaController::class);
+        Route::get('/get-item-details/{type}/{id}', [DisewaController::class, 'getItemDetails'])->name('disewa.getItemDetails');
+
     });
 });
 

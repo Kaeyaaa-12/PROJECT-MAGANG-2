@@ -1,7 +1,9 @@
+{{-- resources/views/koleksi.blade.php --}}
 <!DOCTYPE html>
 <html lang="id">
 
 <head>
+    {{-- (Bagian head tetap sama) --}}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Koleksi - Amira Collection</title>
@@ -65,18 +67,30 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 @forelse ($koleksis as $index => $item)
                     <div x-show="currentIndex < visibleItems" x-init="currentIndex = {{ $index }}">
-                        <a href="{{ route('koleksi.show', ['id' => $item['id']]) }}"
+                        {{-- === PERBAIKAN DI BARIS INI === --}}
+                        <a href="{{ route('koleksi.show', ['id' => $item->id]) }}"
                             class="koleksi-card block bg-white rounded-lg shadow-md overflow-hidden group">
                             <div class="koleksi-image-container h-96">
-                                <img src="{{ asset('storage/' . $item['thumbnail']) }}" alt="{{ $item['nama'] }}"
+                                <img src="{{ asset('storage/' . $item->gambar_1) }}" alt="{{ $item->nama_koleksi }}"
                                     class="koleksi-image w-full h-full object-cover">
                             </div>
                             <div class="p-5">
                                 <h3
                                     class="font-bold text-xl text-gray-800 group-hover:text-accent transition-colors duration-300">
-                                    {{ $item['nama'] }}</h3>
-                                <p class="text-gray-500 text-sm mt-1">Total Stok: <span
-                                        class="font-semibold">{{ $item['total_stok'] }}</span></p>
+                                    {{ $item->nama_koleksi }}</h3>
+                                <p class="text-gray-500 text-sm mt-1">Total Stok: <span class="font-semibold">
+                                        @php
+                                            $totalStok = 0;
+                                            if (is_array($item->stok_varian)) {
+                                                foreach ($item->stok_varian as $jenis) {
+                                                    if (is_array($jenis)) {
+                                                        $totalStok += array_sum($jenis);
+                                                    }
+                                                }
+                                            }
+                                            echo $totalStok;
+                                        @endphp
+                                    </span></p>
                             </div>
                         </a>
                     </div>

@@ -12,16 +12,22 @@ class Accessory extends Model
     protected $fillable = [
         'nama_aksesoris',
         'kategori',
-        'stok_varian', // Mengganti 'ukuran' dan 'stok'
+        'stok_varian',
         'gambar_1',
         'gambar_2',
         'gambar_3',
     ];
 
-    /**
-     * Cast atribut stok_varian menjadi array.
-     */
     protected $casts = [
         'stok_varian' => 'array',
     ];
+
+    /**
+     * [PERBAIKAN] Mengubah relasi dari sewa() ke rentalItems().
+     * Satu Aksesoris bisa ada di banyak item sewa (rental_items).
+     */
+    public function rentalItems()
+    {
+        return $this->morphMany(RentalItem::class, 'rentable');
+    }
 }

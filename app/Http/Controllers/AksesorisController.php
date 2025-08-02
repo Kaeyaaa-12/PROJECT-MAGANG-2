@@ -1,48 +1,52 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers; // [PERBAIKAN] Namespace yang benar
 
-use App\Models\Accessory;
+use App\Models\Accessory; // [PERBAIKAN] Import model
+use Illuminate\Http\Request; // [PERBAIKAN] Import Request
+use Illuminate\Support\Carbon; // [PERBAIKAN] Import Carbon untuk tanggal
 
 class AksesorisController extends Controller
 {
     public function index()
     {
-        $aksesoris = Accessory::all()->map(function ($item) {
-            // Hitung total stok dari semua varian
-            $totalStok = 0;
-            if (is_array($item->stok_varian)) {
-                $totalStok = array_sum($item->stok_varian);
-            }
-
-            return [
-                'id' => $item->id,
-                'nama' => $item->nama_aksesoris,
-                'thumbnail' => $item->gambar_1 ?? 'default.png',
-                'total_stok' => $totalStok,
-            ];
-        });
-
+        $aksesoris = Accessory::latest()->paginate(12);
         return view('aksesoris', ['aksesoris' => $aksesoris]);
     }
 
     public function show($id)
     {
         $aksesori = Accessory::findOrFail($id);
+        return view('detailaksesoris', ['aksesoris' => $aksesori]);
+    }
 
-        $gambar = array_filter([$aksesori->gambar_1, $aksesori->gambar_2, $aksesori->gambar_3]);
-        if (empty($gambar)) {
-            $gambar[] = 'default.png';
+    /**
+     * [PERBAIKAN UTAMA] Mengambil tanggal yang sudah disewa dengan logika baru.
+     */
+    public function getBookedDates($id)
+    {
+        $aksesori = Accessory::findOrFail($id);
+
+        // 1. Ambil semua item sewa yang berhubungan dengan aksesoris ini
+        // 2. Sertakan data transaksi rental induknya dengan 'with('rental')'
+        $rentalItems = $aksesori->rentalItems()->with('rental')->get();
+
+        $bookedDates = [];
+        // Loop melalui setiap item sewa
+        foreach ($rentalItems as $item) {
+            // Pastikan transaksi induknya ada
+            if ($item->rental) {
+                // Ambil tanggal dari transaksi induk
+                $bookedDates[] = [
+                    'from' => Carbon::parse($item->rental->tanggal_mulai)->format('Y-m-d'),
+                    'to'   => Carbon::parse($item->rental->tanggal_selesai)->format('Y-m-d'),
+                ];
+            }
         }
 
-        $detail = [
-            'id' => $aksesori->id,
-            'nama' => $aksesori->nama_aksesoris,
-            'kategori' => $aksesori->kategori,
-            'stok_varian' => $aksesori->stok_varian ?? [], // Kirim data stok
-            'gambar' => $gambar
-        ];
+        // Menghapus duplikasi rentang tanggal jika ada
+        $uniqueBookedDates = array_values(array_unique($bookedDates, SORT_REGULAR));
 
-        return view('detailaksesoris', ['aksesoris' => $detail]);
+        return response()->json($uniqueBookedDates);
     }
 }

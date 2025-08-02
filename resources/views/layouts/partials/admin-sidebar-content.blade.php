@@ -56,6 +56,17 @@
                             Aksesoris
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('admin.disewa.index') }}"
+                            class="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold {{ request()->routeIs('admin.disewa.*') ? 'sidebar-link-active' : 'sidebar-link-inactive' }}">
+                            <svg class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0h18M12 12.75h.008v.008H12v-.008z" />
+                            </svg>
+                            Disewa
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="mt-auto">
