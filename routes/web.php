@@ -11,6 +11,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\AksesorisController;
 use App\Http\Controllers\Admin\AdminContentController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\ProdukController as AdminProdukController;
 
 // Rute Halaman Publik
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
@@ -39,7 +40,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // --- PERBAIKAN DI SINI ---
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
         Route::resource('/galeri', GalleryController::class)->names('galeri');
-        Route::get('/produk', [AdminContentController::class, 'produk'])->name('produk');
+        // Route::get('/produk', [AdminContentController::class, 'produk'])->name('produk');
+        Route::resource('/produk', AdminProdukController::class);
         Route::get('/aksesoris', [AdminContentController::class, 'aksesoris'])->name('aksesoris');
         Route::get('/disewa', [AdminContentController::class, 'disewa'])->name('disewa');
     });

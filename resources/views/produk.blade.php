@@ -57,7 +57,7 @@
 <body>
 
     {{-- ======================================================= --}}
-    {{-- HEADER (DISAMAKAN DENGAN LANDING.BLADE.PHP) --}}
+    {{-- HEADER (Tetap Sama) --}}
     {{-- ======================================================= --}}
     <header class="shadow-md sticky top-0 z-50" style="background-color: var(--bg-main);">
         <div class="container mx-auto flex justify-between items-center p-5 text-white">
@@ -89,45 +89,53 @@
 
         <div x-data="{ visibleItems: 8 }">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                @foreach ($produks as $index => $produk)
+                @forelse ($produks as $index => $produk)
                     <div x-show="currentIndex < visibleItems" x-init="currentIndex = {{ $index }}">
                         <a href="{{ route('produk.show', ['id' => $produk['id']]) }}"
                             class="product-card block bg-white rounded-lg shadow-md overflow-hidden group">
                             <div class="product-image-container h-96">
-                                <img src="{{ asset('assets/images/' . $produk['thumbnail']) }}"
-                                    alt="{{ $produk['nama'] }}" class="product-image w-full h-full object-cover">
+                                <img src="{{ asset('storage/' . $produk['thumbnail']) }}" alt="{{ $produk['nama'] }}"
+                                    class="product-image w-full h-full object-cover">
                             </div>
                             <div class="p-5">
                                 <h3
                                     class="font-bold text-xl text-gray-800 group-hover:text-accent transition-colors duration-300">
                                     {{ $produk['nama'] }}</h3>
-                                <p class="text-gray-500 text-sm mt-1">Stok Tersedia</p>
+                                <p class="text-gray-500 text-sm mt-1">Total Stok: <span
+                                        class="font-semibold">{{ $produk['total_stok'] }}</span></p>
                             </div>
                         </a>
                     </div>
-                @endforeach
+                @empty
+                    <div class="col-span-full text-center py-10 text-gray-500">
+                        <p>Belum ada produk yang tersedia.</p>
+                    </div>
+                @endforelse
             </div>
 
-            <div class="text-center mt-12" x-show="visibleItems < {{ count($produks) }}">
-                <button @click="visibleItems += 4"
-                    class="bg-gray-800 text-white font-semibold py-3 px-8 rounded-lg hover:bg-gray-900 transition-all duration-300">
-                    Muat Lebih Banyak
-                </button>
-            </div>
+            @if (count($produks) > 8)
+                <div class="text-center mt-12" x-show="visibleItems < {{ count($produks) }}">
+                    <button @click="visibleItems += 4"
+                        class="bg-gray-800 text-white font-semibold py-3 px-8 rounded-lg hover:bg-gray-900 transition-all duration-300">
+                        Muat Lebih Banyak
+                    </button>
+                </div>
+            @endif
         </div>
     </main>
 
+    {{-- ======================================================= --}}
+    {{-- FOOTER (Tetap Sama) --}}
+    {{-- ======================================================= --}}
     <footer style="background-color: var(--bg-main);" class="text-white pt-16 pb-8">
         <div class="container mx-auto px-5">
             <div
                 class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-12 text-center sm:text-left border-t border-b border-gray-700 py-12">
-                {{-- Info Perusahaan --}}
                 <div class="space-y-4">
                     <h3 class="text-xl font-bold" style="color: var(--text-main);">AMIRA COLLECTION</h3>
                     <p class="text-gray-400">Penyewaan kostum karnaval terlengkap dan terpercaya untuk segala acaramu.
                     </p>
                 </div>
-                {{-- Navigasi --}}
                 <div class="space-y-4">
                     <h3 class="text-lg font-semibold" style="color: var(--text-main);">Navigasi</h3>
                     <ul class="space-y-2">
@@ -136,7 +144,6 @@
                         <li><a href="#" class="text-gray-400 hover:text-white">Tentang</a></li>
                     </ul>
                 </div>
-                {{-- Hubungi Kami --}}
                 <div class="space-y-4">
                     <h3 class="text-lg font-semibold" style="color: var(--text-main);">Hubungi Kami</h3>
                     <div class="flex justify-center sm:justify-start space-x-6">
@@ -166,11 +173,9 @@
                         </a>
                     </div>
                 </div>
-                {{-- Lokasi --}}
                 <div class="space-y-4">
                     <h3 class="text-lg font-semibold" style="color: var(--text-main);">Lokasi Kami</h3>
                     <div class="w-full aspect-video rounded-lg shadow-md overflow-hidden">
-                        {{-- Link diperbarui di sini --}}
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5323.074416730627!2d111.91251873603444!3d-8.058066352920283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78e3854c13f2a5%3A0x7175b2efdb3b16e2!2sAmira%20Collections!5e0!3m2!1sid!2sus!4v1753936167529!5m2!1sid!2sus"
                             width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"

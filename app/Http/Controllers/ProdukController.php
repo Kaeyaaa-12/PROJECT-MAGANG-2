@@ -2,41 +2,52 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product; // Pastikan model Product di-import
+
 class ProdukController extends Controller
 {
-    // Data produk sekarang memiliki array 'gambar'
-    private $produks = [
-        ['id' => 1, 'nama' => 'Kostum Venetian', 'gambar' => ['bgkostum.png', 'bgtentang.png', 'bgkostum.png'], 'stok' => 5, 'ukuran' => 'All Size', 'jenis_kelamin' => 'Unisex'],
-        ['id' => 2, 'nama' => 'Kostum Ksatria', 'gambar' => ['bgkostum.png', 'bgtentang.png', 'bgkostum.png'], 'stok' => 3, 'ukuran' => 'L, XL', 'jenis_kelamin' => 'Pria'],
-        ['id' => 3, 'nama' => 'Gaun Putri', 'gambar' => ['bgkostum.png', 'bgtentang.png', 'bgkostum.png'], 'stok' => 7, 'ukuran' => 'M, L', 'jenis_kelamin' => 'Wanita'],
-        ['id' => 4, 'nama' => 'Kostum Bajak Laut', 'gambar' => ['bgkostum.png', 'bgtentang.png', 'bgkostum.png'], 'stok' => 4, 'ukuran' => 'All Size', 'jenis_kelamin' => 'Unisex'],
-    ];
-
     public function index()
     {
-        // Ambil gambar pertama untuk thumbnail di halaman produk
-        $produksForView = array_map(function ($produk) {
-            $produk['thumbnail'] = $produk['gambar'][0] ?? 'default.png';
-            return $produk;
-        }, $this->produks);
+        $produks = Product::all();
+
+        $produksForView = $produks->map(function ($produk) {
+            // Hitung total stok dari semua varian
+            $totalStok = 0;
+            if (is_array($produk->stok_varian)) {
+                foreach ($produk->stok_varian as $jenis) {
+                    if (is_array($jenis)) {
+                        $totalStok += array_sum($jenis);
+                    }
+                }
+            }
+
+            return [
+                'id' => $produk->id,
+                'nama' => $produk->nama_produk,
+                'thumbnail' => $produk->gambar_1 ?? 'default.png',
+                'total_stok' => $totalStok, // Kirim total stok ke view
+            ];
+        });
 
         return view('produk', ['produks' => $produksForView]);
     }
 
     public function show($id)
     {
-        $produk = null;
-        foreach ($this->produks as $p) {
-            if ($p['id'] == $id) {
-                $produk = $p;
-                break;
-            }
+        $produk = Product::findOrFail($id);
+
+        $produkDetail = [
+            'id' => $produk->id,
+            'nama' => $produk->nama_produk,
+            'kategori' => $produk->kategori,
+            'stok_varian' => $produk->stok_varian,
+            'gambar' => array_filter([$produk->gambar_1, $produk->gambar_2, $produk->gambar_3]),
+        ];
+
+        if (empty($produkDetail['gambar'])) {
+            $produkDetail['gambar'][] = 'default.png';
         }
 
-        if (!$produk) {
-            abort(404);
-        }
-
-        return view('detailproduk', ['produk' => $produk]);
+        return view('detailproduk', ['produk' => $produkDetail]);
     }
 }
