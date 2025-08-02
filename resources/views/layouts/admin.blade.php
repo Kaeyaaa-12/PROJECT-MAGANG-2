@@ -1,141 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id" x-data="{ sidebarOpen: false }" class="h-full">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Amira Collection</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <title>Admin Panel - Amira Collection</title>
+    @vite('resources/css/app.css')
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    {{-- CSS Styles --}}
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
         :root {
-            --sidebar-bg: #2d3748;
-            --main-bg: #1a202c;
-            --card-bg: #2d3748;
-            --accent-color: #D4C15D;
-            --accent-color-hover: #c5b556;
-            --border-color: #4a5568;
+            --bg-dark-primary: #121212;
+            --bg-dark-secondary: #1E1E1E;
+            --border-dark: #2d2d2d;
+            --text-gold: #D4AF37;
+            --text-light: #E0E0E0;
+            --text-muted: #888888;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--main-bg);
-            color: #e2e8f0;
+            font-family: 'Instrument Sans', sans-serif;
+            background-color: var(--bg-dark-primary);
+            color: var(--text-light);
         }
 
-        .sidebar {
-            background-color: var(--sidebar-bg);
-            color: #e0e0e0;
+        /* Sidebar Link Styles */
+        .sidebar-link-active {
+            background-color: var(--text-gold) !important;
+            color: var(--bg-dark-primary) !important;
+            box-shadow: 0 4px 14px 0 rgba(212, 175, 55, 0.3);
         }
 
-        .sidebar-link {
-            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-            border-left: 3px solid transparent;
+        .sidebar-link-active svg {
+            color: var(--bg-dark-primary) !important;
         }
 
-        .sidebar-link:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-left-color: var(--accent-color-hover);
-            color: #ffffff;
+        .sidebar-link-inactive {
+            color: var(--text-muted);
+            transition: all 0.2s ease-in-out;
         }
 
-        .sidebar-link.active {
-            background-color: var(--accent-color);
-            color: #1a202c;
-            font-weight: 600;
-            border-left-color: var(--accent-color);
+        .sidebar-link-inactive:hover {
+            background-color: var(--bg-dark-secondary);
+            color: var(--text-gold);
         }
 
-        .sidebar-link.active i,
-        .sidebar-link.active span {
-            color: inherit;
-        }
-
-        .sidebar-link i {
-            color: #a0aec0;
-            transition: color 0.2s ease-in-out;
-        }
-
-        .sidebar-link:hover i,
-        .sidebar-link.active:hover i {
-            color: inherit;
-        }
-
-        .stat-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        .sidebar-link-inactive:hover svg {
+            color: var(--text-gold);
         }
     </style>
 </head>
 
-<body>
-    <div class="flex h-screen">
-        <aside class="sidebar w-64 flex-shrink-0 flex flex-col justify-between">
-            <div>
-                <div class="px-6 py-5 border-b" style="border-color: var(--border-color);">
-                    <h1 class="text-xl font-bold tracking-wider text-white">AMIRA COLLECTION</h1>
-                    <p class="text-xs text-gray-400">Admin Panel</p>
-                </div>
-                <nav class="mt-6 flex-1">
-                    {{-- --- PERBAIKAN SEMUA ROUTE DI SINI --- --}}
-                    <a href="{{ route('admin.dashboard') }}"
-                        class="sidebar-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }} flex items-center px-6 py-3 text-sm">
-                        <i class="ri-dashboard-line w-5 h-5 mr-4"></i>
-                        <span>Dashboard</span>
-                    </a>
-                    <a href="{{ route('admin.galeri.index') }}"
-                        class="sidebar-link {{ request()->routeIs('admin.galeri.*') ? 'active' : '' }} flex items-center mt-2 px-6 py-3 text-sm">
-                        <i class="ri-gallery-line w-5 h-5 mr-4"></i>
-                        <span>Galeri</span>
-                    </a>
-                    <a class="flex items-center mt-4 py-2 px-6 transition-colors duration-200 {{ request()->routeIs('admin.koleksi.*') ? 'bg-gray-700 bg-opacity-50 text-white' : 'text-gray-400 hover:bg-gray-700 hover:text-white' }}"
-                        href="{{ route('admin.koleksi.index') }}">
-                        <i class="ri-t-shirt-2-line"></i>
-                        <span class="mx-3">Koleksi</span>
-                    </a>
-                    <a href="{{ route('admin.aksesoris') }}"
-                        class="sidebar-link {{ request()->routeIs('admin.aksesoris') ? 'active' : '' }} flex items-center mt-2 px-6 py-3 text-sm">
-                        <i class="ri-magic-line w-5 h-5 mr-4"></i>
-                        <span>Aksesoris</span>
-                    </a>
-                    <a href="{{ route('admin.disewa') }}"
-                        class="sidebar-link {{ request()->routeIs('admin.disewa') ? 'active' : '' }} flex items-center mt-2 px-6 py-3 text-sm">
-                        <i class="ri-calendar-check-line w-5 h-5 mr-4"></i>
-                        <span>Disewa</span>
-                    </a>
-                </nav>
-            </div>
-            <div class="px-4 py-4 border-t" style="border-color: var(--border-color);">
-                <div class="flex items-center">
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-gray-800"
-                        style="background-color: var(--accent-color);">A</div>
-                    <div class="ml-3">
-                        <p class="text-sm font-semibold text-white">Admin</p>
-                        <p class="text-xs text-gray-400">Administrator</p>
-                    </div>
-                    <form method="POST" action="{{ route('admin.logout') }}" class="ml-auto">
-                        @csrf
-                        <button type="submit" class="text-gray-400 hover:text-white" aria-label="Logout">
-                            <i class="ri-logout-box-r-line text-xl"></i>
+<body class="h-full">
+    <div>
+        {{-- SIDEBAR UNTUK MOBILE --}}
+        <div x-show="sidebarOpen" class="relative z-50 lg:hidden" role="dialog" aria-modal="true">
+            <div x-show="sidebarOpen" x-transition:enter="transition-opacity ease-linear duration-300"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity ease-linear duration-300" x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0" class="fixed inset-0 bg-black/80"></div>
+            <div class="fixed inset-0 flex">
+                <div x-show="sidebarOpen" x-transition:enter="transition ease-in-out duration-300 transform"
+                    x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+                    x-transition:leave="transition ease-in-out duration-300 transform"
+                    x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full"
+                    class="relative mr-16 flex w-full max-w-xs flex-1">
+                    <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
+                        <button type="button" class="-m-2.5 p-2.5" @click="sidebarOpen = false">
+                            <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
                         </button>
-                    </form>
+                    </div>
+                    {{-- Konten Sidebar dimasukkan di sini --}}
+                    @include('layouts.partials.admin-sidebar-content')
                 </div>
             </div>
-        </aside>
+        </div>
 
-        <div class="flex-1 flex flex-col overflow-hidden">
-            <main class="flex-1 overflow-x-hidden overflow-y-auto p-8" style="background-color: var(--main-bg);">
-                @yield('content')
+        {{-- SIDEBAR UNTUK DESKTOP --}}
+        <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
+            {{-- Konten Sidebar dimasukkan di sini --}}
+            @include('layouts.partials.admin-sidebar-content')
+        </div>
+
+        {{-- KONTEN UTAMA --}}
+        <div class="lg:pl-72">
+            <header
+                class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8"
+                style="background-color: var(--bg-dark-secondary); border-color: var(--border-dark);">
+                <button type="button" class="-m-2.5 p-2.5 lg:hidden" @click="sidebarOpen = true"
+                    style="color: var(--text-light);">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+                <div class="h-6 w-px lg:hidden" style="background-color: var(--border-dark);"></div>
+                <div class="flex flex-1 justify-end"></div>
+            </header>
+
+            <main class="py-10">
+                <div class="px-4 sm:px-6 lg:px-8">
+                    @yield('content')
+                </div>
             </main>
         </div>
     </div>

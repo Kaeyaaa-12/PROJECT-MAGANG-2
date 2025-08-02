@@ -25,7 +25,7 @@ class KoleksiController extends Controller
                 'id' => $koleksi->id,
                 'nama' => $koleksi->nama_koleksi,
                 'thumbnail' => $koleksi->gambar_1 ?? 'default.png',
-                'total_stok' => $totalStok, // Kirim total stok ke view
+                'total_stok' => $totalStok,
             ];
         });
 
@@ -36,17 +36,23 @@ class KoleksiController extends Controller
     {
         $koleksi = Collection::findOrFail($id);
 
+        // --- AWAL PERBAIKAN LOGIKA ---
+        // Kita tidak perlu lagi mengubah struktur data.
+        // Cukup pastikan semua gambar diambil dengan benar.
+        $gambar = array_filter([$koleksi->gambar_1, $koleksi->gambar_2, $koleksi->gambar_3]);
+        if (empty($gambar)) {
+            $gambar[] = 'default.png'; // Gambar default jika tidak ada gambar sama sekali
+        }
+
+        // Buat array baru untuk dikirim ke view agar lebih rapi
         $koleksiDetail = [
             'id' => $koleksi->id,
             'nama' => $koleksi->nama_koleksi,
             'kategori' => $koleksi->kategori,
-            'stok_varian' => $koleksi->stok_varian,
-            'gambar' => array_filter([$koleksi->gambar_1, $koleksi->gambar_2, $koleksi->gambar_3]),
+            'stok_varian' => $koleksi->stok_varian ?? [], // Kirim data stok apa adanya
+            'gambar' => $gambar
         ];
-
-        if (empty($koleksiDetail['gambar'])) {
-            $koleksiDetail['gambar'][] = 'default.png';
-        }
+        // --- AKHIR PERBAIKAN LOGIKA ---
 
         return view('detailkoleksi', ['koleksi' => $koleksiDetail]);
     }

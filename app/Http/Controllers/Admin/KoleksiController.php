@@ -17,106 +17,120 @@ class KoleksiController extends Controller
 
     public function create()
     {
-        return view('admin.koleksi.create');
+        $koleksi = new Collection();
+        return view('admin.koleksi.create', compact('koleksi'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        // --- AWAL PERUBAHAN VALIDASI ---
+        $validated = $request->validate([
             'nama_koleksi' => 'required|string|max:255',
             'kategori' => 'required|string|max:255',
-            'gambar_1' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'stok' => 'present|array',
+            'gambar_1' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'gambar_2' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'gambar_3' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'stok' => 'required|array',
         ]);
+        // --- AKHIR PERUBAHAN VALIDASI ---
 
         $stokVarian = [];
-        foreach ($request->stok as $jenis => $ukuran) {
-            foreach ($ukuran as $size => $jumlah) {
-                if (!is_null($jumlah)) {
-                    $stokVarian[$jenis][$size] = (int)$jumlah;
+        if (isset($validated['stok'])) {
+            foreach ($validated['stok'] as $stokItem) {
+                if (!empty($stokItem['jenis']) && isset($stokItem['ukuran'])) {
+                    $jenis = strtolower($stokItem['jenis']);
+                    foreach ($stokItem['ukuran'] as $key => $ukuran) {
+                        if (!empty($ukuran) && isset($stokItem['stok'][$key])) {
+                            $stokVarian[$jenis][$ukuran] = (int)$stokItem['stok'][$key];
+                        }
+                    }
                 }
             }
         }
 
         $data = [
-            'nama_koleksi' => $request->nama_koleksi,
-            'kategori' => $request->kategori,
+            'nama_koleksi' => $validated['nama_koleksi'],
+            'kategori' => $validated['kategori'],
             'stok_varian' => $stokVarian,
         ];
 
-        // Handle File Uploads
-        if ($request->hasFile('gambar_1')) {
-            $data['gambar_1'] = $request->file('gambar_1')->store('koleksi', 'public');
+        // --- AWAL PERUBAHAN LOGIKA UPLOAD GAMBAR ---
+        foreach (['gambar_1', 'gambar_2', 'gambar_3'] as $field) {
+            if ($request->hasFile($field)) {
+                $data[$field] = $request->file($field)->store('koleksi', 'public');
+            }
         }
-        if ($request->hasFile('gambar_2')) {
-            $data['gambar_2'] = $request->file('gambar_2')->store('koleksi', 'public');
-        }
-        if ($request->hasFile('gambar_3')) {
-            $data['gambar_3'] = $request->file('gambar_3')->store('koleksi', 'public');
-        }
+        // --- AKHIR PERUBAHAN LOGIKA UPLOAD GAMBAR ---
 
         Collection::create($data);
 
         return redirect()->route('admin.koleksi.index')->with('success', 'Koleksi berhasil ditambahkan.');
     }
 
+
     public function edit(Collection $koleksi)
     {
         return view('admin.koleksi.edit', compact('koleksi'));
     }
 
+
     public function update(Request $request, Collection $koleksi)
     {
-        $request->validate([
+        $validated = $request->validate([
             'nama_koleksi' => 'required|string|max:255',
             'kategori' => 'required|string|max:255',
+            'stok' => 'present|array',
             'gambar_1' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'gambar_2' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'gambar_3' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'stok' => 'required|array',
         ]);
 
         $stokVarian = [];
-        foreach ($request->stok as $jenis => $ukuran) {
-            foreach ($ukuran as $size => $jumlah) {
-                if (!is_null($jumlah)) {
-                    $stokVarian[$jenis][$size] = (int)$jumlah;
+        if (isset($validated['stok'])) {
+            foreach ($validated['stok'] as $stokItem) {
+                if (!empty($stokItem['jenis']) && isset($stokItem['ukuran'])) {
+                    $jenis = strtolower($stokItem['jenis']);
+                    foreach ($stokItem['ukuran'] as $key => $ukuran) {
+                        if (!empty($ukuran) && isset($stokItem['stok'][$key])) {
+                            $stokVarian[$jenis][$ukuran] = (int)$stokItem['stok'][$key];
+                        }
+                    }
                 }
             }
         }
 
         $data = [
-            'nama_koleksi' => $request->nama_koleksi,
-            'kategori' => $request->kategori,
+            'nama_koleksi' => $validated['nama_koleksi'],
+            'kategori' => $validated['kategori'],
             'stok_varian' => $stokVarian,
         ];
 
-        // Handle File Updates
-        for ($i = 1; $i <= 3; $i++) {
-            $field = 'gambar_' . $i;
+        // --- AWAL PERUBAHAN LOGIKA UPDATE GAMBAR ---
+        foreach (['gambar_1', 'gambar_2', 'gambar_3'] as $field) {
             if ($request->hasFile($field)) {
-                // Delete old image
+                // Hapus gambar lama jika ada
                 if ($koleksi->$field) {
                     Storage::disk('public')->delete($koleksi->$field);
                 }
-                // Store new image
+                // Simpan gambar baru
                 $data[$field] = $request->file($field)->store('koleksi', 'public');
             }
         }
+        // --- AKHIR PERUBAHAN LOGIKA UPDATE GAMBAR ---
 
         $koleksi->update($data);
 
         return redirect()->route('admin.koleksi.index')->with('success', 'Koleksi berhasil diperbarui.');
     }
 
+
     public function destroy(Collection $koleksi)
     {
-        // Delete images
-        if ($koleksi->gambar_1) Storage::disk('public')->delete($koleksi->gambar_1);
-        if ($koleksi->gambar_2) Storage::disk('public')->delete($koleksi->gambar_2);
-        if ($koleksi->gambar_3) Storage::disk('public')->delete($koleksi->gambar_3);
+        foreach(['gambar_1', 'gambar_2', 'gambar_3'] as $field) {
+            if ($koleksi->$field) {
+                Storage::disk('public')->delete($koleksi->$field);
+            }
+        }
 
         $koleksi->delete();
 

@@ -1,22 +1,15 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2 class="text-3xl font-bold text-white mb-8">Tambah Koleksi Baru</h2>
+    <header class="mb-8">
+        <h1 class="text-3xl font-bold text-white">Tambah Koleksi Baru</h1>
+        <p class="mt-1 text-sm" style="color: var(--text-muted);">Isi detail koleksi, stok, dan unggah gambar.</p>
+    </header>
 
-    <div class="stat-card p-6 sm:p-8 rounded-lg">
-        @if ($errors->any())
-            <div class="bg-red-800 border-l-4 border-red-500 text-red-100 p-4 mb-6">
-                <strong>Error:</strong>
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        <form action="{{ route('admin.koleksi.store') }}" method="POST" enctype="multipart/form-data">
-            @include('admin.koleksi._form', ['tombol_text' => 'Tambah Koleksi'])
-        </form>
-    </div>
+    @include('admin.koleksi._form', [
+        'action' => route('admin.koleksi.store'),
+        'method' => 'POST',
+        'koleksi' => new \App\Models\Collection(), // <-- PERBAIKAN DI SINI
+        'submitText' => 'Simpan Koleksi',
+    ])
 @endsection

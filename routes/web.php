@@ -8,9 +8,10 @@ use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TentangController;
 use App\Http\Controllers\KoleksiController;
-use App\Http\Controllers\AksesorisController;
+use App\Http\Controllers\AksesorisController as PublicAksesorisController;
 use App\Http\Controllers\Admin\AdminContentController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\AksesorisController;
 use App\Http\Controllers\Admin\KoleksiController as AdminKoleksiController;
 
 // Rute Halaman Publik
@@ -39,10 +40,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('admin')->group(function () {
         // --- PERBAIKAN DI SINI ---
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-        Route::resource('/galeri', GalleryController::class)->names('galeri');
-        // Route::get('/koleksi', [AdminContentController::class, 'koleksi'])->name('koleksi');
+        Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
+        Route::resource('/galeri', GalleryController::class);
         Route::resource('/koleksi', AdminKoleksiController::class);
-        Route::get('/aksesoris', [AdminContentController::class, 'aksesoris'])->name('aksesoris');
+        Route::resource('/aksesoris', AksesorisController::class);
         Route::get('/disewa', [AdminContentController::class, 'disewa'])->name('disewa');
     });
 });

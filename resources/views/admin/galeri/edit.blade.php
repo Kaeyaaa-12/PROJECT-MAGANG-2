@@ -1,22 +1,22 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2 class="text-3xl font-bold text-white mb-8">Edit Gambar</h2>
+    <header class="mb-8">
+        <h1 class="text-3xl font-bold text-white">Edit Gambar</h1>
+        <p class="mt-1 text-sm" style="color: var(--text-muted);">Perbarui judul atau ganti file gambar.</p>
+    </header>
 
-    <div class="stat-card p-6 sm:p-8 rounded-lg">
-        {{--
-            Baris inilah yang menyebabkan error jika variabel $gallery tidak ada.
-            Kode ini 100% benar jika controller mengirimkan variabelnya.
-            Laravel akan otomatis mengambil ID dari objek $gallery.
-        --}}
-        <form action="{{ route('admin.galeri.update', $gallery) }}" method="POST" enctype="multipart/form-data">
+    <div class="p-6 rounded-lg shadow-lg" style="background-color: var(--bg-dark-secondary);">
+        <form action="{{ route('admin.galeri.update', $gallery->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="space-y-6">
                 <div>
-                    <label for="title" class="block text-sm font-medium text-gray-300">Judul Gambar</label>
+                    <label for="title" class="block text-sm font-medium" style="color: var(--text-light);">Judul
+                        Gambar</label>
                     <input type="text" name="title" id="title"
-                        class="mt-1 block w-full bg-gray-700 border-gray-600 text-white rounded-md shadow-sm focus:ring-accent-color focus:border-accent-color"
+                        class="mt-1 block w-full rounded-md shadow-sm text-white focus:ring-yellow-500 focus:border-yellow-500"
+                        style="background-color: #2d2d2d; border-color: var(--border-dark);"
                         value="{{ old('title', $gallery->title) }}" required>
                     @error('title')
                         <p class="mt-2 text-sm text-red-400">{{ $message }}</p>
@@ -24,16 +24,19 @@
                 </div>
 
                 <div>
-                    <label for="image" class="block text-sm font-medium text-gray-300">File Gambar (Opsional)</label>
+                    <label for="image" class="block text-sm font-medium" style="color: var(--text-light);">Ganti File
+                        Gambar (Opsional)</label>
                     @if ($gallery->image)
-                        <div class="mt-2">
+                        <div class="mt-2 mb-4">
                             <img src="{{ asset('storage/' . $gallery->image) }}" alt="{{ $gallery->title }}"
-                                class="h-32 w-32 object-cover rounded-md mb-4">
+                                class="h-32 w-auto object-cover rounded-md">
                         </div>
                     @endif
                     <input type="file" name="image" id="image"
-                        class="mt-1 block w-full text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-gray-200 hover:file:bg-gray-500">
-                    <p class="text-xs text-gray-500 mt-1">Kosongkan jika tidak ingin mengganti gambar.</p>
+                        class="mt-1 block w-full text-sm rounded-md file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:font-semibold"
+                        style="color: var(--text-muted); file:background-color: #333; file:color: var(--text-light);">
+                    <p class="text-xs mt-1" style="color: var(--text-muted);">Kosongkan jika tidak ingin mengganti gambar.
+                    </p>
                     @error('image')
                         <p class="mt-2 text-sm text-red-400">{{ $message }}</p>
                     @enderror
@@ -42,9 +45,10 @@
 
             <div class="mt-8 flex justify-end space-x-4">
                 <a href="{{ route('admin.galeri.index') }}"
-                    class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-500 transition">Batal</a>
-                <button type="submit" class="px-4 py-2 text-white font-bold rounded-lg transition"
-                    style="background-color: var(--accent-color); color: var(--sidebar-bg);">Update</button>
+                    class="px-4 py-2 text-sm font-bold text-white rounded-lg hover:opacity-80"
+                    style="background-color: #444;">Batal</a>
+                <button type="submit" class="px-4 py-2 text-sm font-bold text-black rounded-lg hover:opacity-90"
+                    style="background-color: var(--text-gold);">Update Gambar</button>
             </div>
         </form>
     </div>

@@ -1,23 +1,27 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2 class="text-3xl font-bold text-white mb-8">Edit Koleksi: {{ $koleksi->nama_koleksi }}</h2>
+    <header class="mb-8">
+        <h1 class="text-3xl font-bold text-white">Edit Koleksi</h1>
+        <p class="mt-1 text-sm" style="color: var(--text-muted);">Perbarui detail untuk koleksi: {{ $koleksi->nama_koleksi }}
+        </p>
+    </header>
 
-    <div class="stat-card p-6 sm:p-8 rounded-lg">
-        @if ($errors->any())
-            <div class="bg-red-800 border-l-4 border-red-500 text-red-100 p-4 mb-6">
-                <strong>Error:</strong>
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+    @if ($koleksi->gambar)
+        <div class="mb-6">
+            <h3 class="text-lg font-semibold text-white mb-2">Gambar Saat Ini</h3>
+            <div class="flex flex-wrap gap-4">
+                @foreach ($koleksi->gambar as $g)
+                    <img src="{{ asset('storage/' . $g) }}" class="h-24 w-auto object-cover rounded-md">
+                @endforeach
             </div>
-        @endif
+        </div>
+    @endif
 
-        <form action="{{ route('admin.koleksi.update', $koleksi->id) }}" method="POST" enctype="multipart/form-data">
-            @method('PUT')
-            @include('admin.koleksi._form', ['tombol_text' => 'Update Koleksi'])
-        </form>
-    </div>
+    @include('admin.koleksi._form', [
+        'action' => route('admin.koleksi.update', $koleksi->id),
+        'method' => 'PUT',
+        'koleksi' => $koleksi,
+        'submitText' => 'Update Koleksi',
+    ])
 @endsection
