@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2 class="text-3xl font-bold text-white mb-8">Edit Produk: {{ $produk->nama_produk }}</h2>
+    <h2 class="text-3xl font-bold text-white mb-8">Edit Koleksi: {{ $koleksi->nama_koleksi }}</h2>
 
     <div class="stat-card p-6 sm:p-8 rounded-lg">
         @if ($errors->any())
@@ -15,9 +15,9 @@
             </div>
         @endif
 
-        <form action="{{ route('admin.produk.update', $produk->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.koleksi.update', $koleksi->id) }}" method="POST" enctype="multipart/form-data">
             @method('PUT')
-            @include('admin.produk._form', ['tombol_text' => 'Update Produk'])
+            @include('admin.koleksi._form', ['tombol_text' => 'Update Koleksi'])
         </form>
     </div>
 @endsection

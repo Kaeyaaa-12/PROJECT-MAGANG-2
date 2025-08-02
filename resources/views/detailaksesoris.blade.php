@@ -40,18 +40,9 @@
             <nav class="hidden md:flex space-x-8 items-center font-medium">
                 <a href="{{ route('home.index') }}" class="opacity-90 hover:opacity-100 transition">Home</a>
                 <a href="{{ route('tentang.index') }}" class="opacity-90 hover:opacity-100 transition">Tentang</a>
-                <a href="{{ route('produk.index') }}" class="opacity-90 hover:opacity-100 transition">Produk</a>
-                <a href="{{ route('aksesoris.index') }}" style="color: #D4C15D; font-weight: bold;">Aksesoris</a>
+                <a href="{{ route('koleksi.index') }}" style="color: #D4C15D; font-weight: bold;">Koleksi</a>
+                <a href="{{ route('aksesoris.index') }}" class="opacity-90 hover:opacity-100 transition">Aksesoris</a>
             </nav>
-            <div class="flex items-center space-x-5">
-                <a href="#" class="opacity-90 hover:opacity-100 transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                </a>
-            </div>
         </div>
     </header>
 
@@ -143,8 +134,8 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg></a><a href="#" class="text-gray-400 hover:text-white"><svg
-                                xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
                             </svg></a><a href="#" class="text-gray-400 hover:text-white"><svg

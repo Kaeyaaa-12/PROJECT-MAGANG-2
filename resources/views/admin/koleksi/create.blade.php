@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2 class="text-3xl font-bold text-white mb-8">Tambah Produk Baru</h2>
+    <h2 class="text-3xl font-bold text-white mb-8">Tambah Koleksi Baru</h2>
 
     <div class="stat-card p-6 sm:p-8 rounded-lg">
         @if ($errors->any())
@@ -15,8 +15,8 @@
             </div>
         @endif
 
-        <form action="{{ route('admin.produk.store') }}" method="POST" enctype="multipart/form-data">
-            @include('admin.produk._form', ['tombol_text' => 'Tambah Produk'])
+        <form action="{{ route('admin.koleksi.store') }}" method="POST" enctype="multipart/form-data">
+            @include('admin.koleksi._form', ['tombol_text' => 'Tambah Koleksi'])
         </form>
     </div>
 @endsection

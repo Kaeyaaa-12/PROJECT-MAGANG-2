@@ -13,7 +13,7 @@
                     <i class="ri-t-shirt-2-line text-2xl text-blue-400"></i>
                 </div>
                 <div class="ml-4">
-                    <p class="text-gray-400 text-sm">Total Produk</p>
+                    <p class="text-gray-400 text-sm">Total Koleksi</p>
                     <p class="text-2xl font-bold text-white">1,234</p>
                 </div>
             </div>

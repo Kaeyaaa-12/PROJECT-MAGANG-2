@@ -1,16 +1,16 @@
 @csrf
 <div class="space-y-6">
     <div>
-        <label for="nama_produk" class="block text-sm font-medium text-gray-300">Nama Produk</label>
-        <input type="text" name="nama_produk" id="nama_produk"
+        <label for="nama_koleksi" class="block text-sm font-medium text-gray-300">Nama Koleksi</label>
+        <input type="text" name="nama_koleksi" id="nama_koleksi"
             class="mt-1 block w-full bg-gray-700 border-gray-600 text-white rounded-md shadow-sm focus:ring-accent-color focus:border-accent-color"
-            value="{{ old('nama_produk', $produk->nama_produk ?? '') }}" required>
+            value="{{ old('nama_koleksi', $koleksi->nama_koleksi ?? '') }}" required>
     </div>
     <div>
         <label for="kategori" class="block text-sm font-medium text-gray-300">Kategori</label>
         <input type="text" name="kategori" id="kategori"
             class="mt-1 block w-full bg-gray-700 border-gray-600 text-white rounded-md shadow-sm focus:ring-accent-color focus:border-accent-color"
-            value="{{ old('kategori', $produk->kategori ?? '') }}" required>
+            value="{{ old('kategori', $koleksi->kategori ?? '') }}" required>
     </div>
 
     {{-- Stok Varian --}}
@@ -27,7 +27,7 @@
                             <input type="number" name="stok[{{ strtolower($jenis) }}][{{ $ukuran }}]"
                                 id="stok_{{ strtolower($jenis) }}_{{ strtolower($ukuran) }}"
                                 class="mt-1 block w-full bg-gray-700 border-gray-600 text-white rounded-md shadow-sm text-sm"
-                                value="{{ old('stok.' . strtolower($jenis) . '.' . $ukuran, $produk->stok_varian[strtolower($jenis)][$ukuran] ?? '') }}"
+                                value="{{ old('stok.' . strtolower($jenis) . '.' . $ukuran, $koleksi->stok_varian[strtolower($jenis)][$ukuran] ?? '') }}"
                                 placeholder="0">
                         </div>
                     @endforeach
@@ -42,7 +42,7 @@
             <label for="gambar_1" class="block text-sm font-medium text-gray-300">Gambar Utama</label>
             <input type="file" name="gambar_1" id="gambar_1"
                 class="mt-1 block w-full text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-gray-200 hover:file:bg-gray-500"
-                {{ !isset($produk) ? 'required' : '' }}>
+                {{ !isset($koleksi) ? 'required' : '' }}>
         </div>
         <div>
             <label for="gambar_2" class="block text-sm font-medium text-gray-300">Gambar 2</label>
@@ -58,7 +58,7 @@
 </div>
 
 <div class="mt-8 flex justify-end space-x-4">
-    <a href="{{ route('admin.produk.index') }}"
+    <a href="{{ route('admin.koleksi.index') }}"
         class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-500 transition">Batal</a>
     <button type="submit" class="px-4 py-2 text-white font-bold rounded-lg transition"
         style="background-color: var(--accent-color); color: var(--sidebar-bg);">{{ $tombol_text ?? 'Simpan' }}</button>

@@ -3,27 +3,27 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product;
+use App\Models\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class ProdukController extends Controller
+class KoleksiController extends Controller
 {
     public function index()
     {
-        $produks = Product::latest()->paginate(10);
-        return view('admin.produk.index', compact('produks'));
+        $koleksis = Collection::latest()->paginate(10);
+        return view('admin.koleksi.index', compact('koleksis'));
     }
 
     public function create()
     {
-        return view('admin.produk.create');
+        return view('admin.koleksi.create');
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'nama_produk' => 'required|string|max:255',
+            'nama_koleksi' => 'required|string|max:255',
             'kategori' => 'required|string|max:255',
             'gambar_1' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'gambar_2' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -41,36 +41,36 @@ class ProdukController extends Controller
         }
 
         $data = [
-            'nama_produk' => $request->nama_produk,
+            'nama_koleksi' => $request->nama_koleksi,
             'kategori' => $request->kategori,
             'stok_varian' => $stokVarian,
         ];
 
         // Handle File Uploads
         if ($request->hasFile('gambar_1')) {
-            $data['gambar_1'] = $request->file('gambar_1')->store('produk', 'public');
+            $data['gambar_1'] = $request->file('gambar_1')->store('koleksi', 'public');
         }
         if ($request->hasFile('gambar_2')) {
-            $data['gambar_2'] = $request->file('gambar_2')->store('produk', 'public');
+            $data['gambar_2'] = $request->file('gambar_2')->store('koleksi', 'public');
         }
         if ($request->hasFile('gambar_3')) {
-            $data['gambar_3'] = $request->file('gambar_3')->store('produk', 'public');
+            $data['gambar_3'] = $request->file('gambar_3')->store('koleksi', 'public');
         }
 
-        Product::create($data);
+        Collection::create($data);
 
-        return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil ditambahkan.');
+        return redirect()->route('admin.koleksi.index')->with('success', 'Koleksi berhasil ditambahkan.');
     }
 
-    public function edit(Product $produk)
+    public function edit(Collection $koleksi)
     {
-        return view('admin.produk.edit', compact('produk'));
+        return view('admin.koleksi.edit', compact('koleksi'));
     }
 
-    public function update(Request $request, Product $produk)
+    public function update(Request $request, Collection $koleksi)
     {
         $request->validate([
-            'nama_produk' => 'required|string|max:255',
+            'nama_koleksi' => 'required|string|max:255',
             'kategori' => 'required|string|max:255',
             'gambar_1' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'gambar_2' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -88,7 +88,7 @@ class ProdukController extends Controller
         }
 
         $data = [
-            'nama_produk' => $request->nama_produk,
+            'nama_koleksi' => $request->nama_koleksi,
             'kategori' => $request->kategori,
             'stok_varian' => $stokVarian,
         ];
@@ -98,28 +98,28 @@ class ProdukController extends Controller
             $field = 'gambar_' . $i;
             if ($request->hasFile($field)) {
                 // Delete old image
-                if ($produk->$field) {
-                    Storage::disk('public')->delete($produk->$field);
+                if ($koleksi->$field) {
+                    Storage::disk('public')->delete($koleksi->$field);
                 }
                 // Store new image
-                $data[$field] = $request->file($field)->store('produk', 'public');
+                $data[$field] = $request->file($field)->store('koleksi', 'public');
             }
         }
 
-        $produk->update($data);
+        $koleksi->update($data);
 
-        return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil diperbarui.');
+        return redirect()->route('admin.koleksi.index')->with('success', 'Koleksi berhasil diperbarui.');
     }
 
-    public function destroy(Product $produk)
+    public function destroy(Collection $koleksi)
     {
         // Delete images
-        if ($produk->gambar_1) Storage::disk('public')->delete($produk->gambar_1);
-        if ($produk->gambar_2) Storage::disk('public')->delete($produk->gambar_2);
-        if ($produk->gambar_3) Storage::disk('public')->delete($produk->gambar_3);
+        if ($koleksi->gambar_1) Storage::disk('public')->delete($koleksi->gambar_1);
+        if ($koleksi->gambar_2) Storage::disk('public')->delete($koleksi->gambar_2);
+        if ($koleksi->gambar_3) Storage::disk('public')->delete($koleksi->gambar_3);
 
-        $produk->delete();
+        $koleksi->delete();
 
-        return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil dihapus.');
+        return redirect()->route('admin.koleksi.index')->with('success', 'Koleksi berhasil dihapus.');
     }
 }

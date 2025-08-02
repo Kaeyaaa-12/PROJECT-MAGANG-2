@@ -98,10 +98,10 @@
                         <i class="ri-gallery-line w-5 h-5 mr-4"></i>
                         <span>Galeri</span>
                     </a>
-                    <a href="{{ route('admin.produk.index') }}"
-                        class="sidebar-link {{ request()->routeIs('admin.produk.*') ? 'active' : '' }} flex items-center mt-2 px-6 py-3 text-sm">
-                        <i class="ri-t-shirt-2-line w-5 h-5 mr-4"></i>
-                        <span>Produk</span>
+                    <a class="flex items-center mt-4 py-2 px-6 transition-colors duration-200 {{ request()->routeIs('admin.koleksi.*') ? 'bg-gray-700 bg-opacity-50 text-white' : 'text-gray-400 hover:bg-gray-700 hover:text-white' }}"
+                        href="{{ route('admin.koleksi.index') }}">
+                        <i class="ri-t-shirt-2-line"></i>
+                        <span class="mx-3">Koleksi</span>
                     </a>
                     <a href="{{ route('admin.aksesoris') }}"
                         class="sidebar-link {{ request()->routeIs('admin.aksesoris') ? 'active' : '' }} flex items-center mt-2 px-6 py-3 text-sm">

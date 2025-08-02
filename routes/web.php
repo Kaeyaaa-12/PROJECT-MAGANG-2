@@ -7,18 +7,18 @@ use App\Http\Controllers\Admin\Auth\ForgotPasswordController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TentangController;
-use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\KoleksiController;
 use App\Http\Controllers\AksesorisController;
 use App\Http\Controllers\Admin\AdminContentController;
 use App\Http\Controllers\Admin\GalleryController;
-use App\Http\Controllers\Admin\ProdukController as AdminProdukController;
+use App\Http\Controllers\Admin\KoleksiController as AdminKoleksiController;
 
 // Rute Halaman Publik
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/tentang', [TentangController::class, 'index'])->name('tentang.index');
 Route::get('/aksesoris', [AksesorisController::class, 'index'])->name('aksesoris.index');
-Route::get('/produk', [ProdukController::class, 'index'])->name('produk.index');
-Route::get('/produk/{id}', [ProdukController::class, 'show'])->name('produk.show');
+Route::get('/koleksi', [KoleksiController::class, 'index'])->name('koleksi.index');
+Route::get('/koleksi/{id}', [KoleksiController::class, 'show'])->name('koleksi.show');
 Route::get('/aksesoris/{id}', [AksesorisController::class, 'show'])->name('aksesoris.show');
 
 
@@ -40,8 +40,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // --- PERBAIKAN DI SINI ---
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
         Route::resource('/galeri', GalleryController::class)->names('galeri');
-        // Route::get('/produk', [AdminContentController::class, 'produk'])->name('produk');
-        Route::resource('/produk', AdminProdukController::class);
+        // Route::get('/koleksi', [AdminContentController::class, 'koleksi'])->name('koleksi');
+        Route::resource('/koleksi', AdminKoleksiController::class);
         Route::get('/aksesoris', [AdminContentController::class, 'aksesoris'])->name('aksesoris');
         Route::get('/disewa', [AdminContentController::class, 'disewa'])->name('disewa');
     });

@@ -66,18 +66,9 @@
             <nav class="hidden md:flex space-x-8 items-center font-medium">
                 <a href="{{ route('home.index') }}" class="opacity-90 hover:opacity-100 transition">Home</a>
                 <a href="{{ route('tentang.index') }}" class="opacity-90 hover:opacity-100 transition">Tentang</a>
-                <a href="{{ route('produk.index') }}" class="opacity-90 hover:opacity-100 transition">Produk</a>
-                <a href="{{ route('aksesoris.index') }}" style="color: #D4C15D; font-weight: bold;">Aksesoris</a>
+                <a href="{{ route('koleksi.index') }}" style="color: #D4C15D; font-weight: bold;">Koleksi</a>
+                <a href="{{ route('aksesoris.index') }}" class="opacity-90 hover:opacity-100 transition">Aksesoris</a>
             </nav>
-            <div class="flex items-center space-x-5">
-                <a href="#" class="opacity-90 hover:opacity-100 transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                </a>
-            </div>
         </div>
     </header>
 
@@ -132,7 +123,7 @@
                     <h3 class="text-lg font-semibold" style="color: var(--text-main);">Navigasi</h3>
                     <ul class="space-y-2">
                         <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Produk</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Koleksi</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white">Tentang</a></li>
                     </ul>
                 </div>
@@ -157,8 +148,8 @@
                             </svg>
                         </a>
                         <a href="#" class="text-gray-400 hover:text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2">
                                 <rect width="20" height="20" x="2" y="2" rx="5" ry="5">
                                 </rect>
                                 <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
