@@ -2,41 +2,47 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Accessory;
+
 class AksesorisController extends Controller
 {
-    // Data aksesoris sekarang memiliki array 'gambar'
-    private $aksesoris = [
-        ['id' => 1, 'nama' => 'Topeng Venetian', 'gambar' => ['bgkostum.png', 'bgtentang.png', 'bgkostum.png'], 'stok' => 10],
-        ['id' => 2, 'nama' => 'Pedang Ksatria', 'gambar' => ['bgkostum.png', 'bgtentang.png', 'bgkostum.png'], 'stok' => 8],
-        ['id' => 3, 'nama' => 'Mahkota Putri', 'gambar' => ['bgkostum.png', 'bgtentang.png', 'bgkostum.png'], 'stok' => 12],
-        ['id' => 4, 'nama' => 'Topi Bajak Laut', 'gambar' => ['bgkostum.png', 'bgtentang.png', 'bgkostum.png'], 'stok' => 6],
-    ];
-
     public function index()
     {
-        // Ambil gambar pertama untuk thumbnail
-        $aksesorisForView = array_map(function ($item) {
-            $item['thumbnail'] = $item['gambar'][0] ?? 'default.png';
-            return $item;
-        }, $this->aksesoris);
+        $aksesoris = Accessory::all()->map(function ($item) {
+            // Hitung total stok dari semua varian
+            $totalStok = 0;
+            if (is_array($item->stok_varian)) {
+                $totalStok = array_sum($item->stok_varian);
+            }
 
-        return view('aksesoris', ['aksesoris' => $aksesorisForView]);
+            return [
+                'id' => $item->id,
+                'nama' => $item->nama_aksesoris,
+                'thumbnail' => $item->gambar_1 ?? 'default.png',
+                'total_stok' => $totalStok,
+            ];
+        });
+
+        return view('aksesoris', ['aksesoris' => $aksesoris]);
     }
 
     public function show($id)
     {
-        $item = null;
-        foreach ($this->aksesoris as $a) {
-            if ($a['id'] == $id) {
-                $item = $a;
-                break;
-            }
+        $aksesori = Accessory::findOrFail($id);
+
+        $gambar = array_filter([$aksesori->gambar_1, $aksesori->gambar_2, $aksesori->gambar_3]);
+        if (empty($gambar)) {
+            $gambar[] = 'default.png';
         }
 
-        if (!$item) {
-            abort(404);
-        }
+        $detail = [
+            'id' => $aksesori->id,
+            'nama' => $aksesori->nama_aksesoris,
+            'kategori' => $aksesori->kategori,
+            'stok_varian' => $aksesori->stok_varian ?? [], // Kirim data stok
+            'gambar' => $gambar
+        ];
 
-        return view('detailaksesoris', ['aksesoris' => $item]);
+        return view('detailaksesoris', ['aksesoris' => $detail]);
     }
 }

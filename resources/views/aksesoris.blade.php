@@ -68,14 +68,16 @@
                         <a href="{{ route('aksesoris.show', ['id' => $item['id']]) }}"
                             class="product-card block bg-white rounded-lg shadow-md overflow-hidden group">
                             <div class="product-image-container h-96">
-                                <img src="{{ asset('assets/images/' . $item['thumbnail']) }}" alt="{{ $item['nama'] }}"
+                                <img src="{{ asset('storage/' . $item['thumbnail']) }}" alt="{{ $item['nama'] }}"
                                     class="product-image w-full h-full object-cover">
                             </div>
                             <div class="p-5">
                                 <h3
                                     class="font-bold text-xl text-gray-800 group-hover:text-accent transition-colors duration-300">
                                     {{ $item['nama'] }}</h3>
-                                <p class="text-gray-500 text-sm mt-1">Stok Tersedia</p>
+                                {{-- Menampilkan Total Stok --}}
+                                <p class="text-gray-500 text-sm mt-1">Total Stok: <span
+                                        class="font-semibold">{{ $item['total_stok'] }}</span></p>
                             </div>
                         </a>
                     </div>

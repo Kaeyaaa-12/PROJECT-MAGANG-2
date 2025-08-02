@@ -17,10 +17,10 @@ use App\Http\Controllers\Admin\KoleksiController as AdminKoleksiController;
 // Rute Halaman Publik
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/tentang', [TentangController::class, 'index'])->name('tentang.index');
-Route::get('/aksesoris', [AksesorisController::class, 'index'])->name('aksesoris.index');
+Route::get('/aksesoris', [PublicAksesorisController::class, 'index'])->name('aksesoris.index');
 Route::get('/koleksi', [KoleksiController::class, 'index'])->name('koleksi.index');
 Route::get('/koleksi/{id}', [KoleksiController::class, 'show'])->name('koleksi.show');
-Route::get('/aksesoris/{id}', [AksesorisController::class, 'show'])->name('aksesoris.show');
+Route::get('/aksesoris/{id}', [PublicAksesorisController::class, 'show'])->name('aksesoris.show');
 
 
 // =======================================================
