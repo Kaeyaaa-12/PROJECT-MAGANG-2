@@ -32,18 +32,16 @@
                         <tr class="border-b hover:opacity-80" style="border-color: var(--border-dark);">
                             <td class="px-6 py-4 font-medium whitespace-nowrap text-white">{{ $rental->nama_penyewa }}</td>
                             <td class="px-6 py-4">
-                                {{-- Loop untuk menampilkan semua item --}}
                                 <ul class="list-disc list-inside">
                                     @foreach ($rental->items as $item)
                                         <li>
-                                            {{ $item->rentable->nama_koleksi ?? $item->rentable->nama_aksesoris }}
+                                            {{ $item->rentable->nama_koleksi ?? ($item->rentable->nama_aksesoris ?? 'Item Dihapus') }}
                                             <span class="text-xs opacity-70">({{ $item->varian }})</span>
                                         </li>
                                     @endforeach
                                 </ul>
                             </td>
                             <td class="px-6 py-4">
-                                {{-- Loop untuk menampilkan jumlah --}}
                                 <ul class="list-none">
                                     @foreach ($rental->items as $item)
                                         <li>{{ $item->jumlah }} pcs</li>
@@ -52,7 +50,11 @@
                             </td>
                             <td class="px-6 py-4">{{ \Carbon\Carbon::parse($rental->tanggal_mulai)->format('d M Y') }} -
                                 {{ \Carbon\Carbon::parse($rental->tanggal_selesai)->format('d M Y') }}</td>
-                            <td class="px-6 py-4 text-center">
+
+                            {{-- --- AWAL PERUBAHAN --- --}}
+                            <td class="px-6 py-4 text-center whitespace-nowrap">
+                                <a href="{{ route('admin.disewa.show', $rental->id) }}"
+                                    class="font-medium text-green-400 hover:underline mr-3">Detail</a>
                                 <a href="{{ route('admin.disewa.edit', $rental->id) }}"
                                     class="font-medium text-blue-400 hover:underline mr-3">Edit</a>
                                 <form action="{{ route('admin.disewa.destroy', $rental->id) }}" method="POST"
@@ -63,6 +65,7 @@
                                     <button type="submit" class="font-medium text-red-400 hover:underline">Hapus</button>
                                 </form>
                             </td>
+                            {{-- --- AKHIR PERUBAHAN --- --}}
                         </tr>
                     @empty
                         <tr>

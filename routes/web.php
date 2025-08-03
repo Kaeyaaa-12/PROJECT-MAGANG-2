@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\AksesorisController;
 use App\Http\Controllers\Admin\KoleksiController as AdminKoleksiController;
 use App\Http\Controllers\Admin\DisewaController;
+use App\Http\Controllers\Admin\SearchController;
 
 
 // Rute Halaman Publik
@@ -51,13 +52,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Rute yang memerlukan login admin
     Route::middleware('admin')->group(function () {
         // --- PERBAIKAN DI SINI ---
+        Route::get('/search', [SearchController::class, 'search'])->name('search');
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
         Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
         Route::resource('/galeri', GalleryController::class);
         Route::resource('/koleksi', AdminKoleksiController::class);
         Route::resource('/aksesoris', AksesorisController::class);
-        // Route::get('/disewa', [AdminContentController::class, 'disewa'])->name('disewa');
-
         Route::resource('/disewa', DisewaController::class);
         Route::get('/get-item-details/{type}/{id}', [DisewaController::class, 'getItemDetails'])->name('disewa.getItemDetails');
 

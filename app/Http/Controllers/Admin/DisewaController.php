@@ -30,6 +30,13 @@ class DisewaController extends Controller
         return view('admin.disewa.create', compact('collections', 'accessories', 'sewa', 'itemsForJs'));
     }
 
+    public function show(Rental $disewa)
+    {
+        // Load relasi items beserta rentable (koleksi/aksesoris)
+        $sewa = $disewa->load('items.rentable');
+        return view('admin.disewa.show', compact('sewa'));
+    }
+
     public function edit(Rental $disewa)
     {
         $collections = Collection::orderBy('nama_koleksi')->get();

@@ -1,16 +1,15 @@
 @extends('layouts.admin')
 
 @section('content')
-    {{-- Mengimpor library Chart.js untuk grafik --}}
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <div>
         <header class="mb-8">
             <h1 class="text-3xl font-bold text-white">Dashboard</h1>
             <p class="mt-1 text-sm" style="color: var(--text-muted);">Selamat datang kembali, Admin!</p>
         </header>
 
+        {{-- KARTU STATISTIK (Tidak berubah) --}}
         <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {{-- Total Koleksi --}}
             <div class="overflow-hidden rounded-lg shadow-md"
                 style="background-color: var(--bg-dark-secondary); border-left: 5px solid var(--text-gold);">
                 <div class="p-5">
@@ -26,13 +25,14 @@
                             <dl>
                                 <dt class="truncate text-sm font-medium" style="color: var(--text-muted);">Total Koleksi
                                 </dt>
-                                <dd class="text-3xl font-bold text-white">{{-- Contoh Data: 86 --}}</dd>
+                                <dd class="text-3xl font-bold text-white">{{ $totalKoleksi }}</dd>
                             </dl>
                         </div>
                     </div>
                 </div>
             </div>
 
+            {{-- Total Aksesoris --}}
             <div class="overflow-hidden rounded-lg shadow-md"
                 style="background-color: var(--bg-dark-secondary); border-left: 5px solid var(--text-gold);">
                 <div class="p-5">
@@ -48,13 +48,14 @@
                             <dl>
                                 <dt class="truncate text-sm font-medium" style="color: var(--text-muted);">Total Aksesoris
                                 </dt>
-                                <dd class="text-3xl font-bold text-white">{{-- Contoh Data: 32 --}}</dd>
+                                <dd class="text-3xl font-bold text-white">{{ $totalAksesoris }}</dd>
                             </dl>
                         </div>
                     </div>
                 </div>
             </div>
 
+            {{-- Sedang Disewa --}}
             <div class="overflow-hidden rounded-lg shadow-md"
                 style="background-color: var(--bg-dark-secondary); border-left: 5px solid var(--text-gold);">
                 <div class="p-5">
@@ -70,13 +71,14 @@
                             <dl>
                                 <dt class="truncate text-sm font-medium" style="color: var(--text-muted);">Sedang Disewa
                                 </dt>
-                                <dd class="text-3xl font-bold text-white">{{-- Contoh Data: 12 --}}</dd>
+                                <dd class="text-3xl font-bold text-white">{{ $sedangDisewa }}</dd>
                             </dl>
                         </div>
                     </div>
                 </div>
             </div>
 
+            {{-- Total Stok --}}
             <div class="overflow-hidden rounded-lg shadow-md"
                 style="background-color: var(--bg-dark-secondary); border-left: 5px solid var(--text-gold);">
                 <div class="p-5">
@@ -91,83 +93,76 @@
                         <div class="ml-5 w-0 flex-1">
                             <dl>
                                 <dt class="truncate text-sm font-medium" style="color: var(--text-muted);">Total Stok</dt>
-                                <dd class="text-3xl font-bold text-white">{{-- Contoh Data: 450 --}}</dd>
+                                <dd class="text-3xl font-bold text-white">{{ $totalStok }}</dd>
                             </dl>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="mt-8 rounded-lg p-6 shadow-md" style="background-color: var(--bg-dark-secondary);">
-            <h2 class="text-xl font-semibold text-white">Grafik Penyewaan</h2>
-            <p class="mt-1 text-sm" style="color: var(--text-muted);">Data penyewaan 7 hari terakhir.</p>
-            <div class="mt-6">
-                <canvas id="penyewaanChart"></canvas>
+
+        {{-- TABEL DATA SEWA TERBARU --}}
+        <div class="mt-8 rounded-lg shadow-md" style="background-color: var(--bg-dark-secondary);">
+            <div class="p-6">
+                <h2 class="text-xl font-semibold text-white">Data Sewa Terbaru</h2>
+                <p class="mt-1 text-sm" style="color: var(--text-muted);">Menampilkan 5 data penyewaan terakhir.</p>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left" style="color: var(--text-light);">
+                    <thead class="text-xs uppercase" style="background-color: #2d2d2d; color: var(--text-muted);">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">Nama Penyewa</th>
+                            <th scope="col" class="px-6 py-3">Item Disewa</th>
+                            <th scope="col" class="px-6 py-3">Jumlah</th>
+                            <th scope="col" class="px-6 py-3">Tanggal Sewa</th>
+                            <th scope="col" class="px-6 py-3 text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($dataSewaTerbaru as $sewa)
+                            <tr class="border-b hover:opacity-80" style="border-color: var(--border-dark);">
+                                <td class="px-6 py-4 font-medium whitespace-nowrap text-white">
+                                    {{ $sewa->nama_penyewa }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    <ul class="list-disc list-inside">
+                                        @foreach ($sewa->items as $item)
+                                            <li>
+                                                {{ $item->rentable->nama_koleksi ?? ($item->rentable->nama_aksesoris ?? 'Item Dihapus') }}
+                                                <span class="text-xs opacity-70">({{ $item->varian }})</span>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <ul class="list-none">
+                                        @foreach ($sewa->items as $item)
+                                            <li>{{ $item->jumlah }} pcs</li>
+                                        @endforeach
+                                    </ul>
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ \Carbon\Carbon::parse($sewa->tanggal_mulai)->format('d M') }} -
+                                    {{ \Carbon\Carbon::parse($sewa->tanggal_selesai)->format('d M Y') }}
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    {{-- --- AWAL PERUBAHAN --- --}}
+                                    <a href="{{ route('admin.disewa.show', $sewa->id) }}"
+                                        class="font-medium text-blue-400 hover:underline">Lihat Detail</a>
+                                    {{-- --- AKHIR PERUBAHAN --- --}}
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5" class="text-center py-10" style="color: var(--text-muted);">
+                                    Belum ada data penyewaan.
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
             </div>
         </div>
 
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const ctx = document.getElementById('penyewaanChart').getContext('2d');
-
-            // Membuat gradasi warna untuk chart
-            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-            gradient.addColorStop(0, 'rgba(212, 175, 55, 0.6)');
-            gradient.addColorStop(1, 'rgba(212, 175, 55, 0)');
-
-            const penyewaanChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    // Contoh data: label untuk 7 hari terakhir
-                    labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
-                    datasets: [{
-                        label: 'Jumlah Penyewaan',
-                        // Contoh data: jumlah penyewaan per hari
-                        data: [5, 8, 6, 10, 7, 12, 9],
-                        backgroundColor: gradient, // Warna area di bawah garis
-                        borderColor: '#D4AF37', // Warna garis
-                        borderWidth: 3,
-                        pointBackgroundColor: '#FFFFFF',
-                        pointBorderColor: '#D4AF37',
-                        pointHoverBackgroundColor: '#D4AF37',
-                        pointHoverBorderColor: '#FFFFFF',
-                        pointRadius: 5,
-                        pointHoverRadius: 7,
-                        fill: true,
-                        tension: 0.4 // Membuat garis lebih melengkung
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            grid: {
-                                color: 'rgba(224, 224, 224, 0.1)' // Warna garis grid sumbu Y
-                            },
-                            ticks: {
-                                color: '#E0E0E0' // Warna teks label sumbu Y
-                            }
-                        },
-                        x: {
-                            grid: {
-                                display: false // Menghilangkan garis grid sumbu X
-                            },
-                            ticks: {
-                                color: '#E0E0E0' // Warna teks label sumbu X
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: false // Menyembunyikan legenda
-                        }
-                    }
-                }
-            });
-        });
-    </script>
 @endsection
