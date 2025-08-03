@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" x-data="{ scrolled: false }" @scroll.window="scrolled = (window.scrollY > 50)">
 
 <head>
     <meta charset="UTF-8">
@@ -24,6 +24,8 @@
             --text-gold: #D4AF37;
             --text-light: #f5f5f5;
             --bg-soft: #2d2d2d;
+            --bg-darker: #242424;
+            /* Warna lebih gelap untuk card */
         }
 
         body {
@@ -72,10 +74,32 @@
             color: #a1a1aa;
             /* zinc-400 */
         }
+
+        /* Animasi Scroll */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 
-<body>
+<body x-data="{}" x-init="const sections = document.querySelectorAll('.scroll-animate');
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1 });
+sections.forEach(section => {
+    observer.observe(section);
+});">
 
     @include('layouts.header')
 
@@ -87,17 +111,20 @@
             <div class="relative z-10 container mx-auto flex flex-col justify-center h-full text-white px-5">
                 <div class="max-w-xl">
                     <h1 class="text-5xl lg:text-7xl font-serif font-bold leading-tight mb-4">
-                        Amira Collection Tulungagung
+                        Amira Collection
                     </h1>
+                    {{-- Teks kecil ditambahkan di sini --}}
+                    <p class="text-lg lg:text-xl text-gray-300 mb-6">Temukan beragam kostum unik dan eksklusif
+                        di pusat sewa terbaik Tulungagung</p>
                     <a href="#koleksi" class="btn-primary font-bold py-3 px-10 rounded-md text-lg inline-block mt-4">
-                        Start Renting
+                        Mulai Menyewa
                     </a>
                 </div>
             </div>
         </section>
 
         {{-- Tentang Kami --}}
-        <section class="py-16 md:py-24" style="background-color: var(--bg-soft);">
+        <section class="py-16 md:py-24 scroll-animate" style="background-color: var(--bg-soft);">
             <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center px-5">
                 <div class="order-2 md:order-1 text-center md:text-left">
                     <h2 class="text-4xl font-bold mb-4 font-serif" style="color: var(--text-light);">Tentang Kami</h2>
@@ -117,30 +144,32 @@
         </section>
 
         {{-- Koleksi Kami --}}
-        <section id="koleksi" class="py-16" x-data="{ tab: 'kostum' }" style="background-color: var(--bg-soft);">
+        <section id="koleksi" class="py-16 scroll-animate" x-data="{ tab: 'kostum' }"
+            style="background-color: var(--bg-soft);">
             <div class="container mx-auto text-center px-5">
                 <h2 class="text-4xl font-bold mb-12 font-serif" style="color: var(--text-light);">Koleksi Kami</h2>
                 <div class="flex justify-center border-b border-gray-700 mb-10">
                     <button @click="tab = 'kostum'" :class="tab === 'kostum' ? 'tab-active' : 'tab-inactive'"
                         class="px-8 py-3 text-lg transition">
-                        Kostum Baru
+                        Koleksi Terbaru
                     </button>
                     <button @click="tab = 'aksesoris'" :class="tab === 'aksesoris' ? 'tab-active' : 'tab-inactive'"
                         class="px-8 py-3 text-lg transition">
-                        Aksesoris Baru
+                        Aksesoris Terbaru
                     </button>
                 </div>
                 <div>
-                    {{-- Card Kostum Baru --}}
+                    {{-- Card Koleksi Baru --}}
                     <div x-show="tab === 'kostum'" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         @forelse ($newCollections as $collection)
                             <a href="{{ route('koleksi.show', $collection->id) }}" class="block group">
-                                <div
-                                    class="bg-soft rounded-lg overflow-hidden border border-gray-800 transform transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-500/20 hover:-translate-y-2">
+                                <div class="rounded-lg overflow-hidden border border-gray-800 transform transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-500/20 hover:-translate-y-2"
+                                    style="background-color: var(--bg-darker);">
                                     <img src="{{ asset('storage/' . $collection->gambar_1) }}"
                                         alt="{{ $collection->nama_koleksi }}"
                                         class="w-full h-96 object-cover transform group-hover:scale-105 transition-transform duration-300">
-                                    <div class="p-5 text-left">
+                                    <div class="p-5 text-center">
+                                        {{-- Nama koleksi ditengahkan --}}
                                         <h3
                                             class="font-bold text-xl mb-1 text-light group-hover:text-gold-400 transition">
                                             {{ $collection->nama_koleksi }}</h3>
@@ -157,12 +186,13 @@
                         style="display: none;">
                         @forelse ($newAccessories as $accessory)
                             <a href="{{ route('aksesoris.show', $accessory->id) }}" class="block group">
-                                <div
-                                    class="bg-soft rounded-lg overflow-hidden border border-gray-800 transform transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-500/20 hover:-translate-y-2">
+                                <div class="rounded-lg overflow-hidden border border-gray-800 transform transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-500/20 hover:-translate-y-2"
+                                    style="background-color: var(--bg-darker);">
                                     <img src="{{ asset('storage/' . $accessory->gambar_1) }}"
                                         alt="{{ $accessory->nama_aksesoris }}"
                                         class="w-full h-96 object-cover transform group-hover:scale-105 transition-transform duration-300">
-                                    <div class="p-5 text-left">
+                                    <div class="p-5 text-center">
+                                        {{-- Nama aksesoris ditengahkan --}}
                                         <h3
                                             class="font-bold text-xl mb-1 text-light group-hover:text-gold-400 transition">
                                             {{ $accessory->nama_aksesoris }}</h3>
@@ -183,7 +213,7 @@
         </section>
 
         {{-- Cara Mudah Menyewa --}}
-        <section class="py-20" style="background-color: var(--bg-soft);">
+        <section class="py-20 scroll-animate" style="background-color: var(--bg-soft);">
             <div class="container mx-auto text-center px-5">
                 <h2 class="text-4xl font-bold mb-4 font-serif" style="color: var(--text-light);">Cara Mudah Menyewa
                 </h2>
@@ -218,42 +248,45 @@
             </div>
         </section>
 
-        {{-- ======================================================= --}}
-        {{-- SECTION ATURAN PENYEWAAN BARU --}}
-        {{-- ======================================================= --}}
-        <section class="py-20" style="background-color: var(--bg-soft);">
+        {{-- Aturan Penyewaan --}}
+        <section class="py-20 scroll-animate" style="background-color: var(--bg-soft);">
             <div class="container mx-auto text-center px-5">
                 <h2 class="text-4xl font-bold mb-4 font-serif" style="color: var(--text-light);">Aturan Penyewaan</h2>
                 <p class="text-lg text-gray-400 max-w-3xl mx-auto mb-16">Harap perhatikan beberapa aturan berikut untuk
                     kenyamanan bersama saat menyewa di Amira Collection.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-                    <div class="bg-soft p-8 rounded-lg border border-gray-800">
-                        <h3 class="text-2xl font-semibold mb-4 text-gold-400">Pemesanan & Pembayaran</h3>
+                    {{-- Background setiap aturan diubah menjadi lebih gelap --}}
+                    <div class="p-8 rounded-lg border border-gray-800" style="background-color: var(--bg-darker);">
+                        <h3 class="text-2xl font-semibold mb-4" style="color: var(--text-gold);">Pemesanan &
+                            Pembayaran</h3>
                         <p class="text-gray-400">Pembayaran penuh di muka diperlukan untuk konfirmasi pesanan. Kami
                             menerima pembayaran tunai dan transfer bank.</p>
                     </div>
-                    <div class="bg-soft p-8 rounded-lg border border-gray-800">
-                        <h3 class="text-2xl font-semibold mb-4 text-gold-400">Jaminan Sewa</h3>
+                    <div class="p-8 rounded-lg border border-gray-800" style="background-color: var(--bg-darker);">
+                        <h3 class="text-2xl font-semibold mb-4" style="color: var(--text-gold);">Jaminan Sewa</h3>
                         <p class="text-gray-400">Setiap penyewaan wajib menyertakan jaminan berupa KTP/SIM asli yang
                             masih berlaku dan akan dikembalikan saat kostum kembali.</p>
                     </div>
-                    <div class="bg-soft p-8 rounded-lg border border-gray-800">
-                        <h3 class="text-2xl font-semibold mb-4 text-gold-400">Pengambilan & Pengembalian</h3>
+                    <div class="p-8 rounded-lg border border-gray-800" style="background-color: var(--bg-darker);">
+                        <h3 class="text-2xl font-semibold mb-4" style="color: var(--text-gold);">Pengambilan &
+                            Pengembalian</h3>
                         <p class="text-gray-400">Kostum dapat diambil H-1 acara dan wajib dikembalikan maksimal H+1
                             setelah acara. Keterlambatan akan dikenakan denda.</p>
                     </div>
-                    <div class="bg-soft p-8 rounded-lg border border-gray-800">
-                        <h3 class="text-2xl font-semibold mb-4 text-gold-400">Perawatan Kostum</h3>
+                    <div class="p-8 rounded-lg border border-gray-800" style="background-color: var(--bg-darker);">
+                        <h3 class="text-2xl font-semibold mb-4" style="color: var(--text-gold);">Perawatan Kostum</h3>
                         <p class="text-gray-400">Penyewa wajib menjaga kebersihan dan keutuhan kostum. Dilarang keras
                             mengubah atau memodifikasi kostum tanpa izin.</p>
                     </div>
-                    <div class="bg-soft p-8 rounded-lg border border-gray-800">
-                        <h3 class="text-2xl font-semibold mb-4 text-gold-400">Kerusakan & Kehilangan</h3>
+                    <div class="p-8 rounded-lg border border-gray-800" style="background-color: var(--bg-darker);">
+                        <h3 class="text-2xl font-semibold mb-4" style="color: var(--text-gold);">Kerusakan &
+                            Kehilangan
+                        </h3>
                         <p class="text-gray-400">Kerusakan atau kehilangan akan dikenakan biaya perbaikan atau
                             penggantian penuh sesuai dengan nilai kostum yang bersangkutan.</p>
                     </div>
-                    <div class="bg-soft p-8 rounded-lg border border-gray-800">
-                        <h3 class="text-2xl font-semibold mb-4 text-gold-400">Pembatalan</h3>
+                    <div class="p-8 rounded-lg border border-gray-800" style="background-color: var(--bg-darker);">
+                        <h3 class="text-2xl font-semibold mb-4" style="color: var(--text-gold);">Pembatalan</h3>
                         <p class="text-gray-400">Pembatalan sewa H-3 akan dikenakan potongan 50%. Pembatalan kurang
                             dari
                             H-3, biaya sewa tidak dapat dikembalikan.</p>
@@ -264,7 +297,7 @@
 
 
         {{-- Galeri --}}
-        <section class="py-16" style="background-color: var(--bg-soft);">
+        <section class="py-16 scroll-animate" style="background-color: var(--bg-soft);">
             <div class="container mx-auto text-center px-5">
                 <h2 class="text-4xl font-bold mb-12 font-serif" style="color: var(--text-light);">Galeri</h2>
                 @if ($galleries->count() > 0)
