@@ -59,6 +59,67 @@ class DisewaController extends Controller
         return view('admin.disewa.edit', compact('sewa', 'collections', 'accessories', 'itemsForJs'));
     }
 
+    public function update(Request $request, Rental $disewa)
+    {
+        $validated = $request->validate([
+            'nama_penyewa' => 'required|string|max:255',
+            'nomor_whatsapp' => 'required|string|max:20',
+            'alamat' => 'required|string',
+            'tanggal_mulai' => 'required|date',
+            'tanggal_selesai' => 'required|date|after_or_equal:tanggal_mulai',
+            'items' => 'required|array|min:1',
+            'items.*.item_type' => 'required|in:collection,accessory',
+            'items.*.item_id' => 'required|integer',
+            'items.*.varian' => 'required|string',
+            'items.*.jumlah' => 'required|integer|min:1',
+        ], [
+            'items.required' => 'Minimal harus ada satu item yang disewa.',
+        ]);
+
+        DB::beginTransaction();
+        try {
+            // 1. Kembalikan stok item lama
+            foreach ($disewa->items as $oldItem) {
+                if ($oldItem->rentable) {
+                    $this->updateStock($oldItem->rentable, $oldItem->varian, $oldItem->jumlah);
+                }
+            }
+
+            // 2. Hapus semua item sewa yang lama
+            $disewa->items()->delete();
+
+            // 3. Update data penyewa
+            $disewa->update([
+                'nama_penyewa' => $validated['nama_penyewa'],
+                'nomor_whatsapp' => $validated['nomor_whatsapp'],
+                'alamat' => $validated['alamat'],
+                'tanggal_mulai' => $validated['tanggal_mulai'],
+                'tanggal_selesai' => $validated['tanggal_selesai'],
+            ]);
+
+            // 4. Tambahkan item sewa yang baru dan kurangi stoknya
+            foreach ($validated['items'] as $itemData) {
+                $item = $this->findRentableItem($itemData['item_type'], $itemData['item_id']);
+                $this->updateStock($item, $itemData['varian'], -$itemData['jumlah']); // Kurangi stok
+                $disewa->items()->create([
+                    'rentable_id' => $item->id,
+                    'rentable_type' => get_class($item),
+                    'varian' => $itemData['varian'],
+                    'jumlah' => $itemData['jumlah'],
+                ]);
+            }
+
+            DB::commit();
+            return redirect()->route('admin.disewa.index')->with('success', 'Data sewa berhasil diperbarui.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            if ($e instanceof ValidationException) {
+                throw $e;
+            }
+            return back()->withInput()->withErrors(['db_error' => 'Terjadi kesalahan saat memperbarui data: ' . $e->getMessage()]);
+        }
+    }
+
     // ... (Method store, destroy, dan helper lainnya tetap sama persis seperti jawaban sebelumnya) ...
 
     public function store(Request $request)

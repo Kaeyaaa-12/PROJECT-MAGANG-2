@@ -9,7 +9,7 @@
     </header>
 
     @include('admin.disewa._form', [
-        'action' => '#', // Arahkan ke route update jika sudah dibuat
+        'action' => route('admin.disewa.update', $sewa->id), // Arahkan ke route update jika sudah dibuat
         'method' => 'PUT',
         'sewa' => $sewa,
         'itemsForJs' => $itemsForJs, // Kirim data yang sudah disiapkan
