@@ -1,15 +1,16 @@
-<footer style="background-color: var(--bg-main);" class="text-white pt-16 pb-8">
+{{-- resources/views/layouts/footer.blade.php --}}
+<footer style="background-color: #373737;" class="text-white pt-16 pb-8">
     <div class="container mx-auto px-5">
         <div
             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-12 text-center sm:text-left border-t border-b border-gray-700 py-12">
             {{-- Info Perusahaan --}}
             <div class="space-y-4">
-                <h3 class="text-xl font-bold" style="color: var(--text-main);">AMIRA COLLECTION</h3>
+                <h3 class="text-xl font-bold text-white">AMIRA COLLECTION</h3>
                 <p class="text-gray-400">Penyewaan kostum karnaval terlengkap dan terpercaya untuk segala acaramu.</p>
             </div>
             {{-- Navigasi --}}
             <div class="space-y-4">
-                <h3 class="text-lg font-semibold" style="color: var(--text-main);">Navigasi</h3>
+                <h3 class="text-lg font-semibold text-white">Navigasi</h3>
                 <ul class="space-y-2">
                     <li><a href="{{ route('home.index') }}" class="text-gray-400 hover:text-white">Home</a></li>
                     <li><a href="{{ route('koleksi.index') }}" class="text-gray-400 hover:text-white">Koleksi</a></li>
@@ -20,7 +21,7 @@
             </div>
             {{-- Hubungi Kami --}}
             <div class="space-y-4">
-                <h3 class="text-lg font-semibold" style="color: var(--text-main);">Hubungi Kami</h3>
+                <h3 class="text-lg font-semibold text-white">Hubungi Kami</h3>
                 <div class="flex justify-center sm:justify-start space-x-6">
                     {{-- WhatsApp Icon --}}
                     <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer"
@@ -50,7 +51,7 @@
             </div>
             {{-- Lokasi --}}
             <div class="space-y-4">
-                <h3 class="text-lg font-semibold" style="color: var(--text-main);">Lokasi Kami</h3>
+                <h3 class="text-lg font-semibold text-white">Lokasi Kami</h3>
                 <div class="w-full aspect-video rounded-lg shadow-md overflow-hidden">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1602.0617633168329!2d111.91552777583675!3d-8.056603900817851!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78e3854c13f2a5%3A0x7175b2efdb3b16e2!2sAmira%20Collections!5e0!3m2!1sid!2sid!4v1754145188855!5m2!1sid!2sid"
