@@ -1,8 +1,8 @@
 {{-- resources/views/layouts/footer.blade.php --}}
-<footer style="background-color: #373737;" class="text-white pt-16 pb-8">
+<footer style="background-color: #121212;" class="text-white pt-16 pb-8">
     <div class="container mx-auto px-5">
         <div
-            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-12 text-center sm:text-left border-t border-b border-gray-700 py-12">
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-12 text-center sm:text-left border-t border-b border-gray-800 py-12">
             {{-- Info Perusahaan --}}
             <div class="space-y-4">
                 <h3 class="text-xl font-bold text-white">AMIRA COLLECTION</h3>
