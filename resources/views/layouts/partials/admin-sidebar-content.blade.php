@@ -1,9 +1,17 @@
 <div class="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4" style="background-color: var(--bg-dark-secondary);">
-    <div class="flex h-16 shrink-0 items-center">
-        <a href="{{ route('home.index') }}" class="text-white text-xl font-bold tracking-wider uppercase">
-            Amira Collection
+    {{-- AWAL PERUBAHAN --}}
+    <div class="flex h-20 shrink-0 items-center gap-x-4">
+        <a href="{{ route('home.index') }}" class="flex items-center space-x-3">
+            {{-- Tambahkan logo di sini --}}
+            <img class="h-12 w-auto" src="{{ asset('assets/images/bgkostum.png') }}" alt="Amira Collection Logo">
+            {{-- Styling untuk teks --}}
+            <span class="text-white text-xl font-bold tracking-wider uppercase">
+                Amira Collection
+            </span>
         </a>
     </div>
+    {{-- AKHIR PERUBAHAN --}}
+
     <nav class="flex flex-1 flex-col">
         <ul role="list" class="flex flex-1 flex-col gap-y-7">
             <li>
