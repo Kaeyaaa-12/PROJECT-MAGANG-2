@@ -2,7 +2,7 @@
 <header class="shadow-md sticky top-0 z-50" style="background-color: #121212;" x-data="{ searchOpen: false }">
     <div class="container mx-auto flex justify-between items-center p-5 text-white">
         <a href="{{ route('home.index') }}" class="flex items-center space-x-3">
-            <img src="{{ asset('assets/images/bgkostum.png') }}" alt="Amira Collection Logo" class="h-10">
+            <img src="{{ asset('assets/images/logoamira.png') }}" alt="Amira Collection Logo" class="h-12">
             <span class="text-2xl font-bold tracking-wider" style="color: #FFFFFF;">AMIRA COLLECTION</span>
         </a>
         <nav class="hidden md:flex space-x-8 items-center font-medium">

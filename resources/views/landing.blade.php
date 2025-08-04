@@ -15,6 +15,9 @@
         href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Playfair+Display:wght@400;700&display=swap"
         rel="stylesheet">
 
+    {{-- AOS Library for Scroll Animations --}}
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     {{-- Custom Styles --}}
@@ -74,32 +77,10 @@
             color: #a1a1aa;
             /* zinc-400 */
         }
-
-        /* Animasi Scroll */
-        .scroll-animate {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-        }
-
-        .scroll-animate.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
     </style>
 </head>
 
-<body x-data="{}" x-init="const sections = document.querySelectorAll('.scroll-animate');
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, { threshold: 0.1 });
-sections.forEach(section => {
-    observer.observe(section);
-});">
+<body>
 
     @include('layouts.header')
 
@@ -109,7 +90,7 @@ sections.forEach(section => {
             style="background-image: url('{{ asset('assets/images/bghome1.png') }}');">
             <div class="absolute inset-0 bg-black bg-opacity-60"></div>
             <div class="relative z-10 container mx-auto flex flex-col justify-center h-full text-white px-5">
-                <div class="max-w-xl">
+                <div class="max-w-xl" data-aos="fade-up">
                     <h1 class="text-5xl lg:text-7xl font-serif font-bold leading-tight mb-4">
                         Amira Collection
                     </h1>
@@ -124,9 +105,9 @@ sections.forEach(section => {
         </section>
 
         {{-- Tentang Kami --}}
-        <section class="py-16 md:py-24 scroll-animate" style="background-color: var(--bg-soft);">
+        <section class="py-16 md:py-24" style="background-color: var(--bg-soft);">
             <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center px-5">
-                <div class="order-2 md:order-1 text-center md:text-left">
+                <div class="order-2 md:order-1 text-center md:text-left" data-aos="fade-right">
                     <h2 class="text-4xl font-bold mb-4 font-serif" style="color: var(--text-light);">Tentang Kami</h2>
                     <p class="text-lg text-gray-400 mb-6">
                         Amira Collection adalah solusi terpadu untuk semua kebutuhan kostum Anda. Kami percaya bahwa
@@ -136,7 +117,7 @@ sections.forEach(section => {
                     <a href="{{ route('tentang.index') }}"
                         class="btn-secondary inline-block font-bold py-3 px-8 rounded-md text-lg">Selengkapnya</a>
                 </div>
-                <div class="order-1 md:order-2 flex justify-center">
+                <div class="order-1 md:order-2 flex justify-center" data-aos="fade-left">
                     <img src="{{ asset('assets/images/rumah.png') }}"
                         class="rounded-lg shadow-xl w-full max-w-md h-auto object-cover">
                 </div>
@@ -144,9 +125,8 @@ sections.forEach(section => {
         </section>
 
         {{-- Koleksi Kami --}}
-        <section id="koleksi" class="py-16 scroll-animate" x-data="{ tab: 'kostum' }"
-            style="background-color: var(--bg-soft);">
-            <div class="container mx-auto text-center px-5">
+        <section id="koleksi" class="py-16" x-data="{ tab: 'kostum' }" style="background-color: var(--bg-soft);">
+            <div class="container mx-auto text-center px-5" data-aos="fade-up">
                 <h2 class="text-4xl font-bold mb-12 font-serif" style="color: var(--text-light);">Koleksi Kami</h2>
                 <div class="flex justify-center border-b border-gray-700 mb-10">
                     <button @click="tab = 'kostum'" :class="tab === 'kostum' ? 'tab-active' : 'tab-inactive'"
@@ -162,7 +142,8 @@ sections.forEach(section => {
                     {{-- Card Koleksi Baru --}}
                     <div x-show="tab === 'kostum'" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         @forelse ($newCollections as $collection)
-                            <a href="{{ route('koleksi.show', $collection->id) }}" class="block group">
+                            <a href="{{ route('koleksi.show', $collection->id) }}" class="block group"
+                                data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
                                 <div class="rounded-lg overflow-hidden border border-gray-800 transform transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-500/20 hover:-translate-y-2"
                                     style="background-color: var(--bg-darker);">
                                     <img src="{{ asset('storage/' . $collection->gambar_1) }}"
@@ -185,7 +166,8 @@ sections.forEach(section => {
                     <div x-show="tab === 'aksesoris'" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
                         style="display: none;">
                         @forelse ($newAccessories as $accessory)
-                            <a href="{{ route('aksesoris.show', $accessory->id) }}" class="block group">
+                            <a href="{{ route('aksesoris.show', $accessory->id) }}" class="block group"
+                                data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
                                 <div class="rounded-lg overflow-hidden border border-gray-800 transform transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-500/20 hover:-translate-y-2"
                                     style="background-color: var(--bg-darker);">
                                     <img src="{{ asset('storage/' . $accessory->gambar_1) }}"
@@ -213,22 +195,22 @@ sections.forEach(section => {
         </section>
 
         {{-- Cara Mudah Menyewa --}}
-        <section class="py-20 scroll-animate" style="background-color: var(--bg-soft);">
-            <div class="container mx-auto text-center px-5">
+        <section class="py-20" style="background-color: var(--bg-soft);">
+            <div class="container mx-auto text-center px-5" data-aos="fade-up">
                 <h2 class="text-4xl font-bold mb-4 font-serif" style="color: var(--text-light);">Cara Mudah Menyewa
                 </h2>
                 <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-16">Hanya dengan 3 langkah sederhana, kostum
                     impian siap menjadi milikmu.</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
                     <div class="hidden md:block absolute top-12 left-0 w-full h-px bg-gray-700"></div>
-                    <div class="relative flex flex-col items-center">
+                    <div class="relative flex flex-col items-center" data-aos="fade-up" data-aos-delay="100">
                         <div class="text-black rounded-full w-24 h-24 flex items-center justify-center text-4xl font-bold mb-6 z-10 border-4 border-gray-700"
                             style="background-color: var(--text-gold);">1</div>
                         <h3 class="text-2xl font-semibold mb-2 text-white">Pilih Kostum</h3>
                         <p class="text-gray-400">Datang langsung dan memilih pada toko kami. Klik untuk lihat peta
                             lokasi kami atau buka website untuk melihat semua koleksi kami</p>
                     </div>
-                    <div class="relative flex flex-col items-center">
+                    <div class="relative flex flex-col items-center" data-aos="fade-up" data-aos-delay="200">
                         <div class="text-black rounded-full w-24 h-24 flex items-center justify-center text-4xl font-bold mb-6 z-10 border-4 border-gray-700"
                             style="background-color: var(--text-gold);">2</div>
                         <h3 class="text-2xl font-semibold mb-2 text-white">Atur Jadwal & Bayar
@@ -236,7 +218,7 @@ sections.forEach(section => {
                         <p class="text-gray-400">Tentukan tanggal sewa, lakukan pembayaran aman atau bisa order lewat
                             whatsapp.</p>
                     </div>
-                    <div class="relative flex flex-col items-center">
+                    <div class="relative flex flex-col items-center" data-aos="fade-up" data-aos-delay="300">
                         <div class="text-black rounded-full w-24 h-24 flex items-center justify-center text-4xl font-bold mb-6 z-10 border-4 border-gray-700"
                             style="background-color: var(--text-gold);">3</div>
                         <h3 class="text-2xl font-semibold mb-2 text-white">Ambil & Kembalikan
@@ -249,43 +231,49 @@ sections.forEach(section => {
         </section>
 
         {{-- Aturan Penyewaan --}}
-        <section class="py-20 scroll-animate" style="background-color: var(--bg-soft);">
-            <div class="container mx-auto text-center px-5">
+        <section class="py-20" style="background-color: var(--bg-soft);">
+            <div class="container mx-auto text-center px-5" data-aos="fade-up">
                 <h2 class="text-4xl font-bold mb-4 font-serif" style="color: var(--text-light);">Aturan Penyewaan</h2>
                 <p class="text-lg text-gray-400 max-w-3xl mx-auto mb-16">Harap perhatikan beberapa aturan berikut untuk
                     kenyamanan bersama saat menyewa di Amira Collection.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
                     {{-- Background setiap aturan diubah menjadi lebih gelap --}}
-                    <div class="p-8 rounded-lg border border-gray-800" style="background-color: var(--bg-darker);">
+                    <div class="p-8 rounded-lg border border-gray-800" style="background-color: var(--bg-darker);"
+                        data-aos="fade-up" data-aos-delay="100">
                         <h3 class="text-2xl font-semibold mb-4" style="color: var(--text-gold);">Pemesanan &
                             Pembayaran</h3>
                         <p class="text-gray-400">Pembayaran penuh di muka diperlukan untuk konfirmasi pesanan. Kami
                             menerima pembayaran tunai dan transfer bank.</p>
                     </div>
-                    <div class="p-8 rounded-lg border border-gray-800" style="background-color: var(--bg-darker);">
+                    <div class="p-8 rounded-lg border border-gray-800" style="background-color: var(--bg-darker);"
+                        data-aos="fade-up" data-aos-delay="200">
                         <h3 class="text-2xl font-semibold mb-4" style="color: var(--text-gold);">Jaminan Sewa</h3>
                         <p class="text-gray-400">Setiap penyewaan wajib menyertakan jaminan berupa KTP/SIM asli yang
                             masih berlaku dan akan dikembalikan saat kostum kembali.</p>
                     </div>
-                    <div class="p-8 rounded-lg border border-gray-800" style="background-color: var(--bg-darker);">
+                    <div class="p-8 rounded-lg border border-gray-800" style="background-color: var(--bg-darker);"
+                        data-aos="fade-up" data-aos-delay="300">
                         <h3 class="text-2xl font-semibold mb-4" style="color: var(--text-gold);">Pengambilan &
                             Pengembalian</h3>
                         <p class="text-gray-400">Kostum dapat diambil H-1 acara dan wajib dikembalikan maksimal H+1
                             setelah acara. Keterlambatan akan dikenakan denda.</p>
                     </div>
-                    <div class="p-8 rounded-lg border border-gray-800" style="background-color: var(--bg-darker);">
+                    <div class="p-8 rounded-lg border border-gray-800" style="background-color: var(--bg-darker);"
+                        data-aos="fade-up" data-aos-delay="400">
                         <h3 class="text-2xl font-semibold mb-4" style="color: var(--text-gold);">Perawatan Kostum</h3>
                         <p class="text-gray-400">Penyewa wajib menjaga kebersihan dan keutuhan kostum. Dilarang keras
                             mengubah atau memodifikasi kostum tanpa izin.</p>
                     </div>
-                    <div class="p-8 rounded-lg border border-gray-800" style="background-color: var(--bg-darker);">
+                    <div class="p-8 rounded-lg border border-gray-800" style="background-color: var(--bg-darker);"
+                        data-aos="fade-up" data-aos-delay="500">
                         <h3 class="text-2xl font-semibold mb-4" style="color: var(--text-gold);">Kerusakan &
                             Kehilangan
                         </h3>
                         <p class="text-gray-400">Kerusakan atau kehilangan akan dikenakan biaya perbaikan atau
                             penggantian penuh sesuai dengan nilai kostum yang bersangkutan.</p>
                     </div>
-                    <div class="p-8 rounded-lg border border-gray-800" style="background-color: var(--bg-darker);">
+                    <div class="p-8 rounded-lg border border-gray-800" style="background-color: var(--bg-darker);"
+                        data-aos="fade-up" data-aos-delay="600">
                         <h3 class="text-2xl font-semibold mb-4" style="color: var(--text-gold);">Pembatalan</h3>
                         <p class="text-gray-400">Pembatalan sewa H-3 akan dikenakan potongan 50%. Pembatalan kurang
                             dari
@@ -297,13 +285,14 @@ sections.forEach(section => {
 
 
         {{-- Galeri --}}
-        <section class="py-16 scroll-animate" style="background-color: var(--bg-soft);">
-            <div class="container mx-auto text-center px-5">
+        <section class="py-16" style="background-color: var(--bg-soft);">
+            <div class="container mx-auto text-center px-5" data-aos="fade-up">
                 <h2 class="text-4xl font-bold mb-12 font-serif" style="color: var(--text-light);">Galeri</h2>
                 @if ($galleries->count() > 0)
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                         @foreach ($galleries as $gallery)
-                            <div class="aspect-w-1 aspect-h-1">
+                            <div class="aspect-w-1 aspect-h-1" data-aos="zoom-in"
+                                data-aos-delay="{{ $loop->iteration * 100 }}">
                                 <img class="h-full w-full object-cover rounded-lg"
                                     src="{{ Storage::url($gallery->image) }}" alt="{{ $gallery->title }}">
                             </div>
@@ -318,6 +307,14 @@ sections.forEach(section => {
 
     @include('layouts.footer')
 
+    {{-- AOS Library Script --}}
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+    </script>
 </body>
 
 </html>
