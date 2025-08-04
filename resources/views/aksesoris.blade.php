@@ -35,6 +35,60 @@
         .font-serif {
             font-family: 'Playfair Display', serif;
         }
+
+        /* PERUBAHAN & PENAMBAHAN CSS PAGINASI */
+        .pagination {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Menyembunyikan teks "Showing 1 to 12 of..." */
+        .pagination-info {
+            display: none;
+        }
+
+        .pagination nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pagination .page-item .page-link {
+            background-color: var(--bg-darker);
+            color: var(--text-light);
+            border: 1px solid var(--bg-soft);
+            padding: 0.5rem 1rem;
+            margin: 0 2px;
+            border-radius: 0.375rem;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .pagination .page-item .page-link:hover {
+            background-color: var(--text-gold);
+            color: var(--bg-dark);
+            border-color: var(--text-gold);
+        }
+
+        .pagination .page-item.active .page-link {
+            background-color: var(--text-gold);
+            color: var(--bg-dark);
+            border-color: var(--text-gold);
+            font-weight: bold;
+        }
+
+        .pagination .page-item.disabled .page-link {
+            background-color: var(--bg-soft);
+            color: #6b7280;
+            /* text-gray-500 */
+            border-color: var(--bg-darker);
+            cursor: not-allowed;
+        }
+
+        /* Style untuk panah (previous/next) */
+        .pagination .page-item .page-link svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
     </style>
 </head>
 
@@ -45,51 +99,57 @@
             <h1 class="text-5xl font-bold font-serif" style="color: var(--text-light);">Aksesoris Pelengkap</h1>
             <p class="text-gray-400 mt-2 text-lg">Sempurnakan penampilanmu dengan detail yang menawan.</p>
         </div>
-        <div x-data="{ visibleItems: 8 }">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                @foreach ($aksesoris as $index => $item)
-                    <div x-show="currentIndex < visibleItems" x-init="currentIndex = {{ $index }}" data-aos="fade-up"
-                        data-aos-delay="{{ ($index % 4) * 100 }}">
-                        <a href="{{ route('aksesoris.show', $item->id) }}" class="block group">
-                            <div class="rounded-lg overflow-hidden border border-gray-800 transform transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-500/20 hover:-translate-y-2"
-                                style="background-color: var(--bg-darker);">
-                                <div class="h-96 overflow-hidden">
-                                    <img src="{{ asset('storage/' . $item->gambar_1) }}"
-                                        alt="{{ $item->nama_aksesoris }}"
-                                        class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300">
-                                </div>
-                                <div class="p-5 text-center">
-                                    <h3
-                                        class="font-bold text-xl mb-1 text-light group-hover:text-yellow-400 transition">
-                                        {{ $item->nama_aksesoris }}</h3>
-                                    <p class="text-gray-500 text-sm mt-1">Total Stok: <span class="font-semibold">
-                                            @php
-                                                $totalStok = 0;
-                                                if (is_array($item->stok_varian)) {
-                                                    $totalStok = array_sum($item->stok_varian);
-                                                }
-                                                echo $totalStok;
-                                            @endphp
-                                        </span></p>
-                                </div>
+
+        {{-- Menampilkan item aksesoris --}}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            @foreach ($aksesoris as $index => $item)
+                <div data-aos="fade-up" data-aos-delay="{{ ($index % 4) * 100 }}">
+                    <a href="{{ route('aksesoris.show', $item->id) }}" class="block group">
+                        <div class="rounded-lg overflow-hidden border border-gray-800 transform transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-500/20 hover:-translate-y-2"
+                            style="background-color: var(--bg-darker);">
+                            <div class="h-96 overflow-hidden">
+                                <img src="{{ asset('storage/' . $item->gambar_1) }}" alt="{{ $item->nama_aksesoris }}"
+                                    class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300">
                             </div>
-                        </a>
-                    </div>
-                @endforeach
-            </div>
-            <div class="text-center mt-12" x-show="visibleItems < {{ count($aksesoris) }}">
-                <button @click="visibleItems += 4"
-                    class="bg-yellow-500 text-black font-bold py-3 px-10 rounded-md text-lg hover:bg-yellow-600 transition-all duration-300">Muat
-                    Lebih Banyak</button>
-            </div>
+                            <div class="p-5 text-center">
+                                <h3 class="font-bold text-xl mb-1 text-light group-hover:text-yellow-400 transition">
+                                    {{ $item->nama_aksesoris }}</h3>
+                                <p class="text-gray-500 text-sm mt-1">Total Stok: <span class="font-semibold">
+                                        @php
+                                            $totalStok = 0;
+                                            if (is_array($item->stok_varian)) {
+                                                $totalStok = array_sum($item->stok_varian);
+                                            }
+                                            echo $totalStok;
+                                        @endphp
+                                    </span></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            @endforeach
+        </div>
+
+        {{-- Navigasi Paginasi --}}
+        <div class="mt-12 flex justify-center pagination">
+            {{ $aksesoris->links() }}
         </div>
     </main>
+
     @include('layouts.footer')
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
             duration: 800,
             once: true,
+        });
+
+        // Script untuk menghapus div info paginasi
+        document.addEventListener('DOMContentLoaded', function() {
+            const paginationInfo = document.querySelector('p.text-sm.text-gray-700');
+            if (paginationInfo) {
+                paginationInfo.parentElement.classList.add('pagination-info');
+            }
         });
     </script>
 </body>
