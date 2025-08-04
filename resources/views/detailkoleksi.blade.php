@@ -5,11 +5,26 @@
 @section('content')
     <main class="py-12" style="background-color: #2d2d2d;">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            {{-- TOMBOL KEMBALI (WARNA PUTIH & DIPERBESAR) --}}
+            <div class="mb-8">
+                <a href="{{ route('koleksi.index') }}"
+                    class="inline-flex items-center text-lg font-semibold transition-colors duration-300"
+                    style="color: #FFFFFF;">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    Kembali ke Koleksi
+                </a>
+            </div>
+
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                {{-- GAMBAR (UKURAN DIPERBESAR) --}}
                 <div x-data="{ mainImage: '{{ asset('storage/' . $koleksi->gambar_1) }}' }" data-aos="fade-right">
                     <div class="mb-4 rounded-lg overflow-hidden shadow-lg border border-gray-700">
                         <img :src="mainImage" alt="{{ $koleksi->nama_koleksi }}"
-                            class="w-full h-[550px] object-cover transition-all duration-300">
+                            class="w-full h-[700px] object-cover transition-all duration-300">
                     </div>
                     <div class="grid grid-cols-3 gap-4">
                         @foreach ([$koleksi->gambar_1, $koleksi->gambar_2, $koleksi->gambar_3] as $gambar)
@@ -18,17 +33,24 @@
                                     <img src="{{ asset('storage/' . $gambar) }}" alt="Thumbnail {{ $loop->iteration }}"
                                         @click="mainImage = '{{ asset('storage/' . $gambar) }}'"
                                         class="w-full h-32 object-cover rounded-md cursor-pointer border-2 transition-all duration-300"
-                                        :class="{ 'border-yellow-500 shadow-md scale-105': mainImage === '{{ asset('storage/' . $gambar) }}', 'border-transparent hover:border-gray-600': mainImage !== '{{ asset('storage/' . $gambar) }}' }">
+                                        :class="{
+                                            'border-yellow-500 shadow-md scale-105': mainImage ===
+                                                '{{ asset('storage/' . $gambar) }}',
+                                            'border-transparent hover:border-gray-600': mainImage !==
+                                                '{{ asset('storage/' . $gambar) }}'
+                                        }">
                                 </div>
                             @endif
                         @endforeach
                     </div>
                 </div>
 
+                {{-- DETAIL --}}
                 <div class="p-8 rounded-lg shadow-lg" style="background-color: #1a1a1a;" data-aos="fade-left">
                     <span class="text-sm font-semibold uppercase tracking-wider"
                         style="color: #a1a1aa;">{{ $koleksi->kategori }}</span>
-                    <h1 class="text-4xl font-bold font-serif my-2" style="color: #f5f5f5;">{{ $koleksi->nama_koleksi }}</h1>
+                    <h1 class="text-4xl font-bold font-serif my-2" style="color: #f5f5f5;">{{ $koleksi->nama_koleksi }}
+                    </h1>
 
                     <div class="mt-6">
                         <h3 class="text-lg font-semibold border-b pb-3 mb-4" style="color: #e5e5e5; border-color: #404040;">
@@ -52,6 +74,7 @@
                     <div class="mt-8">
                         <h3 class="text-lg font-semibold border-b pb-3 mb-4" style="color: #e5e5e5; border-color: #404040;">
                             Kalender Ketersediaan</h3>
+                        {{-- BACKGROUND KALENDER (REVISI FINAL) --}}
                         <div id="availability-calendar" class="border rounded-lg p-2"
                             style="background-color: #2d2d2d; border-color: #404040;"></div>
                         <div class="flex items-center justify-center space-x-6 mt-3 text-sm" style="color: #d4d4d4;">
@@ -89,6 +112,11 @@
     <style>
         .font-serif {
             font-family: 'Playfair Display', serif;
+        }
+
+        /* Override Flatpickr dark theme background */
+        .flatpickr-calendar.dark {
+            background-color: transparent !important;
         }
 
         .flatpickr-calendar {
@@ -150,7 +178,8 @@
                         disable: bookedDates,
                         locale: {
                             firstDayOfWeek: 1
-                        }
+                        },
+                        "theme": "dark" // Pastikan tema gelap aktif
                     });
                 })
                 .catch(error => {
