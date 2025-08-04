@@ -3,11 +3,11 @@
 @extends('layouts.guest')
 
 @section('content')
-    <main class="bg-gray-50 py-12">
+    <main class="py-12" style="background-color: #2d2d2d;">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                <div x-data="{ mainImage: '{{ asset('storage/' . $koleksi->gambar_1) }}' }">
-                    <div class="mb-4 rounded-lg overflow-hidden shadow-lg">
+                <div x-data="{ mainImage: '{{ asset('storage/' . $koleksi->gambar_1) }}' }" data-aos="fade-right">
+                    <div class="mb-4 rounded-lg overflow-hidden shadow-lg border border-gray-700">
                         <img :src="mainImage" alt="{{ $koleksi->nama_koleksi }}"
                             class="w-full h-[550px] object-cover transition-all duration-300">
                     </div>
@@ -17,40 +17,44 @@
                                 <div>
                                     <img src="{{ asset('storage/' . $gambar) }}" alt="Thumbnail {{ $loop->iteration }}"
                                         @click="mainImage = '{{ asset('storage/' . $gambar) }}'"
-                                        class="w-full h-32 object-cover rounded-md cursor-pointer border-2 transition"
-                                        :class="{ 'border-yellow-500 shadow-md': mainImage === '{{ asset('storage/' . $gambar) }}', 'border-transparent hover:border-gray-300': mainImage !== '{{ asset('storage/' . $gambar) }}' }">
+                                        class="w-full h-32 object-cover rounded-md cursor-pointer border-2 transition-all duration-300"
+                                        :class="{ 'border-yellow-500 shadow-md scale-105': mainImage === '{{ asset('storage/' . $gambar) }}', 'border-transparent hover:border-gray-600': mainImage !== '{{ asset('storage/' . $gambar) }}' }">
                                 </div>
                             @endif
                         @endforeach
                     </div>
                 </div>
 
-                <div class="bg-white p-8 rounded-lg shadow-lg">
-                    <span
-                        class="text-sm font-semibold text-gray-500 uppercase tracking-wider">{{ $koleksi->kategori }}</span>
-                    <h1 class="text-4xl font-bold playfair-display my-2 text-gray-800">{{ $koleksi->nama_koleksi }}</h1>
+                <div class="p-8 rounded-lg shadow-lg" style="background-color: #1a1a1a;" data-aos="fade-left">
+                    <span class="text-sm font-semibold uppercase tracking-wider"
+                        style="color: #a1a1aa;">{{ $koleksi->kategori }}</span>
+                    <h1 class="text-4xl font-bold font-serif my-2" style="color: #f5f5f5;">{{ $koleksi->nama_koleksi }}</h1>
 
                     <div class="mt-6">
-                        <h3 class="text-lg font-semibold text-gray-700 border-b pb-3 mb-4">Varian & Stok Tersedia</h3>
+                        <h3 class="text-lg font-semibold border-b pb-3 mb-4" style="color: #e5e5e5; border-color: #404040;">
+                            Varian & Stok Tersedia</h3>
                         <div class="space-y-3">
                             @forelse (is_array($koleksi->stok_varian) ? $koleksi->stok_varian : [] as $jenis => $ukuranStok)
                                 @foreach ($ukuranStok as $ukuran => $stok)
-                                    <div class="flex justify-between items-center p-3 rounded-md bg-gray-50">
-                                        <span class="font-medium text-gray-600 capitalize">{{ $jenis }} -
+                                    <div class="flex justify-between items-center p-3 rounded-md"
+                                        style="background-color: #2d2d2d;">
+                                        <span class="font-medium capitalize" style="color: #d4d4d4;">{{ $jenis }} -
                                             {{ $ukuran }}</span>
-                                        <span class="font-bold text-green-600">{{ $stok }} pcs</span>
+                                        <span class="font-bold text-green-400">{{ $stok }} pcs</span>
                                     </div>
                                 @endforeach
                             @empty
-                                <p class="text-gray-500">Stok tidak tersedia untuk koleksi ini.</p>
+                                <p style="color: #a1a1aa;">Stok tidak tersedia untuk koleksi ini.</p>
                             @endforelse
                         </div>
                     </div>
 
                     <div class="mt-8">
-                        <h3 class="text-lg font-semibold text-gray-700 border-b pb-3 mb-4">Kalender Ketersediaan</h3>
-                        <div id="availability-calendar" class="border rounded-lg p-2 bg-gray-50"></div>
-                        <div class="flex items-center justify-center space-x-6 mt-3 text-sm text-gray-600">
+                        <h3 class="text-lg font-semibold border-b pb-3 mb-4" style="color: #e5e5e5; border-color: #404040;">
+                            Kalender Ketersediaan</h3>
+                        <div id="availability-calendar" class="border rounded-lg p-2"
+                            style="background-color: #2d2d2d; border-color: #404040;"></div>
+                        <div class="flex items-center justify-center space-x-6 mt-3 text-sm" style="color: #d4d4d4;">
                             <div class="flex items-center space-x-2">
                                 <span class="w-4 h-4 rounded-full bg-green-500"></span>
                                 <span>Tersedia</span>
@@ -64,7 +68,7 @@
 
                     <div class="mt-8">
                         <a href="https://wa.me/6281234567890" target="_blank"
-                            class="w-full text-center bg-green-500 text-white font-bold py-4 px-6 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center">
+                            class="w-full text-center bg-yellow-500 text-black font-bold py-4 px-6 rounded-lg hover:bg-yellow-600 transition-all duration-300 flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="currentColor"
                                 viewBox="0 0 24 24">
                                 <path
@@ -81,16 +85,15 @@
 
 @push('styles')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
     <style>
-        .playfair-display {
+        .font-serif {
             font-family: 'Playfair Display', serif;
         }
 
         .flatpickr-calendar {
             width: 100% !important;
             box-shadow: none;
-            border: none;
-            background: transparent;
         }
 
         .flatpickr-day.flatpickr-disabled,
@@ -120,6 +123,13 @@
 @endpush
 
 @push('scripts')
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
