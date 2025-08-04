@@ -48,7 +48,7 @@
     <main>
         {{-- Hero Section --}}
         <section class="relative h-[90vh] bg-cover bg-center"
-            style="background-image: url('{{ asset('assets/images/bgtentang2.png') }}');">
+            style="background-image: url('{{ asset('assets/images/bgtentang.png') }}');">
             <div class="absolute inset-0 bg-black bg-opacity-60"></div>
             <div
                 class="relative z-10 container mx-auto flex flex-col justify-center items-center h-full text-white px-5 text-center">
