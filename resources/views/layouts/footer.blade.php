@@ -24,7 +24,7 @@
                 <h3 class="text-lg font-semibold text-white">Hubungi Kami</h3>
                 <div class="flex justify-center sm:justify-start space-x-6">
                     {{-- WhatsApp Icon --}}
-                    <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer"
+                    <a href="https://wa.me/6285235743700" target="_blank" rel="noopener noreferrer"
                         class="text-gray-400 hover:text-white" aria-label="WhatsApp">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                             <path
@@ -32,13 +32,13 @@
                         </svg>
                     </a>
                     {{-- Facebook Icon --}}
-                    <a href="https://facebook.com/your-page" target="_blank" rel="noopener noreferrer"
+                    {{-- <a href="https://facebook.com/your-page" target="_blank" rel="noopener noreferrer"
                         class="text-gray-400 hover:text-white" aria-label="Facebook">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                             <path
                                 d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v2.385z" />
                         </svg>
-                    </a>
+                    </a> --}}
                     {{-- Instagram Icon --}}
                     <a href="https://instagram.com/your-account" target="_blank" rel="noopener noreferrer"
                         class="text-gray-400 hover:text-white" aria-label="Instagram">

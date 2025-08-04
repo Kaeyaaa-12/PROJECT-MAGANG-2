@@ -100,7 +100,7 @@
 
                     <h3 class="text-3xl font-bold mb-4 font-serif" style="color: var(--text-light);">Hubungi Kami</h3>
                     <div class="flex justify-center md:justify-start space-x-6">
-                        <a href="https://wa.me/6281234567890" target="_blank"
+                        <a href="https://wa.me/6285235743700" target="_blank"
                             class="text-gray-300 hover:text-white transition-colors duration-300 flex items-center space-x-2">
                             <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path

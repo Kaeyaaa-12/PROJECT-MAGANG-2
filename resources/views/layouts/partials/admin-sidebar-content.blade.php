@@ -3,7 +3,7 @@
     <div class="flex h-20 shrink-0 items-center gap-x-4">
         <a href="{{ route('home.index') }}" class="flex items-center space-x-3">
             {{-- Tambahkan logo di sini --}}
-            <img class="h-12 w-auto" src="{{ asset('assets/images/bgkostum.png') }}" alt="Amira Collection Logo">
+            <img class="h-12 w-auto" src="{{ asset('assets/images/logoamira.png') }}" alt="Amira Collection Logo">
             {{-- Styling untuk teks --}}
             <span class="text-white text-xl font-bold tracking-wider uppercase">
                 Amira Collection
